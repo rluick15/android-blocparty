@@ -1,4 +1,4 @@
-package com.bloc.blocparty;
+package com.bloc.blocparty.ui.activities;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import com.bloc.blocparty.R;
 
 
 public class BlocParty extends Activity {
