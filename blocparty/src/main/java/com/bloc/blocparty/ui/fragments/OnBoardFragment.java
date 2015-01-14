@@ -14,6 +14,12 @@ import android.widget.TextView;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.OnBoardActivity;
 
+import org.brickred.socialauth.Profile;
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.brickred.socialauth.android.SocialAuthError;
+import org.brickred.socialauth.android.SocialAuthListener;
+
 /**
  * This fragment allows the user to link one or more of their accounts during on boarding
  */
@@ -22,6 +28,7 @@ public class OnBoardFragment extends Fragment {
     private int mNetworkId;
     private Button mSignInButton;
     private Context mContext;
+    private SocialAuthAdapter mAdapter;
 
     public OnBoardFragment() {} // Required empty public constructor
 
@@ -30,6 +37,11 @@ public class OnBoardFragment extends Fragment {
         this.mNetworkId = networkId;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +57,7 @@ public class OnBoardFragment extends Fragment {
             mSignInButton.setTextColor(getResources().getColor(R.color.facebook_blue));
             title.setText(getString(R.string.onboard_title_facebook));
             message.setText(getString(R.string.onboard_message_facebook));
-            icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_facebook_icon));
+            icon.setImageDrawable(getResources().getDrawable(R.drawable.facebook));
             facebookOnBoard();
         }
         else if(mNetworkId == 1) {
@@ -83,7 +95,14 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void facebookOnBoard() {
-
+        mAdapter = new SocialAuthAdapter(new FacebookListener());
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.authorize(mContext, SocialAuthAdapter.Provider.FACEBOOK);
+                mAdapter.addProvider(SocialAuthAdapter.Provider.FACEBOOK, R.drawable.facebook);
+            }
+        });
     }
 
     @Override
@@ -105,4 +124,29 @@ public class OnBoardFragment extends Fragment {
         public void loadOnBoardFrag(int networkId);
     }
 
+
+    private final class FacebookListener implements DialogListener
+    {
+        public void onComplete(Bundle values) {
+            mAdapter.getUserProfileAsync(new SocialAuthListener<Profile>() {
+                @Override
+                public void onExecute(String s, Profile profile) {
+                    mNetworkId++;
+                    ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
+                }
+
+                @Override
+                public void onError(SocialAuthError socialAuthError) {}
+            });
+        }
+
+        @Override
+        public void onError(SocialAuthError socialAuthError) {}
+
+        @Override
+        public void onCancel() {}
+
+        @Override
+        public void onBack() {}
+    }
 }
