@@ -1,15 +1,17 @@
 package com.bloc.blocparty.ui.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.ui.fragments.OnBoardFragment;
 
-public class OnBoardActivity extends Activity {
+public class OnBoardActivity extends FragmentActivity implements OnBoardFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +19,10 @@ public class OnBoardActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE); //hide the action bar
         setContentView(R.layout.activity_on_board);
 
-        checkIfAlreadyOnBoarded();
+        //checkIfAlreadyOnBoarded();
+
+        OnBoardFragment obFrag = new OnBoardFragment();
+        getFragmentManager().beginTransaction().replace(R.id.onBoardFrag, obFrag).commit();
     }
 
      /*
@@ -35,5 +40,10 @@ public class OnBoardActivity extends Activity {
             ed.putBoolean("activity_executed", true);
             ed.commit();
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

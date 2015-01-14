@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -9,11 +10,27 @@
     tools:context="com.bloc.blocparty.ui.activities.OnBoardActivity">
 
     <TextView
+        android:id="@+id/onBoardTitle"
+        android:layout_weight="0.4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:text="Large Text"/>
+
+    <fragment
+        android:id="@+id/onBoardFrag"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        class="com.bloc.blocparty.ui.fragments.OnBoardFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="0.4"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/spacer"
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
 </LinearLayout>

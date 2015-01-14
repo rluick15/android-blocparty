@@ -23,6 +23,7 @@ public class BlocParty extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
     }
 
 
