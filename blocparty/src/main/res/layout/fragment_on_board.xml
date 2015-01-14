@@ -1,19 +1,80 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/shadow_small_padding"
-    android:paddingLeft="@dimen/shadow_small_padding"
-    android:paddingBottom="@dimen/shadow_large_padding"
-    android:paddingRight="@dimen/shadow_large_padding"
-    android:elevation="1.5dp"
-    android:background="@drawable/frag_shadow"
+    android:background="@android:color/white"
     tools:context="com.bloc.blocparty.ui.fragments.OnBoardFragment">
 
-    <TextView
-        android:background="@android:color/white"
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/thin_border"
+        android:layout_height="0dp"
+        android:layout_weight="0.65">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:contentDescription="@string/desc_social_icon" />
+
+        <RelativeLayout
+            android:id="@+id/titleMessage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:id="@+id/networkTitle"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:id="@+id/networkMessage"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_below="@id/networkTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:orientation="horizontal"
+        android:background="@drawable/thin_border"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35">
+
+        <Button
+            android:id="@+id/dismissButton"
+            android:text="@string/button_no_thanks"
+            android:textColor="@color/light_gray"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="2dp"
+            android:background="@android:color/black"/>
+
+        <Button
+            android:id="@+id/selectButton"
+            android:text="@string/button_sign_in"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>
