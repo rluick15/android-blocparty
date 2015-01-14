@@ -7,30 +7,42 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/balloon_background"
     tools:context="com.bloc.blocparty.ui.activities.OnBoardActivity">
 
     <TextView
         android:id="@+id/onBoardTitle"
-        android:layout_weight="0.4"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp"
+        android:text="Welcome to BlocParty!"
+        android:gravity="center"
+        android:layout_weight="0.35"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/onBoardMessage"
+        android:text="Please begin by linking your accounts."
+        android:gravity="center"
+        android:layout_weight="0.1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:padding="16dp"/>
 
     <fragment
         android:id="@+id/onBoardFrag"
         android:layout_margin="@dimen/activity_horizontal_margin"
         class="com.bloc.blocparty.ui.fragments.OnBoardFragment"
         android:layout_width="match_parent"
-        android:layout_weight="0.4"
+        android:layout_weight="0.3"
         android:layout_height="0dp"/>
 
     <TextView
         android:id="@+id/spacer"
-        android:layout_weight="0.2"
+        android:layout_weight="0.25"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_height="0dp" />
 
 
 </LinearLayout>

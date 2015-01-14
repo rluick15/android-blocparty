@@ -4,8 +4,8 @@
     <gradient
         android:centerX="0"
         android:centerY="1"
-        android:endColor="@color/light_gray_shadow"
-        android:startColor="@color/dark_gray_shadow"
+        android:endColor="@color/dark_gray_shadow"
+        android:startColor="@color/light_gray_shadow"
         android:type="sweep" >
     </gradient>
 </shape>
