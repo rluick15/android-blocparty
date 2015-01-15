@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -12,8 +14,6 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,11 +21,14 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.activities.BlocParty"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation">
         </activity>
         <activity
             android:name=".ui.activities.OnBoardActivity"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
