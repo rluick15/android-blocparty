@@ -53,6 +53,7 @@ public class OnBoardFragment extends Fragment {
         TextView message = (TextView) rootView.findViewById(R.id.networkMessage);
         ImageView icon = (ImageView) rootView.findViewById(R.id.imageIcon);
 
+        mAdapter = new SocialAuthAdapter(new ResponseListener());
         if(mNetworkId == 0) {
             mSignInButton.setTextColor(getResources().getColor(R.color.facebook_blue));
             title.setText(getString(R.string.onboard_title_facebook));
@@ -87,11 +88,16 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void instagramOnBoard() {
-
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.authorize(mContext, SocialAuthAdapter.Provider.INSTAGRAM);
+                mAdapter.addProvider(SocialAuthAdapter.Provider.INSTAGRAM, R.drawable.instagram);
+            }
+        });
     }
 
     private void twitterOnBoard() {
-        mAdapter = new SocialAuthAdapter(new ResponseListener());
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +108,6 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void facebookOnBoard() {
-        mAdapter = new SocialAuthAdapter(new ResponseListener());
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
