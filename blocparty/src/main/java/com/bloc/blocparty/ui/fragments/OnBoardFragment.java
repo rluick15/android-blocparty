@@ -64,14 +64,14 @@ public class OnBoardFragment extends Fragment {
             mSignInButton.setTextColor(getResources().getColor(R.color.twitter_blue));
             title.setText(getString(R.string.onboard_title_twitter));
             message.setText(getString(R.string.onboard_message_twitter));
-            icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_twitter_icon));
+            icon.setImageDrawable(getResources().getDrawable(R.drawable.twitter));
             twitterOnBoard();
         }
         else if(mNetworkId == 2) {
             mSignInButton.setTextColor(getResources().getColor(R.color.instagram_blue));
             title.setText(getString(R.string.onboard_title_instagram));
             message.setText(getString(R.string.onboard_message_instagram));
-            icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_instagram_icon));
+            icon.setImageDrawable(getResources().getDrawable(R.drawable.instagram));
             instagramOnBoard();
         }
 
@@ -91,11 +91,18 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void twitterOnBoard() {
-
+        mAdapter = new SocialAuthAdapter(new ResponseListener());
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.authorize(mContext, SocialAuthAdapter.Provider.TWITTER);
+                mAdapter.addProvider(SocialAuthAdapter.Provider.TWITTER, R.drawable.twitter);
+            }
+        });
     }
 
     private void facebookOnBoard() {
-        mAdapter = new SocialAuthAdapter(new FacebookListener());
+        mAdapter = new SocialAuthAdapter(new ResponseListener());
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,8 +132,7 @@ public class OnBoardFragment extends Fragment {
     }
 
 
-    private final class FacebookListener implements DialogListener
-    {
+    private final class ResponseListener implements DialogListener {
         public void onComplete(Bundle values) {
             mAdapter.getUserProfileAsync(new SocialAuthListener<Profile>() {
                 @Override
