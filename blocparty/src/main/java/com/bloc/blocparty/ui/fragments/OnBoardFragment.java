@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.instagram.InstagramApp;
 import com.bloc.blocparty.ui.activities.OnBoardActivity;
+import com.bloc.blocparty.utils.Constants;
 
 import org.brickred.socialauth.Profile;
 import org.brickred.socialauth.android.DialogListener;
@@ -29,6 +32,7 @@ public class OnBoardFragment extends Fragment {
     private Button mSignInButton;
     private Context mContext;
     private SocialAuthAdapter mAdapter;
+    private InstagramApp mApp;
 
     public OnBoardFragment() {} // Required empty public constructor
 
@@ -88,11 +92,15 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void instagramOnBoard() {
+        mApp = new InstagramApp(mContext, Constants.CLIENT_ID, Constants.CLIENT_SECRET,
+                Constants.CALLBACK_URL);
+        mApp.setListener(listener);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAdapter.authorize(mContext, SocialAuthAdapter.Provider.INSTAGRAM);
-                mAdapter.addProvider(SocialAuthAdapter.Provider.INSTAGRAM, R.drawable.instagram);
+                if (!mApp.hasAccessToken()) {
+                    mApp.authorize();
+                }
             }
         });
     }
@@ -160,4 +168,15 @@ public class OnBoardFragment extends Fragment {
         @Override
         public void onBack() {}
     }
+
+    InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
+
+        @Override
+        public void onSuccess() {}
+
+        @Override
+        public void onFail(String error) {
+            Toast.makeText(mContext, error, Toast.LENGTH_LONG).show();
+        }
+    };
 }

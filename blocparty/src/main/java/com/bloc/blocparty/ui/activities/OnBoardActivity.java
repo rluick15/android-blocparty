@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.fragments.OnBoardFragment;
-import com.bloc.blocparty.ui.utils.Constants;
+import com.bloc.blocparty.utils.Constants;
 
 public class OnBoardActivity extends FragmentActivity implements OnBoardFragment.OnBoardingInteractionListener {
 
