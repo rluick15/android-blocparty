@@ -119,8 +119,7 @@ public class OnBoardFragment extends Fragment {
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAdapter.authorize(mContext, SocialAuthAdapter.Provider.FACEBOOK);
-                mAdapter.addProvider(SocialAuthAdapter.Provider.FACEBOOK, R.drawable.facebook);
+                ((OnBoardActivity) mContext).clickFbLoginButton();
             }
         });
     }
@@ -142,6 +141,11 @@ public class OnBoardFragment extends Fragment {
 
     public interface OnBoardingInteractionListener {
         public void loadOnBoardFrag(int networkId);
+    }
+
+    public void nextFragment() {
+        mNetworkId++;
+        ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
     }
 
 
