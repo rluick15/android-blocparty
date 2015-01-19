@@ -9,10 +9,14 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.ui.fragments.FacebookLoginFragment;
 import com.bloc.blocparty.ui.fragments.OnBoardFragment;
 import com.bloc.blocparty.utils.Constants;
 
 public class OnBoardActivity extends FragmentActivity implements OnBoardFragment.OnBoardingInteractionListener {
+
+    private FacebookLoginFragment fbLoginFrag;
+    private OnBoardFragment obFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,20 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
 
         //checkIfAlreadyOnBoarded();
         loadOnBoardFrag(Constants.NETWORK_ID);
+
+        if (savedInstanceState == null) {
+            // Add the fragment on initial activity setup
+            fbLoginFrag = new FacebookLoginFragment(this);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, fbLoginFrag)
+                    .commit();
+        }
+        else {
+            // Or set the fragment from restored state info
+            fbLoginFrag = (FacebookLoginFragment) getSupportFragmentManager()
+                    .findFragmentById(android.R.id.content);
+        }
     }
 
      /*
@@ -55,8 +73,20 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
             finish();
         }
         else {
-            OnBoardFragment obFrag = new OnBoardFragment(this, networkId);
+            obFrag = new OnBoardFragment(this, networkId);
             getFragmentManager().beginTransaction().replace(R.id.onBoardFrag, obFrag).commit();
         }
+    }
+
+    /*
+     * This method is called when the user selects to login in to facebook. It clicks the
+     * built in facebook login button in the fragment
+     */
+    public void clickFbLoginButton() {
+        fbLoginFrag.clickButton();
+    }
+
+    public void nextFragment() {
+        obFrag.nextFragment();
     }
 }

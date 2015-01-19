@@ -15,5 +15,6 @@
     <string name="onboard_message_twitter">View all the photos on your Twitter timeline!</string>
     <string name="onboard_title_instagram">Instagram</string>
     <string name="onboard_message_instagram">Browse your Instagram Feed!</string>
+    <string name="app_id">1567189876857936</string>
 
 </resources>
