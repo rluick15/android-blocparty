@@ -176,7 +176,9 @@ public class OnBoardFragment extends Fragment {
     InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
 
         @Override
-        public void onSuccess() {}
+        public void onSuccess() {
+            Toast.makeText(mContext, "SUCCESS!", Toast.LENGTH_LONG).show();
+        }
 
         @Override
         public void onFail(String error) {
