@@ -1,4 +1,4 @@
-package com.bloc.blocparty.ui;
+package com.bloc.blocparty;
 
 import android.app.Application;
 

@@ -16,5 +16,8 @@
     <string name="onboard_title_instagram">Instagram</string>
     <string name="onboard_message_instagram">Browse your Instagram Feed!</string>
     <string name="app_id">1567189876857936</string>
+    <string name="title_activity_feed_item_adapter">FeedItemAdapter</string>
+    <string name="desc_feed_image">Image</string>
+    <string name="desc_feed_profile_pic">Profile Picture</string>
 
 </resources>
