@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
@@ -25,18 +26,21 @@ import java.util.ArrayList;
 public class BlocParty extends Activity {
 
     private ArrayList<FeedItem> mFeedItems;
+    private ListView mFeedList;
+    private FeedItemAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
-        
+
+        mFeedList = (ListView) findViewById(R.id.feedList);
         mFeedItems = new ArrayList<>();
 
         getFacebookData();
 
-        FeedItemAdapter adapter = new FeedItemAdapter(this, mFeedItems);
-
+        mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
+        mFeedList.setAdapter(mAdapter);
     }
 
     /**
@@ -74,6 +78,7 @@ public class BlocParty extends Activity {
                                         FeedItem fbFeedItem = new FeedItem(picture, id, name,
                                                 message, Constants.FACEBOOK);
                                         mFeedItems.add(fbFeedItem);
+                                        mAdapter.notifyDataSetChanged();
                                     }
                                 }
                                 catch (JSONException ignored) {}
