@@ -35,6 +35,10 @@ public class BlocParty extends Activity {
         getFacebookData();
     }
 
+    /**
+     * This method sends a data request to the facebook api server and retrieves the feed data.
+     * It then creates a feed object and puts it into an array to be fed into the adapter
+     */
     private void getFacebookData() {
         Bundle params = new Bundle();
         params.putString(Constants.ACCESS_TOKEN, Session.getActiveSession().getAccessToken());
@@ -57,29 +61,23 @@ public class BlocParty extends Activity {
                                     for (int i = 0; i < array.length(); i++) {
                                         JSONObject object = (JSONObject) array.get(i);
                                         JSONObject from = object.getJSONObject(Constants.FROM);
+
                                         String name = from.getString(Constants.NAME);
                                         String id = from.getString(Constants.ID);
                                         String picture = object.getString(Constants.PICTURE);
                                         String message = object.getString(Constants.MESSAGE);
+
                                         FeedItem fbFeedItem = new FeedItem(picture, id, name,
                                                 message, Constants.FACEBOOK);
                                         mFeedItems.add(fbFeedItem);
                                     }
                                 }
-                                catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                catch (JSONException ignored) {}
                             }
                         }
                     }
             ).executeAsync();
         }
-    }
-
-    private Bundle getRequestParameters() {
-        Bundle parameters = new Bundle();
-        parameters.putString("access_token", Session.getActiveSession().getAccessToken());
-        return parameters;
     }
 
 
