@@ -5,16 +5,79 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.utils.Constants;
+import com.facebook.HttpMethod;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.model.GraphObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class BlocParty extends Activity {
+
+    private ArrayList<FeedItem> mFeedItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
+        
+        mFeedItems = new ArrayList<>();
 
+        getFacebookData();
+    }
+
+    /**
+     * This method sends a data request to the facebook api server and retrieves the feed data.
+     * It then creates a feed object and puts it into an array to be fed into the adapter
+     */
+    private void getFacebookData() {
+        Bundle params = new Bundle();
+        params.putString(Constants.ACCESS_TOKEN, Session.getActiveSession().getAccessToken());
+        params.putString(Constants.LIMIT, Constants.LIMIT_QUERY);
+        params.putString(Constants.FILTER, Constants.FILTER_QUERY);
+
+        if(Session.getActiveSession().isOpened()) {
+            new Request(Session.getActiveSession(),
+                    Constants.REQUEST_URL,
+                    params,
+                    HttpMethod.GET,
+                    new Request.Callback() {
+                        public void onCompleted(Response response) {
+                            GraphObject graphObject = response.getGraphObject();
+                            if (graphObject != null) {
+                                JSONObject jsonObject = graphObject.getInnerJSONObject();
+
+                                try {
+                                    JSONArray array = jsonObject.getJSONArray(Constants.DATA);
+                                    for (int i = 0; i < array.length(); i++) {
+                                        JSONObject object = (JSONObject) array.get(i);
+                                        JSONObject from = object.getJSONObject(Constants.FROM);
+
+                                        String name = from.getString(Constants.NAME);
+                                        String id = from.getString(Constants.ID);
+                                        String picture = object.getString(Constants.PICTURE);
+                                        String message = object.getString(Constants.MESSAGE);
+
+                                        FeedItem fbFeedItem = new FeedItem(picture, id, name,
+                                                message, Constants.FACEBOOK);
+                                        mFeedItems.add(fbFeedItem);
+                                    }
+                                }
+                                catch (JSONException ignored) {}
+                            }
+                        }
+                    }
+            ).executeAsync();
+        }
     }
 
 
