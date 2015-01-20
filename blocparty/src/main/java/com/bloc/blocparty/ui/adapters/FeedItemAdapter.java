@@ -89,15 +89,14 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Request likeRequest = new Request(Session.getActiveSession(),
+                    new Request(Session.getActiveSession(),
                             feedItem.getPostId() + "/likes", null, HttpMethod.POST, new Request.Callback() {
                         @Override
                         public void onCompleted(Response response) {
                             Toast.makeText(mContext, "Post Liked!", Toast.LENGTH_SHORT).show();
                             //Todo:doesnt work?? or does it??
                         }
-                    });
-                    Request.executeBatchAndWait(likeRequest);
+                    }).executeAsync();
                 }
             });
         }

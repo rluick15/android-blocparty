@@ -3,9 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:background="@drawable/thin_border"
     tools:context="com.bloc.blocparty.ui.adapters.FeedItemAdapter">
 
@@ -31,7 +28,9 @@
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:contentDescription="@string/desc_feed_profile_pic"
-            android:layout_marginBottom="@dimen/mini_margin"/>
+            android:layout_marginBottom="@dimen/mini_margin"
+            android:layout_marginRight="@dimen/mini_margin"
+            android:layout_marginLeft="@dimen/mini_margin"/>
 
         <RelativeLayout
             android:layout_width="0dp"

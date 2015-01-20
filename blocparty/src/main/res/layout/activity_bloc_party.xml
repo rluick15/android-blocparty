@@ -12,6 +12,8 @@ tools:context="com.bloc.blocparty.ui.activities.BlocParty">
     <ListView
         android:id="@+id/feedList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" />
 
 </RelativeLayout>
