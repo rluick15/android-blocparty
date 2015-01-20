@@ -1,5 +1,6 @@
 package com.bloc.blocparty.ui.adapters;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -56,9 +57,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        new ImageLoadTask(mFeedItems.get(position).getImageUrl(), holder.feedImage).execute();
-        new ImageLoadTask(mFeedItems.get(position).getProfilePictureUrl(), holder.profPicture).execute();
-        Log.e("URL", mFeedItems.get(position).getProfilePictureUrl());
+        new ImageLoadTask(mContext, mFeedItems.get(position).getImageUrl(), holder.feedImage).execute();
+        new ImageLoadTask(mContext, mFeedItems.get(position).getProfilePictureUrl(), holder.profPicture).execute();
         holder.name.setText(mFeedItems.get(position).getName());
         holder.message.setText(mFeedItems.get(position).getMessage());
 
@@ -76,12 +76,28 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
+        private ProgressDialog dialog;
         private String url;
         private ImageView picture;
+        private Context context;
 
-        public ImageLoadTask(String url, ImageView picField) {
+        public ImageLoadTask(Context context, String url, ImageView picField) {
+            this.context = context;
             this.url = url;
             this.picture = picField;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            try {
+                dialog = new ProgressDialog(context);
+                dialog.setCancelable(false);
+                dialog.setMessage(mContext.getString(R.string.loading_message));
+                dialog.isIndeterminate();
+                dialog.show();
+            }
+            catch (Exception ignored) {}
         }
 
         @Override
@@ -105,6 +121,12 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+            if (dialog.isShowing()) {
+                try {
+                    dialog.dismiss();
+                } catch (IllegalArgumentException ignored){}
+            }
+
             super.onPostExecute(bitmap);
             picture.setImageBitmap(bitmap);
         }
