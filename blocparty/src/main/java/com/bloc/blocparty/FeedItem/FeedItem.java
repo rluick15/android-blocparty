@@ -6,18 +6,28 @@ package com.bloc.blocparty.FeedItem;
  */
 public class FeedItem {
 
+    private String postId;
     private String imageUrl;
     private String profilePictureUrl;
     private String name;
     private String message;
+    private Boolean favorited;
     private String networkName; //facebook, twitter, or instagram
 
-    public FeedItem(String pictureId, String userId, String name, String message, String networkName) {
+    public FeedItem(String postId, String pictureId, String userId, String name, String message,
+                    Boolean favorited, String networkName) {
+
+        this.postId = pictureId;
         this.imageUrl = "https://graph.facebook.com/" + pictureId + "/picture";
         this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
         this.name = name;
         this.message = message;
         this.networkName = networkName;
+        this.favorited = favorited;
+    }
+
+    public String getPostId() {
+        return postId;
     }
 
     public String getImageUrl() {
@@ -39,4 +49,6 @@ public class FeedItem {
     public String getNetworkName() {
         return networkName;
     }
+
+    public Boolean favorited() {return favorited;}
 }

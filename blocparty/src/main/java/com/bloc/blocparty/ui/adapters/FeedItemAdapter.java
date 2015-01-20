@@ -13,10 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.utils.Constants;
+import com.facebook.HttpMethod;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -44,6 +50,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
+        FeedItem feedItem = mFeedItems.get(position);
+
         if(convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.feed_item_adapter, null);
             holder = new ViewHolder();
@@ -51,19 +59,48 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder.profPicture = (ImageView) convertView.findViewById(R.id.profileImage);
             holder.name = (TextView) convertView.findViewById(R.id.nameField);
             holder.message = (TextView) convertView.findViewById(R.id.descField);
+            holder.favoriteButton = (ImageButton) convertView.findViewById(R.id.likeButton);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        new ImageLoadTask(mContext, mFeedItems.get(position).getImageUrl(), holder.feedImage).execute();
-        new ImageLoadTask(mContext, mFeedItems.get(position).getProfilePictureUrl(), holder.profPicture).execute();
-        Log.e("URL", mFeedItems.get(position).getImageUrl());
-        holder.name.setText(mFeedItems.get(position).getName());
-        holder.message.setText(mFeedItems.get(position).getMessage());
+        new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage).execute();
+        new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture).execute();
+        holder.name.setText(feedItem.getName());
+        holder.message.setText(feedItem.getMessage());
+
+        if(feedItem.getNetworkName().equals(Constants.FACEBOOK)) {
+            facebookAdapter(feedItem, holder);
+        }
 
         return convertView;
+    }
+
+    private void facebookAdapter(final FeedItem feedItem, ViewHolder holder) {
+        if (feedItem.favorited() == true) {
+            holder.favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
+        }
+        else if(feedItem.favorited() == false) {
+            holder.favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
+            holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Request likeRequest = new Request(Session.getActiveSession(),
+                            feedItem.getPostId() + "/likes", null, HttpMethod.POST, new Request.Callback() {
+                        @Override
+                        public void onCompleted(Response response) {
+                            Toast.makeText(mContext, "Post Liked!", Toast.LENGTH_SHORT).show();
+                            //Todo:doesnt work?? or does it??
+                        }
+                    });
+                    Request.executeBatchAndWait(likeRequest);
+                }
+            });
+        }
     }
 
     private static class ViewHolder {

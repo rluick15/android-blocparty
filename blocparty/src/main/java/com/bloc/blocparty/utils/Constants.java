@@ -23,6 +23,7 @@ public class Constants {
     public static final String ID = "id";
     public static final String PICTURE_ID = "object_id";
     public static final String MESSAGE = "message";
+    public static final String LIKES = "likes";
     public static final String FACEBOOK = "Facebook";
     public static final String TWITTER = "Twitter";
     public static final String INSTAGRAM = "Instagram";

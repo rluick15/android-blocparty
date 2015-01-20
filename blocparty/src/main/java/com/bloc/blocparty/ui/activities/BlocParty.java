@@ -28,6 +28,7 @@ public class BlocParty extends Activity {
     private ArrayList<FeedItem> mFeedItems;
     private ListView mFeedList;
     private FeedItemAdapter mAdapter;
+    private String mCurrentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,33 @@ public class BlocParty extends Activity {
         mFeedList = (ListView) findViewById(R.id.feedList);
         mFeedItems = new ArrayList<>();
 
+        //getCurrentFacebookUser();
         getFacebookData();
 
         mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
         mFeedList.setAdapter(mAdapter);
     }
+
+    /**
+     * This method sends a data request to the facebook api server and retrieves current users id
+     */
+//    public void getCurrentFacebookUser() {
+//        final Session session = Session.getActiveSession();
+//        if (session != null && session.isOpened()) {
+//            Request request = Request.newMeRequest(session, new Request.GraphUserCallback() {
+//                @Override
+//                public void onCompleted(GraphUser user, Response response) {
+//                    // If the response is successful
+//                    if (session == Session.getActiveSession()) {
+//                        if (user != null) {
+//                            mCurrentUserId = user.getId();
+//                        }
+//                    }
+//                }
+//            });
+//            Request.executeBatchAsync(request);
+//        }
+//    }
 
     /**
      * This method sends a data request to the facebook api server and retrieves the feed data.
@@ -60,6 +83,7 @@ public class BlocParty extends Activity {
                     HttpMethod.GET,
                     new Request.Callback() {
                         public void onCompleted(Response response) {
+                            Boolean liked = false;
                             GraphObject graphObject = response.getGraphObject();
                             if (graphObject != null) {
                                 JSONObject jsonObject = graphObject.getInnerJSONObject();
@@ -70,13 +94,24 @@ public class BlocParty extends Activity {
                                         JSONObject object = (JSONObject) array.get(i);
                                         JSONObject from = object.getJSONObject(Constants.FROM);
 
+                                        String postId = object.getString(Constants.ID);
                                         String name = from.getString(Constants.NAME);
                                         String id = from.getString(Constants.ID);
                                         String pictureId = object.getString(Constants.PICTURE_ID);
                                         String message = object.getString(Constants.MESSAGE);
 
-                                        FeedItem fbFeedItem = new FeedItem(pictureId, id, name,
-                                                message, Constants.FACEBOOK);
+                                        //get likes info
+//                                        JSONObject likes = object.getJSONObject(Constants.LIKES);
+//                                        JSONArray likesArray = likes.getJSONArray(Constants.DATA);
+//                                        for(int j = 0; j < likesArray.length(); j++) {
+//                                            JSONObject likesObject = (JSONObject) likesArray.get(i);
+//                                            if(likesObject.getString(Constants.ID).equals(mCurrentUserId)) {
+//                                                liked = true;
+//                                            }
+//                                        }
+
+                                        FeedItem fbFeedItem = new FeedItem(postId, pictureId, id,
+                                                name, message, liked, Constants.FACEBOOK);
                                         mFeedItems.add(fbFeedItem);
                                         mAdapter.notifyDataSetChanged();
                                     }
