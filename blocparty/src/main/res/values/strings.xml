@@ -19,5 +19,6 @@
     <string name="title_activity_feed_item_adapter">FeedItemAdapter</string>
     <string name="desc_feed_image">Image</string>
     <string name="desc_feed_profile_pic">Profile Picture</string>
+    <string name="loading_message">Loading...</string>
 
 </resources>
