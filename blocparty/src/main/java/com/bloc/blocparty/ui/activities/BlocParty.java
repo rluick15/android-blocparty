@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -33,6 +34,9 @@ public class BlocParty extends Activity {
         mFeedItems = new ArrayList<>();
 
         getFacebookData();
+
+        FeedItemAdapter adapter = new FeedItemAdapter(this, mFeedItems);
+
     }
 
     /**
