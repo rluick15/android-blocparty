@@ -21,7 +21,7 @@ public class Constants {
     public static final String FROM = "from";
     public static final String NAME = "name";
     public static final String ID = "id";
-    public static final String PICTURE = "picture";
+    public static final String PICTURE_ID = "object_id";
     public static final String MESSAGE = "message";
     public static final String FACEBOOK = "Facebook";
     public static final String TWITTER = "Twitter";

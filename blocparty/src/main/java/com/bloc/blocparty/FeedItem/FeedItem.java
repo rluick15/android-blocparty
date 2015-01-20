@@ -12,8 +12,8 @@ public class FeedItem {
     private String message;
     private String networkName; //facebook, twitter, or instagram
 
-    public FeedItem(String imageUrl, String userId, String name, String message, String networkName) {
-        this.imageUrl = imageUrl;
+    public FeedItem(String pictureId, String userId, String name, String message, String networkName) {
+        this.imageUrl = "https://graph.facebook.com/" + pictureId + "/picture";
         this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
         this.name = name;
         this.message = message;

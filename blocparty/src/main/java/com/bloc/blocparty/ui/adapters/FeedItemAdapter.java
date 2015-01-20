@@ -59,6 +59,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
         new ImageLoadTask(mContext, mFeedItems.get(position).getImageUrl(), holder.feedImage).execute();
         new ImageLoadTask(mContext, mFeedItems.get(position).getProfilePictureUrl(), holder.profPicture).execute();
+        Log.e("URL", mFeedItems.get(position).getImageUrl());
         holder.name.setText(mFeedItems.get(position).getName());
         holder.message.setText(mFeedItems.get(position).getMessage());
 

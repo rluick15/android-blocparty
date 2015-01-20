@@ -72,10 +72,10 @@ public class BlocParty extends Activity {
 
                                         String name = from.getString(Constants.NAME);
                                         String id = from.getString(Constants.ID);
-                                        String picture = object.getString(Constants.PICTURE);
+                                        String pictureId = object.getString(Constants.PICTURE_ID);
                                         String message = object.getString(Constants.MESSAGE);
 
-                                        FeedItem fbFeedItem = new FeedItem(picture, id, name,
+                                        FeedItem fbFeedItem = new FeedItem(pictureId, id, name,
                                                 message, Constants.FACEBOOK);
                                         mFeedItems.add(fbFeedItem);
                                         mAdapter.notifyDataSetChanged();
