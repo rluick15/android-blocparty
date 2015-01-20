@@ -52,7 +52,7 @@ public class FacebookLoginFragment extends Fragment {
 
         authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
-        authButton.setReadPermissions(Arrays.asList("user_likes", "user_status"));
+        authButton.setReadPermissions(Arrays.asList("user_photos", "read_stream"));
 
         return view;
     }
