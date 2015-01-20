@@ -13,11 +13,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,13 +88,14 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         protected Bitmap doInBackground(Void... params) {
             Bitmap myBitmap = null;
             try {
-                URL urlConnection = new URL(url);
-                HttpURLConnection connection = (HttpURLConnection) urlConnection
-                        .openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                myBitmap = BitmapFactory.decodeStream(input);
+                URL imageUrl = new URL(url);
+                HttpGet httpRequest = new HttpGet(imageUrl.toString());
+                DefaultHttpClient httpclient = BlocPartyApplication.getHttpInstance();
+                HttpResponse response = httpclient.execute(httpRequest);
+                HttpEntity entity = response.getEntity();
+                BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+                myBitmap = BitmapFactory.decodeStream(bufHttpEntity.getContent());
+                httpRequest.abort();
             } catch (Exception e) {
                 e.printStackTrace();
             }

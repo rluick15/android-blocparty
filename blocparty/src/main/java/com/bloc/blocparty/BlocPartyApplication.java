@@ -2,21 +2,23 @@ package com.bloc.blocparty;
 
 import android.app.Application;
 
-import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  * Application class
  */
 public class BlocPartyApplication extends Application {
 
-    // SocialAuth Component
-    private static SocialAuthAdapter socialAuthAdpater;
+    private static DefaultHttpClient httpClientInstance;
 
-    public static SocialAuthAdapter getSocialAuthAdapter() {
-        return socialAuthAdpater;
+    /**
+     * This method defines the Http client as a singleton and allows it to be retrieved
+     */
+    public static DefaultHttpClient getHttpInstance(){
+        if(httpClientInstance == null){
+            httpClientInstance = new DefaultHttpClient();
+        }
+        return httpClientInstance;
     }
 
-    public void setSocialAuthAdapter(SocialAuthAdapter socialAuthAdapter) {
-        this.socialAuthAdpater = socialAuthAdapter;
-    }
 }

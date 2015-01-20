@@ -14,7 +14,7 @@ public class FeedItem {
 
     public FeedItem(String imageUrl, String userId, String name, String message, String networkName) {
         this.imageUrl = imageUrl;
-        this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture?type=large";
+        this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
         this.name = name;
         this.message = message;
         this.networkName = networkName;
