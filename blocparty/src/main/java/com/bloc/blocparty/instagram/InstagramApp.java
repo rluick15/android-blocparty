@@ -212,9 +212,6 @@ public class InstagramApp {
 	}
 	
 	public void authorize() {
-		//Intent webAuthIntent = new Intent(Intent.ACTION_VIEW);
-        //webAuthIntent.setData(Uri.parse(AUTH_URL));
-        //mCtx.startActivity(webAuthIntent);
 		mDialog.show();
 	}
 

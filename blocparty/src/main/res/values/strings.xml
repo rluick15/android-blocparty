@@ -20,5 +20,6 @@
     <string name="desc_feed_image">Image</string>
     <string name="desc_feed_profile_pic">Profile Picture</string>
     <string name="loading_message">Loading...</string>
+    <string name="connection_failed">Connection Failed</string>
 
 </resources>

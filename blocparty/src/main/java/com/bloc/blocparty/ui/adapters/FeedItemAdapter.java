@@ -1,6 +1,5 @@
 package com.bloc.blocparty.ui.adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,30 +60,48 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder.name = (TextView) convertView.findViewById(R.id.nameField);
             holder.message = (TextView) convertView.findViewById(R.id.descField);
             holder.favoriteButton = (ImageButton) convertView.findViewById(R.id.likeButton);
+            holder.progressBarMain = (ProgressBar) convertView.findViewById(R.id.progressBarMain);
+            holder.progressBarProf = (ProgressBar) convertView.findViewById(R.id.progressBarProf);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage).execute();
-        new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture).execute();
+        new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage,
+                holder.progressBarMain, holder.progressBarProf).execute();
+        new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture,
+                holder.progressBarMain, holder.progressBarProf).execute();
         holder.name.setText(feedItem.getName());
         holder.message.setText(feedItem.getMessage());
 
         if(feedItem.getNetworkName().equals(Constants.FACEBOOK)) {
             facebookAdapter(feedItem, holder);
         }
+        else if(feedItem.getNetworkName().equals(Constants.INSTAGRAM)) {
+            instagramAdapter(feedItem, holder);
+        }
 
         return convertView;
     }
 
+    private void instagramAdapter(FeedItem feedItem, ViewHolder holder) {
+        if (feedItem.getFavorited() == true) {
+            holder.favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+        }
+        else if(feedItem.getFavorited() == false) {
+            holder.favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
+        }
+    }
+
     private void facebookAdapter(final FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.favorited() == true) {
+        if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
         }
-        else if(feedItem.favorited() == false) {
+        else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
             holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
@@ -109,32 +127,33 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         TextView message;
         ImageButton favoriteButton;
         ImageButton threeDots;
+        ProgressBar progressBarMain;
+        ProgressBar progressBarProf;
     }
 
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
-        private ProgressDialog dialog;
+        private ProgressBar mainPb;
+        private ProgressBar profPb;
         private String url;
         private ImageView picture;
         private Context context;
 
-        public ImageLoadTask(Context context, String url, ImageView picField) {
+        public ImageLoadTask(Context context, String url, ImageView picField,
+                             ProgressBar progressBarMain, ProgressBar progressBarProf) {
             this.context = context;
             this.url = url;
             this.picture = picField;
+            this.mainPb = progressBarMain;
+            this.profPb = progressBarProf;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            try {
-                dialog = new ProgressDialog(context);
-                dialog.setCancelable(false);
-                dialog.setMessage(mContext.getString(R.string.loading_message));
-                dialog.isIndeterminate();
-                dialog.show();
-            }
-            catch (Exception ignored) {}
+            mainPb.setVisibility(View.VISIBLE);
+            profPb.setVisibility(View.VISIBLE);
+            picture.setImageDrawable(null);
         }
 
         @Override
@@ -158,13 +177,11 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (dialog.isShowing()) {
-                try {
-                    dialog.dismiss();
-                } catch (IllegalArgumentException ignored){}
-            }
-
             super.onPostExecute(bitmap);
+
+            mainPb.setVisibility(View.INVISIBLE);
+            profPb.setVisibility(View.INVISIBLE);
+
             picture.setImageBitmap(bitmap);
         }
 
