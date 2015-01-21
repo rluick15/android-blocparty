@@ -23,8 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a12a700d-0af5-4ee3-8c98-862806ae0672" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml" />
     </list>
     <ignored path="android-blocparty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeedItemAdapter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FeedItemAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37281552" vertical-offset="1610" max-vertical-offset="2533">
-              <caret line="138" column="33" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="2533">
+              <caret line="63" column="98" selection-start-line="63" selection-start-column="98" selection-end-line="63" selection-end-column="98" />
               <folding>
                 <element signature="e#3654#4281#0" expanded="true" />
                 <element signature="e#3899#4232#0" expanded="true" />
@@ -79,22 +78,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feed_item_adapter.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="feed_item_adapter.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml">
-          <provider selected="true" editor-type-id="android-designer">
+          <provider editor-type-id="android-designer">
             <state />
           </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="719" max-vertical-offset="1751">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.28893444" vertical-offset="617" max-vertical-offset="1768">
+              <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
               <folding>
                 <element signature="e#592#625#0" expanded="true" />
                 <element signature="e#726#751#0" expanded="true" />
-                <element signature="e#1629#1649#0" expanded="true" />
-                <element signature="e#1689#1709#0" expanded="true" />
-                <element signature="e#1748#1768#0" expanded="true" />
-                <element signature="e#1989#2020#0" expanded="true" />
-                <element signature="e#2538#2558#0" expanded="true" />
+                <element signature="e#1670#1690#0" expanded="true" />
+                <element signature="e#1730#1750#0" expanded="true" />
+                <element signature="e#1789#1809#0" expanded="true" />
+                <element signature="e#2030#2061#0" expanded="true" />
+                <element signature="e#2625#2645#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1157,8 +1156,8 @@
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
-        <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" />
+        <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml" />
       </list>
     </option>
   </component>
@@ -2234,34 +2233,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="719" max-vertical-offset="1751">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="e#592#625#0" expanded="true" />
-            <element signature="e#726#751#0" expanded="true" />
-            <element signature="e#1629#1649#0" expanded="true" />
-            <element signature="e#1689#1709#0" expanded="true" />
-            <element signature="e#1748#1768#0" expanded="true" />
-            <element signature="e#1989#2020#0" expanded="true" />
-            <element signature="e#2538#2558#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37281552" vertical-offset="1610" max-vertical-offset="2533">
-          <caret line="138" column="33" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="386" max-vertical-offset="2533">
+          <caret line="63" column="98" selection-start-line="63" selection-start-column="98" selection-end-line="63" selection-end-column="98" />
           <folding>
             <element signature="e#3654#4281#0" expanded="true" />
             <element signature="e#3899#4232#0" expanded="true" />
             <element signature="e#4209#4210#0" expanded="true" />
             <element signature="e#4266#4267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.28893444" vertical-offset="617" max-vertical-offset="1768">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+          <folding>
+            <element signature="e#592#625#0" expanded="true" />
+            <element signature="e#726#751#0" expanded="true" />
+            <element signature="e#1670#1690#0" expanded="true" />
+            <element signature="e#1730#1750#0" expanded="true" />
+            <element signature="e#1789#1809#0" expanded="true" />
+            <element signature="e#2030#2061#0" expanded="true" />
+            <element signature="e#2625#2645#0" expanded="true" />
           </folding>
         </state>
       </provider>

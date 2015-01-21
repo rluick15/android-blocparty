@@ -25,8 +25,8 @@
             android:layout_centerInParent="true"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -55,7 +55,8 @@
                 android:layout_centerInParent="true"
                 style="?android:attr/progressBarStyleSmall"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
         </RelativeLayout>
 
         <RelativeLayout
