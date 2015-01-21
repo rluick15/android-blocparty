@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -27,12 +26,9 @@ public class InstagramRequest {
                     + endpoint + mAccessToken;
             URL url = new URL(urlString);
             inputStream = url.openConnection().getInputStream();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return streamToString(inputStream);
     }
 

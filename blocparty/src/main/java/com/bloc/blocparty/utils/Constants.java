@@ -10,6 +10,7 @@ public class Constants {
     public static final String CLIENT_SECRET = "227e0e968fbd418bb41bd6a705f8a953";
     public static final String CALLBACK_URL = "instagram://connect";
     public static final String INSTAGRAM_API_URL = "https://api.instagram.com/v1";
+    public static final String INSTAGRAM_FEED_ENDPOINT = "/users/self/feed?count=10&access_token=";
 
     //Social Network API Constants
     public static final String REQUEST_URL = "/me/home?limit=10&filter=app_2305272732";

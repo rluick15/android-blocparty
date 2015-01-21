@@ -22,6 +22,7 @@ import com.facebook.model.GraphObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.ArrayList;
 
@@ -97,6 +98,7 @@ public class BlocParty extends Activity {
 
                                 try {
                                     JSONArray array = jsonObject.getJSONArray(Constants.DATA);
+
                                     for (int i = 0; i < array.length(); i++) {
                                         JSONObject object = (JSONObject) array.get(i);
                                         JSONObject from = object.getJSONObject(Constants.FROM);
@@ -132,7 +134,7 @@ public class BlocParty extends Activity {
     }
 
     private void getInstagramData() {
-        Log.d("ACCESS TOEKN", mInstagramAT);
+        Log.e("ACCESS TOKEN", mInstagramAT);
         if(mInstagramAT != null) {
             new Thread() {
                 @Override
@@ -140,12 +142,26 @@ public class BlocParty extends Activity {
                     super.run();
 
                     InstagramRequest request = new InstagramRequest(mInstagramAT);
-                    String response = request.getResponse("/users/self/feed?count=10?access_token=");
+                    final String response = request.getResponse(Constants.INSTAGRAM_FEED_ENDPOINT);
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            try {
+                                JSONObject jsonObject = (JSONObject) new JSONTokener(response).nextValue();
+                                JSONArray array = jsonObject.getJSONArray(Constants.DATA);
 
+                                for(int i = 0; i < array.length(); i++) {
+                                    JSONObject object = (JSONObject) array.get(i);
+
+                                    String imageUrl = object.getJSONObject("images")
+                                            .getJSONObject("standard_resolution").getString("url");
+                                    Log.e("INSTA", imageUrl);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                 }

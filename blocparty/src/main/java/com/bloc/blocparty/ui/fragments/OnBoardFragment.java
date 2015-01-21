@@ -88,6 +88,9 @@ public class OnBoardFragment extends Fragment {
         mApp = new InstagramApp(mContext, Constants.CLIENT_ID, Constants.CLIENT_SECRET,
                 Constants.CALLBACK_URL);
         mApp.setListener(listener);
+        if(mApp.hasAccessToken()) {
+            nextFragment();
+        }
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,8 +126,7 @@ public class OnBoardFragment extends Fragment {
     InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
         @Override
         public void onSuccess() {
-            mNetworkId++;
-            ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
+            nextFragment();
         }
 
         @Override
