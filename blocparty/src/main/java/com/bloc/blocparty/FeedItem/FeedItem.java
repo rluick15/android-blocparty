@@ -59,5 +59,7 @@ public class FeedItem {
         return networkName;
     }
 
-    public Boolean favorited() {return favorited;}
+    public Boolean getFavorited() {return favorited;}
+
+    public void setFavorited(Boolean liked) {favorited = liked;}
 }

@@ -86,27 +86,22 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     }
 
     private void instagramAdapter(FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.favorited() == true) {
+        if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
         }
-        else if(feedItem.favorited() == false) {
+        else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
-            holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
+                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
         }
     }
 
     private void facebookAdapter(final FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.favorited() == true) {
+        if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
         }
-        else if(feedItem.favorited() == false) {
+        else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
             holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
