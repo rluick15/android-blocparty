@@ -17,12 +17,6 @@ import com.bloc.blocparty.instagram.InstagramApp;
 import com.bloc.blocparty.ui.activities.OnBoardActivity;
 import com.bloc.blocparty.utils.Constants;
 
-import org.brickred.socialauth.Profile;
-import org.brickred.socialauth.android.DialogListener;
-import org.brickred.socialauth.android.SocialAuthAdapter;
-import org.brickred.socialauth.android.SocialAuthError;
-import org.brickred.socialauth.android.SocialAuthListener;
-
 /**
  * This fragment allows the user to link one or more of their accounts during on boarding
  */
@@ -31,7 +25,6 @@ public class OnBoardFragment extends Fragment {
     private int mNetworkId;
     private Button mSignInButton;
     private Context mContext;
-    private SocialAuthAdapter mAdapter;
     private InstagramApp mApp;
 
     public OnBoardFragment() {} // Required empty public constructor
@@ -57,7 +50,7 @@ public class OnBoardFragment extends Fragment {
         TextView message = (TextView) rootView.findViewById(R.id.networkMessage);
         ImageView icon = (ImageView) rootView.findViewById(R.id.imageIcon);
 
-        mAdapter = new SocialAuthAdapter(new ResponseListener());
+
         if(mNetworkId == 0) {
             mSignInButton.setTextColor(getResources().getColor(R.color.facebook_blue));
             title.setText(getString(R.string.onboard_title_facebook));
@@ -109,8 +102,6 @@ public class OnBoardFragment extends Fragment {
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAdapter.authorize(mContext, SocialAuthAdapter.Provider.TWITTER);
-                mAdapter.addProvider(SocialAuthAdapter.Provider.TWITTER, R.drawable.twitter);
             }
         });
     }
@@ -123,6 +114,24 @@ public class OnBoardFragment extends Fragment {
             }
         });
     }
+
+    public void nextFragment() {
+        mNetworkId++;
+        ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
+    }
+
+    InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
+        @Override
+        public void onSuccess() {
+            mNetworkId++;
+            ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
+        }
+
+        @Override
+        public void onFail(String error) {
+            Toast.makeText(mContext, mContext.getString(R.string.connection_failed), Toast.LENGTH_LONG).show();
+        }
+    };
 
     @Override
     public void onAttach(Activity activity) {
@@ -142,47 +151,4 @@ public class OnBoardFragment extends Fragment {
     public interface OnBoardingInteractionListener {
         public void loadOnBoardFrag(int networkId);
     }
-
-    public void nextFragment() {
-        mNetworkId++;
-        ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
-    }
-
-
-    private final class ResponseListener implements DialogListener {
-        public void onComplete(Bundle values) {
-            mAdapter.getUserProfileAsync(new SocialAuthListener<Profile>() {
-                @Override
-                public void onExecute(String s, Profile profile) {
-                    mNetworkId++;
-                    ((OnBoardActivity) mContext).loadOnBoardFrag(mNetworkId);
-                }
-
-                @Override
-                public void onError(SocialAuthError socialAuthError) {}
-            });
-        }
-
-        @Override
-        public void onError(SocialAuthError socialAuthError) {}
-
-        @Override
-        public void onCancel() {}
-
-        @Override
-        public void onBack() {}
-    }
-
-    InstagramApp.OAuthAuthenticationListener listener = new InstagramApp.OAuthAuthenticationListener() {
-
-        @Override
-        public void onSuccess() {
-            Toast.makeText(mContext, "SUCCESS!", Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        public void onFail(String error) {
-            Toast.makeText(mContext, error, Toast.LENGTH_LONG).show();
-        }
-    };
 }

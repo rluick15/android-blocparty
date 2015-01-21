@@ -2,12 +2,14 @@ package com.bloc.blocparty.ui.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.instagram.InstagramSession;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
@@ -20,6 +22,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -29,6 +35,7 @@ public class BlocParty extends Activity {
     private ListView mFeedList;
     private FeedItemAdapter mAdapter;
     private String mCurrentUserId;
+    private String mInstagramAT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +44,12 @@ public class BlocParty extends Activity {
 
         mFeedList = (ListView) findViewById(R.id.feedList);
         mFeedItems = new ArrayList<>();
+        InstagramSession iSession = new InstagramSession(this);
+        mInstagramAT = iSession.getAccessToken();
 
         //getCurrentFacebookUser();
         getFacebookData();
+        getInstagramData();
 
         mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
         mFeedList.setAdapter(mAdapter);
@@ -121,6 +131,23 @@ public class BlocParty extends Activity {
                         }
                     }
             ).executeAsync();
+        }
+    }
+
+    private void getInstagramData() {
+        Log.d("ACCESS TOEKN", mInstagramAT);
+        if(mInstagramAT != null) {
+            try {
+                String urlString = Constants.INSTAGRAM_API_URL
+                        + "/users/self/feed?count=10?access_token=" + mInstagramAT;
+                URL url = new URL(urlString);
+                InputStream inputStream = url.openConnection().getInputStream();
+                String response = instagramImpl.streamToString(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch(MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

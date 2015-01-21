@@ -17,7 +17,7 @@ public class FeedItem {
     public FeedItem(String postId, String pictureId, String userId, String name, String message,
                     Boolean favorited, String networkName) {
 
-        this.postId = pictureId;
+        this.postId = postId;
         this.imageUrl = "https://graph.facebook.com/" + pictureId + "/picture";
         this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
         this.name = name;
