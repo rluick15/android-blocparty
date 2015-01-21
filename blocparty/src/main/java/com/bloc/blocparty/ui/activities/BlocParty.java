@@ -42,15 +42,16 @@ public class BlocParty extends Activity {
 
         mFeedList = (ListView) findViewById(R.id.feedList);
         mFeedItems = new ArrayList<>();
+
+        mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
+        mFeedList.setAdapter(mAdapter);
+
         InstagramSession iSession = new InstagramSession(this);
         mInstagramAT = iSession.getAccessToken();
 
         //getCurrentFacebookUser();
         getFacebookData();
         getInstagramData();
-
-        mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
-        mFeedList.setAdapter(mAdapter);
     }
 
     /**
