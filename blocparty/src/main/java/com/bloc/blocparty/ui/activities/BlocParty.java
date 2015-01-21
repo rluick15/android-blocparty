@@ -118,7 +118,7 @@ public class BlocParty extends Activity {
 //                                                liked = true;
 //                                            }
 //                                        }
-                                        
+
                                         createFeedItem(postId, pictureId, userId, name,
                                                 message, liked, Constants.FACEBOOK);
                                     }

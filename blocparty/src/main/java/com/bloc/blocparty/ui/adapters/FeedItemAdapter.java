@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -128,11 +129,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         protected void onPreExecute() {
             super.onPreExecute();
             try {
-                dialog = new ProgressDialog(context);
-                dialog.setCancelable(false);
-                dialog.setMessage(mContext.getString(R.string.loading_message));
-                dialog.isIndeterminate();
-                dialog.show();
+                progressBar = (ProgressBar)findViewById(R.id.progressbar);
+                progressBar.setVisibility(View.VISIBLE);
             }
             catch (Exception ignored) {}
         }
