@@ -1,6 +1,5 @@
 package com.bloc.blocparty.ui.adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -61,14 +60,18 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder.name = (TextView) convertView.findViewById(R.id.nameField);
             holder.message = (TextView) convertView.findViewById(R.id.descField);
             holder.favoriteButton = (ImageButton) convertView.findViewById(R.id.likeButton);
+            holder.progressBarMain = (ProgressBar) convertView.findViewById(R.id.progressBarMain);
+            holder.progressBarProf = (ProgressBar) convertView.findViewById(R.id.progressBarProf);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage).execute();
-        new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture).execute();
+        new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage,
+                holder.progressBarMain, holder.progressBarProf).execute();
+        new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture,
+                holder.progressBarMain, holder.progressBarProf).execute();
         holder.name.setText(feedItem.getName());
         holder.message.setText(feedItem.getMessage());
 
@@ -110,29 +113,33 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         TextView message;
         ImageButton favoriteButton;
         ImageButton threeDots;
+        ProgressBar progressBarMain;
+        ProgressBar progressBarProf;
     }
 
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
-        private ProgressDialog dialog;
+        private ProgressBar mainPb;
+        private ProgressBar profPb;
         private String url;
         private ImageView picture;
         private Context context;
 
-        public ImageLoadTask(Context context, String url, ImageView picField) {
+        public ImageLoadTask(Context context, String url, ImageView picField,
+                             ProgressBar progressBarMain, ProgressBar progressBarProf) {
             this.context = context;
             this.url = url;
             this.picture = picField;
+            this.mainPb = progressBarMain;
+            this.profPb = progressBarProf;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            try {
-                progressBar = (ProgressBar)findViewById(R.id.progressbar);
-                progressBar.setVisibility(View.VISIBLE);
-            }
-            catch (Exception ignored) {}
+            mainPb.setVisibility(View.VISIBLE);
+            profPb.setVisibility(View.VISIBLE);
+            picture.setImageDrawable(null);
         }
 
         @Override
@@ -156,13 +163,11 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (dialog.isShowing()) {
-                try {
-                    dialog.dismiss();
-                } catch (IllegalArgumentException ignored){}
-            }
-
             super.onPostExecute(bitmap);
+
+            mainPb.setVisibility(View.INVISIBLE);
+            profPb.setVisibility(View.INVISIBLE);
+
             picture.setImageBitmap(bitmap);
         }
 
