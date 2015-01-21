@@ -105,7 +105,7 @@ public class BlocParty extends Activity {
 
                                         String postId = object.getString(Constants.ID);
                                         String name = from.getString(Constants.NAME);
-                                        String id = from.getString(Constants.ID);
+                                        String userId = from.getString(Constants.ID);
                                         String pictureId = object.getString(Constants.PICTURE_ID);
                                         String message = object.getString(Constants.MESSAGE);
 
@@ -118,11 +118,9 @@ public class BlocParty extends Activity {
 //                                                liked = true;
 //                                            }
 //                                        }
-
-                                        FeedItem fbFeedItem = new FeedItem(postId, pictureId, id,
-                                                name, message, liked, Constants.FACEBOOK);
-                                        mFeedItems.add(fbFeedItem);
-                                        mAdapter.notifyDataSetChanged();
+                                        
+                                        createFeedItem(postId, pictureId, userId, name,
+                                                message, liked, Constants.FACEBOOK);
                                     }
                                 }
                                 catch (JSONException ignored) {}
@@ -147,26 +145,41 @@ public class BlocParty extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            Boolean liked = false;
                             try {
                                 JSONObject jsonObject = (JSONObject) new JSONTokener(response).nextValue();
                                 JSONArray array = jsonObject.getJSONArray(Constants.DATA);
 
                                 for(int i = 0; i < array.length(); i++) {
                                     JSONObject object = (JSONObject) array.get(i);
+                                    JSONObject user = object.getJSONObject("user");
 
+                                    String postId = object.getString(Constants.ID);
                                     String imageUrl = object.getJSONObject("images")
                                             .getJSONObject("standard_resolution").getString("url");
+                                    String name = user.getString("full_name");
+                                    String profUrl = user.getString("profile_picture");
+                                    String message = object.getJSONObject("caption").getString("text");
                                     Log.e("INSTA", imageUrl);
+
+                                    createFeedItem(postId, imageUrl, profUrl, name,
+                                            message, liked, Constants.INSTAGRAM);
                                 }
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                            } catch (JSONException ignored) {}
                         }
                     });
                 }
             }.start();
         }
+    }
+
+    private void createFeedItem(String postId, String pictureId, String userPicId, String name,
+                                String message, Boolean liked, String network) {
+        FeedItem feedItem = new FeedItem(postId, pictureId, userPicId,
+                name, message, liked, network);
+        mFeedItems.add(feedItem);
+        mAdapter.notifyDataSetChanged();
     }
 
 

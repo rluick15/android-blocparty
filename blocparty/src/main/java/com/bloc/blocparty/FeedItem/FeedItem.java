@@ -1,5 +1,7 @@
 package com.bloc.blocparty.FeedItem;
 
+import com.bloc.blocparty.utils.Constants;
+
 /**
  * This is a class to help standardize the information from the different api's into one feed
  * item object
@@ -18,12 +20,19 @@ public class FeedItem {
                     Boolean favorited, String networkName) {
 
         this.postId = postId;
-        this.imageUrl = "https://graph.facebook.com/" + pictureId + "/picture";
-        this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
         this.name = name;
         this.message = message;
         this.networkName = networkName;
         this.favorited = favorited;
+
+        if(networkName.equals(Constants.FACEBOOK)) {
+            this.imageUrl = "https://graph.facebook.com/" + pictureId + "/picture";
+            this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
+        }
+        else if(networkName.equals(Constants.INSTAGRAM)) {
+            this.imageUrl = pictureId;
+            this.profilePictureUrl = userId;
+        }
     }
 
     public String getPostId() {

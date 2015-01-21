@@ -24,9 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a12a700d-0af5-4ee3-8c98-862806ae0672" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android-blocparty.iws" />
@@ -53,64 +51,35 @@
       <file leaf-file-name="FeedItem.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-              <caret line="17" column="60" selection-start-line="17" selection-start-column="60" selection-end-line="17" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="969">
+              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlocParty.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BlocParty.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="911" max-vertical-offset="2941">
-              <caret line="135" column="37" selection-start-line="135" selection-start-column="37" selection-end-line="135" selection-end-column="37" />
+            <state vertical-scroll-proportion="-0.87766993" vertical-offset="2084" max-vertical-offset="3162">
+              <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
               <folding>
-                <element signature="e#3223#5704#0" expanded="true" />
-                <element signature="e#5681#5682#0" expanded="true" />
-                <element signature="e#5882#7200#0" expanded="true" />
-                <element signature="e#6211#7166#0" expanded="true" />
-                <element signature="e#7143#7144#0" expanded="true" />
-                <element signature="e#7185#7186#0" expanded="true" />
+                <element signature="e#3223#5591#0" expanded="true" />
+                <element signature="e#5568#5569#0" expanded="true" />
+                <element signature="e#5769#7668#0" expanded="true" />
+                <element signature="e#6098#7634#0" expanded="true" />
+                <element signature="e#7611#7612#0" expanded="true" />
+                <element signature="e#7653#7654#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnBoardFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java">
+      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47184467" vertical-offset="1032" max-vertical-offset="2465">
-              <caret line="90" column="35" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
-              <folding>
-                <element signature="e#3009#3229#0" expanded="true" />
-                <element signature="e#3218#3219#0" expanded="true" />
-                <element signature="e#3583#3801#0" expanded="true" />
-                <element signature="e#3790#3791#0" expanded="true" />
-                <element signature="e#4092#4275#0" expanded="true" />
-                <element signature="e#4264#4265#0" expanded="true" />
-                <element signature="e#4568#4569#0" expanded="true" />
-                <element signature="e#4606#4607#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FacebookLoginFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FacebookLoginFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="947" max-vertical-offset="1615">
-              <caret line="97" column="30" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OnBoardActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/OnBoardActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="794" max-vertical-offset="1411">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+              <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -1159,12 +1128,12 @@
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/activity_bloc_party.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml" />
-        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramApp.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" />
-        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java" />
+        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java" />
+        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
       </list>
     </option>
   </component>
@@ -1338,6 +1307,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="blocparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android-blocparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android-blocparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blocparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blocparty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2113,14 +2116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <caret line="17" column="60" selection-start-line="17" selection-start-column="60" selection-end-line="17" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19805825" vertical-offset="1207" max-vertical-offset="2431">
@@ -2148,14 +2143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="714">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2737864" vertical-offset="131" max-vertical-offset="1054">
@@ -2164,21 +2151,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#415#416#0" expanded="true" />
             <element signature="e#462#463#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1880" max-vertical-offset="2941">
-          <caret line="135" column="37" selection-start-line="135" selection-start-column="37" selection-end-line="135" selection-end-column="37" />
-          <folding>
-            <element signature="e#3223#5704#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5882#7200#0" expanded="true" />
-            <element signature="e#6211#7166#0" expanded="true" />
-            <element signature="e#7143#7144#0" expanded="true" />
-            <element signature="e#7185#7186#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2209,8 +2181,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47184467" vertical-offset="1032" max-vertical-offset="2465">
-          <caret line="90" column="35" selection-start-line="90" selection-start-column="35" selection-end-line="90" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.009708738" vertical-offset="1287" max-vertical-offset="2465">
+          <caret line="91" column="27" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
           <folding>
             <element signature="e#3009#3229#0" expanded="true" />
             <element signature="e#3218#3219#0" expanded="true" />
@@ -2220,6 +2192,37 @@
             <element signature="e#4264#4265#0" expanded="true" />
             <element signature="e#4568#4569#0" expanded="true" />
             <element signature="e#4606#4607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="714">
+          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/FeedItem/FeedItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="969">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.87766993" vertical-offset="2084" max-vertical-offset="3162">
+          <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
+          <folding>
+            <element signature="e#3223#5591#0" expanded="true" />
+            <element signature="e#5568#5569#0" expanded="true" />
+            <element signature="e#5769#7668#0" expanded="true" />
+            <element signature="e#6098#7634#0" expanded="true" />
+            <element signature="e#7611#7612#0" expanded="true" />
+            <element signature="e#7653#7654#0" expanded="true" />
           </folding>
         </state>
       </provider>
