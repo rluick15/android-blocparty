@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.instagram.InstagramSession;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
@@ -22,10 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -137,17 +134,22 @@ public class BlocParty extends Activity {
     private void getInstagramData() {
         Log.d("ACCESS TOEKN", mInstagramAT);
         if(mInstagramAT != null) {
-            try {
-                String urlString = Constants.INSTAGRAM_API_URL
-                        + "/users/self/feed?count=10?access_token=" + mInstagramAT;
-                URL url = new URL(urlString);
-                InputStream inputStream = url.openConnection().getInputStream();
-                String response = instagramImpl.streamToString(inputStream);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch(MalformedURLException e) {
-                e.printStackTrace();
-            }
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+
+                    InstagramRequest request = new InstagramRequest(mInstagramAT);
+                    String response = request.getResponse("/users/self/feed?count=10?access_token=");
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                }
+            }.start();
         }
     }
 
