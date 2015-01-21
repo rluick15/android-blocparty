@@ -21,5 +21,7 @@
     <string name="desc_feed_profile_pic">Profile Picture</string>
     <string name="loading_message">Loading...</string>
     <string name="connection_failed">Connection Failed</string>
+    <string name="post_liked">Post Liked!</string>
+    <string name="post_unliked">Post Unliked!</string>
 
 </resources>

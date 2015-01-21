@@ -3,6 +3,7 @@ package com.bloc.blocparty.ui.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,28 +97,41 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         }
     }
 
-    private void facebookAdapter(final FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.getFavorited() == true) {
+    private void facebookAdapter(final FeedItem feedItem, final ViewHolder holder) {
+        if (feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
+            likeButton(feedItem, holder.favoriteButton,
+                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon),
+                    HttpMethod.DELETE, mContext.getString(R.string.post_unliked));
         }
-        else if(feedItem.getFavorited() == false) {
+        else if(!feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
-            holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new Request(Session.getActiveSession(),
-                            feedItem.getPostId() + "/likes", null, HttpMethod.POST, new Request.Callback() {
-                        @Override
-                        public void onCompleted(Response response) {
-                            Toast.makeText(mContext, "Post Liked!", Toast.LENGTH_SHORT).show();
-                            //Todo:doesnt work?? or does it??
-                        }
-                    }).executeAsync();
-                }
-            });
+            likeButton(feedItem, holder.favoriteButton,
+                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon),
+                    HttpMethod.POST, mContext.getString(R.string.post_liked));
         }
+    }
+
+    private void likeButton(final FeedItem feedItem, final ImageButton favButton, final Drawable img,
+                            final HttpMethod method, final String toast) {
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Request(Session.getActiveSession(),
+                        feedItem.getPostId() + "/likes", null, method, new Request.Callback() {
+                    @Override
+                    public void onCompleted(Response response) {
+                        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+
+                        favButton.setImageDrawable(img);
+                        feedItem.setFavorited(!feedItem.getFavorited());
+                        notifyDataSetChanged();
+                    }
+                }).executeAsync();
+            }
+        });
     }
 
     private static class ViewHolder {
