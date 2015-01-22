@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
     private Context mContext;
     private ArrayList<FeedItem> mFeedItems;
+    private ListView mListView;
 
     public FeedItemAdapter(Context context, List<FeedItem> objects) {
         super(context, R.layout.feed_item_adapter, objects);
@@ -50,6 +52,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+        mListView = (ListView) parent;
 
         FeedItem feedItem = mFeedItems.get(position);
 
@@ -133,8 +136,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
                         favButton.setImageDrawable(img);
                         feedItem.setFavorited(!feedItem.getFavorited());
-                        notifyDataSetChanged();
-                        //Todo: do this for instagram
+                        updateView(feedItem);
                     }
                 }).executeAsync();
             }
@@ -149,9 +151,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                 favButton.setImageDrawable(img);
                 Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
                 feedItem.setFavorited(!feedItem.getFavorited());
-                notifyDataSetChanged();
+                updateView(feedItem);
             }
         });
+    }
+
+    private void updateView(FeedItem feedItem) {
+        int position = getPosition(feedItem);
+        int start = mListView.getFirstVisiblePosition();
+        View view = mListView.getChildAt(position - start);
+        mListView.getAdapter().getView(position, view, mListView);
     }
 
     private static class ViewHolder {
