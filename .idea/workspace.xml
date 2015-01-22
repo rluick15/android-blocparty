@@ -23,17 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a12a700d-0af5-4ee3-8c98-862806ae0672" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\appcompat_v7_21_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\bolts_android_1_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\facebook_android_sdk_3_22_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\socialauth_4_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\socialauth_android_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\support_annotations_21_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\.idea\libraries\support_v4_21_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\blocparty\libs\socialauth-4.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rich\Desktop\WebProjects\AndroidStudioProjects\BlocWork\android-blocparty\blocparty\libs\socialauth-android-3.2.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FacebookLoginFragment.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FacebookLoginFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -59,41 +48,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FeedItemAdapter.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="FeedItemAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="3655">
-              <caret line="139" column="39" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.46407768" vertical-offset="1648" max-vertical-offset="3485">
+              <caret line="145" column="28" selection-start-line="145" selection-start-column="28" selection-end-line="145" selection-end-column="28" />
               <folding>
-                <element signature="e#5245#5284#0" expanded="true" />
-                <element signature="e#5518#6268#0" expanded="true" />
-                <element signature="e#5738#6227#0" expanded="true" />
-                <element signature="e#6208#6209#0" expanded="true" />
-                <element signature="e#6257#6258#0" expanded="true" />
-                <element signature="e#6469#7259#0" expanded="true" />
-                <element signature="e#6578#6997#0" expanded="true" />
-                <element signature="e#6978#6979#0" expanded="true" />
-                <element signature="e#7248#7249#0" expanded="true" />
+                <element signature="e#3734#3775#0" expanded="true" />
+                <element signature="e#4046#4085#0" expanded="true" />
+                <element signature="e#4475#4516#0" expanded="true" />
+                <element signature="e#4813#4852#0" expanded="true" />
+                <element signature="e#5066#5689#0" expanded="true" />
+                <element signature="e#5286#5648#0" expanded="true" />
+                <element signature="e#5629#5630#0" expanded="true" />
+                <element signature="e#5678#5679#0" expanded="true" />
+                <element signature="e#5944#6506#0" expanded="true" />
+                <element signature="e#6495#6496#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnBoardFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java">
+      <file leaf-file-name="InstagramRequest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="2278">
-              <caret line="112" column="41" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="41" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="2448">
+              <caret line="120" column="73" selection-start-line="120" selection-start-column="73" selection-end-line="120" selection-end-column="73" />
+              <folding>
+                <element signature="e#1434#3455#0" expanded="true" />
+                <element signature="e#1695#3421#0" expanded="true" />
+                <element signature="e#3398#3399#0" expanded="true" />
+                <element signature="e#3440#3441#0" expanded="true" />
+                <element signature="e#3983#4965#0" expanded="true" />
+                <element signature="e#4375#4390#0" expanded="true" />
+                <element signature="e#4954#4955#0" expanded="true" />
+                <element signature="e#5034#5156#0" expanded="true" />
+                <element signature="e#5145#5146#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlocParty.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BlocParty.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9339806" vertical-offset="148" max-vertical-offset="1071">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1071">
+              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -102,7 +102,7 @@
       <file leaf-file-name="FacebookRequest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/facebook/FacebookRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="2023">
+            <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="2023">
               <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -112,21 +112,6 @@
                 <element signature="e#1637#1638#0" expanded="true" />
                 <element signature="e#2382#4733#0" expanded="true" />
                 <element signature="e#4710#4711#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InstagramRequest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2023">
-              <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-              <folding>
-                <element signature="e#954#2945#0" expanded="true" />
-                <element signature="e#1215#2911#0" expanded="true" />
-                <element signature="e#2888#2889#0" expanded="true" />
-                <element signature="e#2930#2931#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1177,11 +1162,11 @@
         <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/OnBoardActivity.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java" />
-        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FacebookLoginFragment.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/facebook/FacebookRequest.java" />
-        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
+        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java" />
+        <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java" />
       </list>
     </option>
   </component>
@@ -2020,32 +2005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/OnBoardActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8684864" vertical-offset="233" max-vertical-offset="1411">
-          <caret line="69" column="75" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="3655">
-          <caret line="139" column="39" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
-          <folding>
-            <element signature="e#5245#5284#0" expanded="true" />
-            <element signature="e#5518#6268#0" expanded="true" />
-            <element signature="e#5738#6227#0" expanded="true" />
-            <element signature="e#6208#6209#0" expanded="true" />
-            <element signature="e#6257#6258#0" expanded="true" />
-            <element signature="e#6469#7259#0" expanded="true" />
-            <element signature="e#6578#6997#0" expanded="true" />
-            <element signature="e#6978#6979#0" expanded="true" />
-            <element signature="e#7248#7249#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FacebookLoginFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1683">
@@ -2054,6 +2013,22 @@
             <element signature="e#2791#3131#0" expanded="true" />
             <element signature="e#3124#3125#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="2278">
+          <caret line="112" column="41" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/OnBoardActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4291262" vertical-offset="765" max-vertical-offset="1411">
+          <caret line="69" column="75" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2073,32 +2048,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1071">
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/instagram/InstagramRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2023">
-          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="2448">
+          <caret line="120" column="73" selection-start-line="120" selection-start-column="73" selection-end-line="120" selection-end-column="73" />
           <folding>
-            <element signature="e#954#2945#0" expanded="true" />
-            <element signature="e#1215#2911#0" expanded="true" />
-            <element signature="e#2888#2889#0" expanded="true" />
-            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#1434#3455#0" expanded="true" />
+            <element signature="e#1695#3421#0" expanded="true" />
+            <element signature="e#3398#3399#0" expanded="true" />
+            <element signature="e#3440#3441#0" expanded="true" />
+            <element signature="e#3983#4965#0" expanded="true" />
+            <element signature="e#4375#4390#0" expanded="true" />
+            <element signature="e#4954#4955#0" expanded="true" />
+            <element signature="e#5034#5156#0" expanded="true" />
+            <element signature="e#5145#5146#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/OnBoardFragment.java">
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="2278">
-          <caret line="112" column="41" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9339806" vertical-offset="148" max-vertical-offset="1071">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.46407768" vertical-offset="1648" max-vertical-offset="3485">
+          <caret line="145" column="28" selection-start-line="145" selection-start-column="28" selection-end-line="145" selection-end-column="28" />
+          <folding>
+            <element signature="e#3734#3775#0" expanded="true" />
+            <element signature="e#4046#4085#0" expanded="true" />
+            <element signature="e#4475#4516#0" expanded="true" />
+            <element signature="e#4813#4852#0" expanded="true" />
+            <element signature="e#5066#5689#0" expanded="true" />
+            <element signature="e#5286#5648#0" expanded="true" />
+            <element signature="e#5629#5630#0" expanded="true" />
+            <element signature="e#5678#5679#0" expanded="true" />
+            <element signature="e#5944#6506#0" expanded="true" />
+            <element signature="e#6495#6496#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

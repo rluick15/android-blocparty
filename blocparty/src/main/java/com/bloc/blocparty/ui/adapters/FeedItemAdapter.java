@@ -3,7 +3,6 @@ package com.bloc.blocparty.ui.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -94,16 +93,12 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
-            heartButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart),
-                    mContext.getString(R.string.post_unliked));
+            heartButton(feedItem, holder.favoriteButton, mContext.getString(R.string.post_unliked), true);
         }
         else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
-            heartButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart),
-                    mContext.getString(R.string.post_liked));
+            heartButton(feedItem, holder.favoriteButton, mContext.getString(R.string.post_liked), false);
         }
     }
 
@@ -112,19 +107,17 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
             likeButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon),
                     HttpMethod.DELETE, mContext.getString(R.string.post_unliked));
         }
         else if(!feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
             likeButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon),
                     HttpMethod.POST, mContext.getString(R.string.post_liked));
         }
     }
 
-    private void likeButton(final FeedItem feedItem, final ImageButton favButton, final Drawable img,
+    private void likeButton(final FeedItem feedItem, final ImageButton favButton,
                             final HttpMethod method, final String toast) {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,9 +127,6 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                     @Override
                     public void onCompleted(Response response) {
                         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-                        Log.e("RESPONSE", String.valueOf(response));
-
-                        favButton.setImageDrawable(img);
                         feedItem.setFavorited(!feedItem.getFavorited());
                         updateView(feedItem);
                     }
@@ -145,22 +135,21 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         });
     }
 
-    private void heartButton(final FeedItem feedItem, final ImageButton favButton,
-                             final Drawable img, final String toast) {
+    private void heartButton(final FeedItem feedItem, final ImageButton favButton, final String toast,
+                             final Boolean liked) {
+        final String postId = feedItem.getPostId();
+
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread()  {
-                    @Override
-                    public void run() {
-                        super.run();
-                        String postId = feedItem.getPostId();
-                        InstagramRequest request = new InstagramRequest(mContext);
-                        String response = request.getLikeResponse("/media/" + postId + "/likes?access_token=");
-                    }
-                }.start();
+                InstagramRequest request = new InstagramRequest(mContext);
+                if(!liked) {
+                    request.likePost(postId);
+                }
+                else if(liked){
+                    request.unlikePost(postId);
+                }
 
-                favButton.setImageDrawable(img);
                 Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
                 feedItem.setFavorited(!feedItem.getFavorited());
                 updateView(feedItem);

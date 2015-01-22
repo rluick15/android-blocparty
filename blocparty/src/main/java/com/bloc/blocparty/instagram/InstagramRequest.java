@@ -5,6 +5,14 @@ import android.content.Context;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +22,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class handles sending the request to the Instagram server
@@ -51,7 +62,7 @@ public class InstagramRequest {
                                 JSONObject jsonObject = (JSONObject) new JSONTokener(response).nextValue();
                                 JSONArray array = jsonObject.getJSONArray(Constants.DATA);
 
-                                for(int i = 0; i < array.length(); i++) {
+                                for (int i = 0; i < array.length(); i++) {
                                     JSONObject object = (JSONObject) array.get(i);
                                     JSONObject user = object.getJSONObject(Constants.USER);
 
@@ -68,7 +79,8 @@ public class InstagramRequest {
                                     ((BlocParty) mContext).createFeedItem(postId, imageUrl, profUrl, name,
                                             message, liked, Constants.INSTAGRAM);
                                 }
-                            } catch (JSONException ignored) {}
+                            } catch (JSONException ignored) {
+                            }
                         }
                     });
                 }
@@ -90,17 +102,41 @@ public class InstagramRequest {
         return streamToString(inputStream);
     }
 
-    public String getLikeResponse(String endpoint) {
-        InputStream inputStream = null;
-        try {
-            String urlString = "curl -X DELETE " + Constants.INSTAGRAM_API_URL
-                    + endpoint + mAccessToken;
-            URL url = new URL(urlString);
-            inputStream = url.openConnection().getInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return streamToString(inputStream);
+    public void likePost(final String postId) {
+        new Thread()  {
+            @Override
+            public void run() {
+                super.run();
+
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("https://api.instagram.com/v1/media/" +
+                        postId + "/likes");
+
+
+                try {
+                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+                    nameValuePairs.add(new BasicNameValuePair("access_token", mAccessToken));
+                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                    HttpResponse response = httpclient.execute(httppost);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    public void unlikePost(String postId) {
+        new Thread()  {
+            @Override
+            public void run() {
+                super.run();
+            }
+        }.start();
     }
 
     /**
