@@ -90,10 +90,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+            heartButton(feedItem, holder.favoriteButton,
+                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart),
+                    mContext.getString(R.string.post_unliked));
         }
         else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
+            heartButton(feedItem, holder.favoriteButton,
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart),
+                    mContext.getString(R.string.post_liked));
         }
     }
 
@@ -131,6 +137,19 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                         //Todo: do this for instagram
                     }
                 }).executeAsync();
+            }
+        });
+    }
+
+    private void heartButton(final FeedItem feedItem, final ImageButton favButton,
+                             final Drawable img, final String toast) {
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favButton.setImageDrawable(img);
+                Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+                feedItem.setFavorited(!feedItem.getFavorited());
+                notifyDataSetChanged();
             }
         });
     }
