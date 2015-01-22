@@ -2,7 +2,6 @@ package com.bloc.blocparty.ui.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -133,7 +132,6 @@ public class BlocParty extends Activity {
     }
 
     private void getInstagramData() {
-        Log.e("ACCESS TOKEN", mInstagramAT);
         if(mInstagramAT != null) {
             new Thread() {
                 @Override
@@ -146,7 +144,6 @@ public class BlocParty extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Boolean liked = false;
                             try {
                                 JSONObject jsonObject = (JSONObject) new JSONTokener(response).nextValue();
                                 JSONArray array = jsonObject.getJSONArray(Constants.DATA);
@@ -161,7 +158,7 @@ public class BlocParty extends Activity {
                                     String name = user.getString("full_name");
                                     String profUrl = user.getString("profile_picture");
                                     String message = object.getJSONObject("caption").getString("text");
-                                    Log.e("INSTA", imageUrl);
+                                    Boolean liked = object.getBoolean("user_has_liked");
 
                                     createFeedItem(postId, imageUrl, profUrl, name,
                                             message, liked, Constants.INSTAGRAM);

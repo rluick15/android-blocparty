@@ -128,6 +128,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                         favButton.setImageDrawable(img);
                         feedItem.setFavorited(!feedItem.getFavorited());
                         notifyDataSetChanged();
+                        //Todo: do this for instagram
                     }
                 }).executeAsync();
             }
