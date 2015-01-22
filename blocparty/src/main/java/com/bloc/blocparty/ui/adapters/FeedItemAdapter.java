@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -148,6 +149,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Thread()  {
+                    @Override
+                    public void run() {
+                        super.run();
+                        String postId = feedItem.getPostId();
+                        InstagramRequest request = new InstagramRequest(mContext);
+                        String response = request.getLikeResponse("/media/" + postId + "/likes?access_token=");
+                    }
+                }.start();
+
                 favButton.setImageDrawable(img);
                 Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
                 feedItem.setFavorited(!feedItem.getFavorited());

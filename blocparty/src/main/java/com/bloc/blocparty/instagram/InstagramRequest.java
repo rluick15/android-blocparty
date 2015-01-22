@@ -40,6 +40,19 @@ public class InstagramRequest {
         return streamToString(inputStream);
     }
 
+    public String getLikeResponse(String endpoint) {
+        InputStream inputStream = null;
+        try {
+            String urlString = "curl -X DELETE " + Constants.INSTAGRAM_API_URL
+                    + endpoint + mAccessToken;
+            URL url = new URL(urlString);
+            inputStream = url.openConnection().getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return streamToString(inputStream);
+    }
+
     /**
      * Method that returns String from the InputStream given by p_is
      * @param stream The given InputStream

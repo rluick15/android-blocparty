@@ -1,7 +1,7 @@
 package com.bloc.blocparty.utils;
 
 /**
- * Created by Rich on 1/14/2015.
+ * Constants class
  */
 public class Constants {
 
