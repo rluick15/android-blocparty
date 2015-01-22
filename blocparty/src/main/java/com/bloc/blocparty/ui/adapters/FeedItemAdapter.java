@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -39,6 +41,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
     private Context mContext;
     private ArrayList<FeedItem> mFeedItems;
+    private ListView mListView;
 
     public FeedItemAdapter(Context context, List<FeedItem> objects) {
         super(context, R.layout.feed_item_adapter, objects);
@@ -50,6 +53,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+        mListView = (ListView) parent;
 
         FeedItem feedItem = mFeedItems.get(position);
 
@@ -90,10 +94,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+            heartButton(feedItem, holder.favoriteButton,
+                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart),
+                    mContext.getString(R.string.post_unliked));
         }
         else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
+            heartButton(feedItem, holder.favoriteButton,
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart),
+                    mContext.getString(R.string.post_liked));
         }
     }
 
@@ -127,11 +137,41 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
                         favButton.setImageDrawable(img);
                         feedItem.setFavorited(!feedItem.getFavorited());
-                        notifyDataSetChanged();
+                        updateView(feedItem);
                     }
                 }).executeAsync();
             }
         });
+    }
+
+    private void heartButton(final FeedItem feedItem, final ImageButton favButton,
+                             final Drawable img, final String toast) {
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread()  {
+                    @Override
+                    public void run() {
+                        super.run();
+                        String postId = feedItem.getPostId();
+                        InstagramRequest request = new InstagramRequest(mContext);
+                        String response = request.getLikeResponse("/media/" + postId + "/likes?access_token=");
+                    }
+                }.start();
+
+                favButton.setImageDrawable(img);
+                Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+                feedItem.setFavorited(!feedItem.getFavorited());
+                updateView(feedItem);
+            }
+        });
+    }
+
+    private void updateView(FeedItem feedItem) {
+        int position = getPosition(feedItem);
+        int start = mListView.getFirstVisiblePosition();
+        View view = mListView.getChildAt(position - start);
+        mListView.getAdapter().getView(position, view, mListView);
     }
 
     private static class ViewHolder {

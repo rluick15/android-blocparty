@@ -67,7 +67,7 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
      */
     public void loadOnBoardFrag(int networkId) {
         if(networkId == 3) {
-            Toast.makeText(this, "On-Boarding Complete!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_onboard_complete), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, BlocParty.class);
             startActivity(intent);
             finish();
