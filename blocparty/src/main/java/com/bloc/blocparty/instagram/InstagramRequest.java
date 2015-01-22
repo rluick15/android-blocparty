@@ -1,5 +1,7 @@
 package com.bloc.blocparty.instagram;
 
+import android.content.Context;
+
 import com.bloc.blocparty.utils.Constants;
 
 import java.io.BufferedReader;
@@ -15,9 +17,15 @@ public class InstagramRequest {
 
     private String mAccessToken;
 
-    public InstagramRequest(String accessToken) {
-        this.mAccessToken = accessToken;
+    public InstagramRequest(Context context) {
+        InstagramSession iSession = new InstagramSession(context);
+        mAccessToken = iSession.getAccessToken();
     }
+
+    public String getAccessToken() {
+        return mAccessToken;
+    }
+
 
     public String getResponse(String endpoint) {
         InputStream inputStream = null;
@@ -53,4 +61,6 @@ public class InstagramRequest {
         }
         return outString.toString();
     }
+
+
 }

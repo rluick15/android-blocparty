@@ -9,7 +9,6 @@ import android.widget.ListView;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.instagram.InstagramRequest;
-import com.bloc.blocparty.instagram.InstagramSession;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
@@ -44,9 +43,6 @@ public class BlocParty extends Activity {
 
         mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
         mFeedList.setAdapter(mAdapter);
-
-        InstagramSession iSession = new InstagramSession(this);
-        mInstagramAT = iSession.getAccessToken();
 
         //getCurrentFacebookUser();
         getFacebookData();
@@ -86,7 +82,7 @@ public class BlocParty extends Activity {
 
         if(Session.getActiveSession().isOpened()) {
             new Request(Session.getActiveSession(),
-                    Constants.REQUEST_URL,
+                    Constants.FACEBOOK_REQUEST_URL,
                     params,
                     HttpMethod.GET,
                     new Request.Callback() {
@@ -132,13 +128,15 @@ public class BlocParty extends Activity {
     }
 
     private void getInstagramData() {
+        final InstagramRequest request = new InstagramRequest(BlocParty.this);
+        mInstagramAT = request.getAccessToken();
+
         if(mInstagramAT != null) {
             new Thread() {
                 @Override
                 public void run() {
                     super.run();
 
-                    InstagramRequest request = new InstagramRequest(mInstagramAT);
                     final String response = request.getResponse(Constants.INSTAGRAM_FEED_ENDPOINT);
 
                     runOnUiThread(new Runnable() {
@@ -150,15 +148,17 @@ public class BlocParty extends Activity {
 
                                 for(int i = 0; i < array.length(); i++) {
                                     JSONObject object = (JSONObject) array.get(i);
-                                    JSONObject user = object.getJSONObject("user");
+                                    JSONObject user = object.getJSONObject(Constants.USER);
 
                                     String postId = object.getString(Constants.ID);
-                                    String imageUrl = object.getJSONObject("images")
-                                            .getJSONObject("standard_resolution").getString("url");
-                                    String name = user.getString("full_name");
-                                    String profUrl = user.getString("profile_picture");
-                                    String message = object.getJSONObject("caption").getString("text");
-                                    Boolean liked = object.getBoolean("user_has_liked");
+                                    String imageUrl = object.getJSONObject(Constants.IMAGES)
+                                            .getJSONObject(Constants.STANDARD_RESOLUTION)
+                                            .getString(Constants.URL);
+                                    String name = user.getString(Constants.FULL_NAME);
+                                    String profUrl = user.getString(Constants.PROFILE_PICTURE);
+                                    String message = object.getJSONObject(Constants.CAPTION)
+                                            .getString(Constants.TEXT);
+                                    Boolean liked = object.getBoolean(Constants.USER_HAS_LIKED);
 
                                     createFeedItem(postId, imageUrl, profUrl, name,
                                             message, liked, Constants.INSTAGRAM);

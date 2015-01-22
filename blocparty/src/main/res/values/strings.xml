@@ -23,5 +23,8 @@
     <string name="connection_failed">Connection Failed</string>
     <string name="post_liked">Post Liked!</string>
     <string name="post_unliked">Post Unliked!</string>
+    <string name="desc_like_button">Like Button</string>
+    <string name="desc_pic_menu">Picture Menu</string>
+    <string name="toast_onboard_complete">On-Boarding Complete!</string>
 
 </resources>

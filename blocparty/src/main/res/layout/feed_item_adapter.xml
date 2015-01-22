@@ -83,15 +83,22 @@
 
         <ImageButton
             android:id="@+id/likeButton"
+            android:background="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.15"/>
+            android:layout_weight="0.15"
+            android:contentDescription="@string/desc_like_button"
+            android:layout_marginBottom="@dimen/mini_margin" />
 
         <ImageButton
             android:id="@+id/menuButton"
+            android:background="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.15"/>
+            android:layout_weight="0.15"
+            android:contentDescription="@string/desc_pic_menu"
+            android:layout_marginBottom="@dimen/mini_margin"
+            android:layout_marginRight="@dimen/mini_margin"/>
 
     </LinearLayout>
 
