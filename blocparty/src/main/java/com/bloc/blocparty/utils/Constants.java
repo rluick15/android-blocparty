@@ -12,6 +12,10 @@ public class Constants {
     public static final String INSTAGRAM_API_URL = "https://api.instagram.com/v1";
     public static final String INSTAGRAM_FEED_ENDPOINT = "/users/self/feed?count=10&access_token=";
 
+    // Twitter App Credentials
+    public static final String TWITTER_KEY = "yEMYeffyfaOwxIPKgObqnO40j";
+    public static final String TWITTER_SECRET = "DSs0NNqkO5ZnPbL1b7AgDxQoMYLJMybawbjVrDwXsnCcbbg3Lt";
+
     //Social Network API Constants
     public static final String FACEBOOK_REQUEST_URL = "/me/home?limit=10&filter=app_2305272732";
     public static final String FILTER_QUERY = "app_2305272732";

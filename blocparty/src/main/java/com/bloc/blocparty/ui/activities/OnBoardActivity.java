@@ -1,5 +1,6 @@
 package com.bloc.blocparty.ui.activities;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,18 +10,26 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.bloc.blocparty.R;
-import com.bloc.blocparty.ui.fragments.FacebookLoginFragment;
+import com.bloc.blocparty.ui.fragments.LoginButtonFragment;
 import com.bloc.blocparty.ui.fragments.OnBoardFragment;
 import com.bloc.blocparty.utils.Constants;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+
+import io.fabric.sdk.android.Fabric;
 
 public class OnBoardActivity extends FragmentActivity implements OnBoardFragment.OnBoardingInteractionListener {
 
-    private FacebookLoginFragment fbLoginFrag;
+    private LoginButtonFragment loginButtonFrag;
     private OnBoardFragment obFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(Constants.TWITTER_KEY, Constants.TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
+
         requestWindowFeature(Window.FEATURE_NO_TITLE); //hide the action bar
         setContentView(R.layout.activity_on_board);
 
@@ -29,23 +38,32 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
 
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
-            fbLoginFrag = new FacebookLoginFragment(this);
+            loginButtonFrag = new LoginButtonFragment(this);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(android.R.id.content, fbLoginFrag)
+                    .add(android.R.id.content, loginButtonFrag)
                     .commit();
         }
         else {
             // Or set the fragment from restored state info
-            fbLoginFrag = (FacebookLoginFragment) getSupportFragmentManager()
+            loginButtonFrag = (LoginButtonFragment) getSupportFragmentManager()
                     .findFragmentById(android.R.id.content);
         }
     }
 
-     /*
-     * This mehtod checks if the user has gone trough the onboarding process and if so, launches
-     * the main activity
-     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.your_fragment_id);
+        if (fragment != null) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    /*
+         * This mehtod checks if the user has gone trough the onboarding process and if so, launches
+         * the main activity
+         */
     private void checkIfAlreadyOnBoarded() {
         SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
         if(pref.getBoolean("activity_executed", false)){
@@ -79,11 +97,11 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
     }
 
     /*
-     * This method is called when the user selects to login in to facebook. It clicks the
-     * built in facebook login button in the fragment
+     * This method is called when the user selects to login in to facebook or twitter. It clicks the
+     * built in facebook/twitter login button in the fragment
      */
-    public void clickFbLoginButton() {
-        fbLoginFrag.clickButton();
+    public void clickLoginButton(String network) {
+       loginButtonFrag.clickButton(network);
     }
 
     public void nextFragment() {

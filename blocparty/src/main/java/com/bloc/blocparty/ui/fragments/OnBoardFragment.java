@@ -105,6 +105,7 @@ public class OnBoardFragment extends Fragment {
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
             }
         });
     }
@@ -113,7 +114,7 @@ public class OnBoardFragment extends Fragment {
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((OnBoardActivity) mContext).clickFbLoginButton();
+                ((OnBoardActivity) mContext).clickLoginButton(Constants.FACEBOOK);
             }
         });
     }
