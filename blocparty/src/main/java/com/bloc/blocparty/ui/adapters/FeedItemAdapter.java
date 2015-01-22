@@ -134,6 +134,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                     @Override
                     public void onCompleted(Response response) {
                         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+                        Log.e("RESPONSE", String.valueOf(response));
 
                         favButton.setImageDrawable(img);
                         feedItem.setFavorited(!feedItem.getFavorited());
