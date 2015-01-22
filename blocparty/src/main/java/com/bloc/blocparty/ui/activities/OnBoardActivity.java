@@ -1,6 +1,5 @@
 package com.bloc.blocparty.ui.activities;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,14 +50,14 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.your_fragment_id);
-        if (fragment != null) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Fragment fragment = getFragmentManager().findFragmentById(R.id.your_fragment_id);
+//        if (fragment != null) {
+//            fragment.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 
     /*
          * This mehtod checks if the user has gone trough the onboarding process and if so, launches
