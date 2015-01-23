@@ -20,6 +20,7 @@ import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -122,15 +123,23 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Request(Session.getActiveSession(),
-                        feedItem.getPostId() + "/likes", null, method, new Request.Callback() {
-                    @Override
-                    public void onCompleted(Response response) {
-                        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-                        feedItem.setFavorited(!feedItem.getFavorited());
-                        updateView(feedItem);
-                    }
-                }).executeAsync();
+                Session session = Session.getActiveSession();
+                if(session.getPermissions().contains("publish_actions")) {
+                    new Request(session,
+                            feedItem.getPostId() + "/likes", null, method, new Request.Callback() {
+                        @Override
+                        public void onCompleted(Response response) {
+                            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+                            feedItem.setFavorited(!feedItem.getFavorited());
+                            updateView(feedItem);
+                        }
+                    }).executeAsync();
+                }
+                else {
+                    Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
+                            ((BlocParty) mContext), "publish_actions");
+                    session.requestNewPublishPermissions(newPermissionsRequest);
+                }
             }
         });
     }

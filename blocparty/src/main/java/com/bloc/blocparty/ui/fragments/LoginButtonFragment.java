@@ -60,9 +60,7 @@ public class LoginButtonFragment extends Fragment {
 
         authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
-        //authButton.setPublishPermissions("publish_actions");
-        authButton.setReadPermissions(Arrays.asList("user_photos", "read_stream"));
-        //authButton.clearPermissions();
+        authButton.setReadPermissions(Arrays.asList("user_photos", "read_stream", "user_status"));
 
         tLoginButton = (TwitterLoginButton) view.findViewById(R.id.twitter_login_button);
         tLoginButton.setCallback(new Callback<TwitterSession>() {
@@ -93,8 +91,10 @@ public class LoginButtonFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         uiHelper.onActivityResult(requestCode, resultCode, data);
         tLoginButton.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @Override
