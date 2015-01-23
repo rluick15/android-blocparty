@@ -14,17 +14,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.Response;
 import com.facebook.Session;
 
 import org.apache.http.HttpEntity;
@@ -107,33 +104,28 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if (feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
-            likeButton(feedItem, holder.favoriteButton,
-                    HttpMethod.DELETE, mContext.getString(R.string.post_unliked));
+            likeButton(feedItem, holder.favoriteButton, true);
         }
         else if(!feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
-            likeButton(feedItem, holder.favoriteButton,
-                    HttpMethod.POST, mContext.getString(R.string.post_liked));
+            likeButton(feedItem, holder.favoriteButton, false);
         }
     }
 
-    private void likeButton(final FeedItem feedItem, final ImageButton favButton,
-                            final HttpMethod method, final String toast) {
+    private void likeButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Session session = Session.getActiveSession();
+                FacebookRequest request = new FacebookRequest(mContext);
                 if(session.getPermissions().contains("publish_actions")) {
-                    new Request(session,
-                            feedItem.getPostId() + "/likes", null, method, new Request.Callback() {
-                        @Override
-                        public void onCompleted(Response response) {
-                            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-                            feedItem.setFavorited(!feedItem.getFavorited());
-                            updateView(feedItem);
-                        }
-                    }).executeAsync();
+                    if(!liked) {
+                        request.likeRequest(feedItem, FeedItemAdapter.this);
+                    }
+                    else if(liked) {
+                        request.unlikeRequest(feedItem, FeedItemAdapter.this);
+                    }
                 }
                 else {
                     Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
@@ -145,17 +137,15 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     }
 
     private void heartButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
-        final String postId = feedItem.getPostId();
-
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InstagramRequest request = new InstagramRequest(mContext);
                 if(!liked) {
-                    request.likePost(postId, feedItem, FeedItemAdapter.this);
+                    request.likePost(feedItem, FeedItemAdapter.this);
                 }
                 else if(liked){
-                    request.unlikePost(postId, feedItem, FeedItemAdapter.this);
+                    request.unlikePost(feedItem, FeedItemAdapter.this);
                 }
             }
         });

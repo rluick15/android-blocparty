@@ -2,8 +2,12 @@ package com.bloc.blocparty.facebook;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.bloc.blocparty.FeedItem.FeedItem;
+import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
+import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -23,10 +27,12 @@ public class FacebookRequest {
 
     private String mCurrentUserId;
     private Context mContext;
+    private Session mSession;
 
     public FacebookRequest(Context context) {
         this.mContext = context;
         getCurrentFacebookUser();
+        mSession = Session.getActiveSession();
     }
 
     /**
@@ -109,5 +115,27 @@ public class FacebookRequest {
                     }
             ).executeAsync();
         }
+    }
+
+    public void likeRequest(final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
+        new Request(mSession, feedItem.getPostId() + "/likes", null, HttpMethod.POST, new Request.Callback() {
+            @Override
+            public void onCompleted(Response response) {
+                Toast.makeText(mContext, mContext.getString(R.string.post_liked), Toast.LENGTH_SHORT).show();
+                feedItem.setFavorited(!feedItem.getFavorited());
+                feedItemAdapter.updateView(feedItem);
+            }
+        }).executeAsync();
+    }
+
+    public void unlikeRequest(final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
+        new Request(mSession, feedItem.getPostId() + "/likes", null, HttpMethod.DELETE, new Request.Callback() {
+            @Override
+            public void onCompleted(Response response) {
+                Toast.makeText(mContext, mContext.getString(R.string.post_unliked), Toast.LENGTH_SHORT).show();
+                feedItem.setFavorited(!feedItem.getFavorited());
+                feedItemAdapter.updateView(feedItem);
+            }
+        }).executeAsync();
     }
 }

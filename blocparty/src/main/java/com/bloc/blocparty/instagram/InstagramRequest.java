@@ -107,7 +107,7 @@ public class InstagramRequest {
         return streamToString(inputStream);
     }
 
-    public void likePost(final String postId, final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
+    public void likePost(final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
         final int[] responseCode = new int[1];
 
         new Thread()  {
@@ -117,7 +117,7 @@ public class InstagramRequest {
 
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("https://api.instagram.com/v1/media/" +
-                        postId + "/likes");
+                        feedItem.getPostId() + "/likes");
                 try {
                     List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
                     nameValuePairs.add(new BasicNameValuePair("access_token", mAccessToken));
@@ -151,7 +151,7 @@ public class InstagramRequest {
         }.start();
     }
 
-    public void unlikePost(final String postId, final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
+    public void unlikePost(final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
         final int[] responseCode = new int[1];
 
         new Thread()  {
@@ -161,7 +161,7 @@ public class InstagramRequest {
 
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpDelete httpDelete = new HttpDelete("https://api.instagram.com/v1/media/" +
-                        postId + "/likes?access_token=" + mAccessToken);
+                        feedItem.getPostId() + "/likes?access_token=" + mAccessToken);
 
                 try {
                     HttpResponse response = httpclient.execute(httpDelete);
