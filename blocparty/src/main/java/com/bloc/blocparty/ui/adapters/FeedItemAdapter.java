@@ -144,19 +144,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                 int responseCode = 0;
                 InstagramRequest request = new InstagramRequest(mContext);
                 if(!liked) {
-                    request.likePost(postId, feedItem);
+                    request.likePost(postId, feedItem, FeedItemAdapter.this);
                 }
                 else if(liked){
-                    request.unlikePost(postId, feedItem);
+                    request.unlikePost(postId, feedItem, FeedItemAdapter.this);
                 }
-
-                //Todo: only on callback
-                updateView(feedItem);
             }
         });
     }
 
-    private void updateView(FeedItem feedItem) {
+    public void updateView(FeedItem feedItem) {
         int position = getPosition(feedItem);
         int start = mListView.getFirstVisiblePosition();
         View view = mListView.getChildAt(position - start);

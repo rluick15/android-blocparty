@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
+import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 
 import org.apache.http.HttpResponse;
@@ -106,7 +107,7 @@ public class InstagramRequest {
         return streamToString(inputStream);
     }
 
-    public void likePost(final String postId, final FeedItem feedItem) {
+    public void likePost(final String postId, final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
         final int[] responseCode = new int[1];
 
         new Thread()  {
@@ -138,6 +139,7 @@ public class InstagramRequest {
                             feedItem.setFavorited(!feedItem.getFavorited());
                             Toast.makeText(mContext, mContext.getString(R.string.post_liked),
                                     Toast.LENGTH_SHORT).show();
+                            feedItemAdapter.updateView(feedItem);
                         }
                         else {
                             Toast.makeText(mContext, mContext.getString(R.string.erro_request),
@@ -149,7 +151,7 @@ public class InstagramRequest {
         }.start();
     }
 
-    public void unlikePost(final String postId, final FeedItem feedItem) {
+    public void unlikePost(final String postId, final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
         final int[] responseCode = new int[1];
 
         new Thread()  {
@@ -175,6 +177,7 @@ public class InstagramRequest {
                             feedItem.setFavorited(!feedItem.getFavorited());
                             Toast.makeText(mContext, mContext.getString(R.string.post_unliked),
                                     Toast.LENGTH_SHORT).show();
+                            feedItemAdapter.updateView(feedItem);
                         }
                         else {
                             Toast.makeText(mContext, mContext.getString(R.string.erro_request),
