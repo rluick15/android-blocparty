@@ -58,6 +58,12 @@ public class LoginButtonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_buttons, container, false);
 
+        authButton = (LoginButton) view.findViewById(R.id.authButton);
+        authButton.setFragment(this);
+        //authButton.setPublishPermissions("publish_actions");
+        authButton.setReadPermissions(Arrays.asList("user_photos", "read_stream"));
+        //authButton.clearPermissions();
+
         tLoginButton = (TwitterLoginButton) view.findViewById(R.id.twitter_login_button);
         tLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
@@ -67,14 +73,9 @@ public class LoginButtonFragment extends Fragment {
 
             @Override
             public void failure(TwitterException e) {
-                Toast.makeText(mContext, mContext.getString(R.string.connection_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, mContext.getString(R.string.connection_failed), Toast.LENGTH_SHORT).show();
             }
         });
-
-        authButton = (LoginButton) view.findViewById(R.id.authButton);
-        authButton.setFragment(this);
-        authButton.setPublishPermissions("publish_actions");
-        authButton.setReadPermissions(Arrays.asList("user_photos", "read_stream"));
 
         return view;
     }
@@ -109,10 +110,10 @@ public class LoginButtonFragment extends Fragment {
     }
 
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-//        if (state.isOpened()) {
-//        }
-//        else if (state.isClosed()) {
-//        }
+        if (state.isOpened()) {
+        }
+        else if (state.isClosed()) {
+        }
     }
 
     private Session.StatusCallback callback = new Session.StatusCallback() {
@@ -122,8 +123,8 @@ public class LoginButtonFragment extends Fragment {
             if(session != null && session.isOpened()){
                 ((OnBoardActivity) mContext).nextFragment();
             }
-            else {
-                Toast.makeText(mContext, mContext.getString(R.string.connection_failed), Toast.LENGTH_LONG).show();
+            else if(state.isClosed() || session == null) {
+                Toast.makeText(mContext, mContext.getString(R.string.connection_failed), Toast.LENGTH_SHORT).show();
             }
         }
     };
