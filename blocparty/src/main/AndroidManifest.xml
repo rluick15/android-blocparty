@@ -49,6 +49,7 @@
             android:name=".ui.adapters.FeedItemAdapter"
             android:label="@string/title_activity_feed_item_adapter" >
         </activity>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="58f05f0ff5fa36da8aaea28a2c439de2d34be880"/>
     </application>
 
 </manifest>
