@@ -1,7 +1,10 @@
 package com.bloc.blocparty.instagram;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.bloc.blocparty.FeedItem.FeedItem;
+import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
 
@@ -10,6 +13,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -102,7 +106,9 @@ public class InstagramRequest {
         return streamToString(inputStream);
     }
 
-    public void likePost(final String postId) {
+    public void likePost(final String postId, final FeedItem feedItem) {
+        final int[] responseCode = new int[1];
+
         new Thread()  {
             @Override
             public void run() {
@@ -111,30 +117,71 @@ public class InstagramRequest {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("https://api.instagram.com/v1/media/" +
                         postId + "/likes");
-
-
                 try {
                     List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
                     nameValuePairs.add(new BasicNameValuePair("access_token", mAccessToken));
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                     HttpResponse response = httpclient.execute(httppost);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (ClientProtocolException e) {
+                    responseCode[0] = response.getStatusLine().getStatusCode();
+
+                } catch (UnsupportedEncodingException | ClientProtocolException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                ((BlocParty) mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(responseCode[0] == 200) {
+                            feedItem.setFavorited(!feedItem.getFavorited());
+                            Toast.makeText(mContext, mContext.getString(R.string.post_liked),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(mContext, mContext.getString(R.string.erro_request),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         }.start();
     }
 
-    public void unlikePost(String postId) {
+    public void unlikePost(final String postId, final FeedItem feedItem) {
+        final int[] responseCode = new int[1];
+
         new Thread()  {
             @Override
             public void run() {
                 super.run();
+
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpDelete httpDelete = new HttpDelete("https://api.instagram.com/v1/media/" +
+                        postId + "/likes?access_token=" + mAccessToken);
+
+                try {
+                    HttpResponse response = httpclient.execute(httpDelete);
+                    responseCode[0] = response.getStatusLine().getStatusCode();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ((BlocParty) mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(responseCode[0] == 200) {
+                            feedItem.setFavorited(!feedItem.getFavorited());
+                            Toast.makeText(mContext, mContext.getString(R.string.post_unliked),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(mContext, mContext.getString(R.string.erro_request),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         }.start();
     }

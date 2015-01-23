@@ -93,12 +93,12 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if (feedItem.getFavorited() == true) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
-            heartButton(feedItem, holder.favoriteButton, mContext.getString(R.string.post_unliked), true);
+            heartButton(feedItem, holder.favoriteButton, true);
         }
         else if(feedItem.getFavorited() == false) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
-            heartButton(feedItem, holder.favoriteButton, mContext.getString(R.string.post_liked), false);
+            heartButton(feedItem, holder.favoriteButton, false);
         }
     }
 
@@ -135,23 +135,22 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         });
     }
 
-    private void heartButton(final FeedItem feedItem, final ImageButton favButton, final String toast,
-                             final Boolean liked) {
+    private void heartButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
         final String postId = feedItem.getPostId();
 
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int responseCode = 0;
                 InstagramRequest request = new InstagramRequest(mContext);
                 if(!liked) {
-                    request.likePost(postId);
+                    request.likePost(postId, feedItem);
                 }
                 else if(liked){
-                    request.unlikePost(postId);
+                    request.unlikePost(postId, feedItem);
                 }
 
-                Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-                feedItem.setFavorited(!feedItem.getFavorited());
+                //Todo: only on callback
                 updateView(feedItem);
             }
         });
