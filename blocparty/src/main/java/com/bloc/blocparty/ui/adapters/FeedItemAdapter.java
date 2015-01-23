@@ -90,12 +90,12 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     }
 
     private void instagramAdapter(FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.getFavorited() == true) {
+        if (feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
             heartButton(feedItem, holder.favoriteButton, true);
         }
-        else if(feedItem.getFavorited() == false) {
+        else if(!feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
             heartButton(feedItem, holder.favoriteButton, false);
@@ -141,7 +141,6 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int responseCode = 0;
                 InstagramRequest request = new InstagramRequest(mContext);
                 if(!liked) {
                     request.likePost(postId, feedItem, FeedItemAdapter.this);
