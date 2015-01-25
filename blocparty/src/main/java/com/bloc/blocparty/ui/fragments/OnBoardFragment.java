@@ -16,6 +16,7 @@ import com.bloc.blocparty.R;
 import com.bloc.blocparty.instagram.InstagramApp;
 import com.bloc.blocparty.ui.activities.OnBoardActivity;
 import com.bloc.blocparty.utils.Constants;
+import com.twitter.sdk.android.Twitter;
 
 /**
  * This fragment allows the user to link one or more of their accounts during on boarding
@@ -102,6 +103,9 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void twitterOnBoard() {
+        if(Twitter.getSessionManager().getActiveSession().getAuthToken() != null) {
+            nextFragment();
+        }
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

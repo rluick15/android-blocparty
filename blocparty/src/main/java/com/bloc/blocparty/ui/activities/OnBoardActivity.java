@@ -50,10 +50,18 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(loginButtonFrag != null) {
+            loginButtonFrag.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
     /*
-         * This mehtod checks if the user has gone trough the onboarding process and if so, launches
-         * the main activity
-         */
+             * This mehtod checks if the user has gone trough the onboarding process and if so, launches
+             * the main activity
+             */
     private void checkIfAlreadyOnBoarded() {
         SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
         if(pref.getBoolean("activity_executed", false)){
