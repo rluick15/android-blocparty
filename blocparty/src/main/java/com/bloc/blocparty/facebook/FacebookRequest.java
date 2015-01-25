@@ -2,6 +2,7 @@ package com.bloc.blocparty.facebook;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
@@ -77,7 +78,6 @@ public class FacebookRequest {
                     HttpMethod.GET,
                     new Request.Callback() {
                         public void onCompleted(Response response) {
-                            Boolean liked = false;
                             GraphObject graphObject = response.getGraphObject();
                             if (graphObject != null) {
                                 JSONObject jsonObject = graphObject.getInnerJSONObject();
@@ -86,6 +86,7 @@ public class FacebookRequest {
                                     JSONArray array = jsonObject.getJSONArray(Constants.DATA);
 
                                     for (int i = 0; i < array.length(); i++) {
+                                        Boolean liked = false;
                                         JSONObject object = (JSONObject) array.get(i);
                                         JSONObject from = object.getJSONObject(Constants.FROM);
 
@@ -95,18 +96,9 @@ public class FacebookRequest {
                                         String pictureId = object.getString(Constants.PICTURE_ID);
                                         String message = object.getString(Constants.MESSAGE);
 
-                                        //get likes info
-//                                        JSONObject likes = object.getJSONObject(Constants.LIKES);
-//                                        JSONArray likesArray = likes.getJSONArray(Constants.DATA);
-//                                        for(int j = 0; j < likesArray.length(); j++) {
-//                                            JSONObject likesObject = (JSONObject) likesArray.get(i);
-//                                            if(likesObject.getString(Constants.ID).equals(mCurrentUserId)) {
-//                                                liked = true;
-//                                            }
-//                                        }
-
-                                        ((BlocParty) mContext).createFeedItem(postId, pictureId, userId, name,
-                                                message, liked, Constants.FACEBOOK);
+                                        FeedItem feedItem = new FeedItem(postId, pictureId, userId,
+                                                name, message, liked, Constants.FACEBOOK);
+                                        ((BlocParty) mContext).createFeedItem(feedItem);
                                     }
                                 }
                                 catch (JSONException ignored) {}
@@ -137,5 +129,35 @@ public class FacebookRequest {
                 feedItemAdapter.updateView(feedItem);
             }
         }).executeAsync();
+    }
+
+    public void isLiked(String postId, final FeedItem feedItem, final ImageButton button, final FeedItemAdapter feedItemAdapter) {
+        if(Session.getActiveSession().isOpened()) {
+            new Request(Session.getActiveSession(), "/" + postId, null, HttpMethod.GET,
+                    new Request.Callback() {
+                        @Override
+                        public void onCompleted(Response response) {
+                            GraphObject graphObject = response.getGraphObject();
+                            if (graphObject != null) {
+                                JSONObject jsonObject = graphObject.getInnerJSONObject();
+                                try {
+                                    JSONObject likes = jsonObject.getJSONObject(Constants.LIKES);
+                                    JSONArray likesArray = likes.getJSONArray(Constants.DATA);
+                                    for(int i = 0; i < likesArray.length(); i++) {
+                                        JSONObject object = (JSONObject) likesArray.get(i);
+                                        String id = object.getString(Constants.ID);
+                                        if(id.equals(mCurrentUserId)) {
+                                            feedItem.setFavorited(true);
+                                        }
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            feedItemAdapter.facebookAdapter(feedItem, button);
+                        }
+                    }).executeAsync();
+
+        }
     }
 }

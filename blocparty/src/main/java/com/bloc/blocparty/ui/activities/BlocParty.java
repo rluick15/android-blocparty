@@ -41,10 +41,7 @@ public class BlocParty extends Activity {
         iRequest.feedRequest();
     }
 
-    public void createFeedItem(String postId, String pictureId, String userPicId, String name,
-                                String message, Boolean liked, String network) {
-        FeedItem feedItem = new FeedItem(postId, pictureId, userPicId,
-                name, message, liked, network);
+    public void createFeedItem(FeedItem feedItem) {
         mFeedItems.add(feedItem);
         mAdapter.notifyDataSetChanged();
     }

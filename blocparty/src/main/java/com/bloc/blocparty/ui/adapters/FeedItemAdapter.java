@@ -78,7 +78,9 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         holder.message.setText(feedItem.getMessage());
 
         if(feedItem.getNetworkName().equals(Constants.FACEBOOK)) {
-            facebookAdapter(feedItem, holder);
+            FacebookRequest request = new FacebookRequest(mContext);
+            request.isLiked(feedItem.getPostId(), feedItem, holder.favoriteButton, FeedItemAdapter.this);
+            //facebookAdapter(feedItem, holder);
         }
         else if(feedItem.getNetworkName().equals(Constants.INSTAGRAM)) {
             instagramAdapter(feedItem, holder);
@@ -100,16 +102,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         }
     }
 
-    private void facebookAdapter(final FeedItem feedItem, final ViewHolder holder) {
+    public void facebookAdapter(final FeedItem feedItem, final ImageButton button) {
         if (feedItem.getFavorited()) {
-            holder.favoriteButton.setImageDrawable(
+            button.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
-            likeButton(feedItem, holder.favoriteButton, true);
+            likeButton(feedItem, button, true);
         }
         else if(!feedItem.getFavorited()) {
-            holder.favoriteButton.setImageDrawable(
+            button.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
-            likeButton(feedItem, holder.favoriteButton, false);
+            likeButton(feedItem, button, false);
         }
     }
 

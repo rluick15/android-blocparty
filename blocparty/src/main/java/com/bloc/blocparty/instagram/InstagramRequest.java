@@ -81,8 +81,9 @@ public class InstagramRequest {
                                             .getString(Constants.TEXT);
                                     Boolean liked = object.getBoolean(Constants.USER_HAS_LIKED);
 
-                                    ((BlocParty) mContext).createFeedItem(postId, imageUrl, profUrl, name,
-                                            message, liked, Constants.INSTAGRAM);
+                                    FeedItem feedItem = new FeedItem(postId, imageUrl, profUrl,
+                                            name, message, liked, Constants.INSTAGRAM);
+                                    ((BlocParty) mContext).createFeedItem(feedItem);
                                 }
                             } catch (JSONException ignored) {
                             }
