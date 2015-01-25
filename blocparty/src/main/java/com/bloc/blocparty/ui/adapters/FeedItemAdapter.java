@@ -3,7 +3,6 @@ package com.bloc.blocparty.ui.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +14,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
+import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.Response;
 import com.facebook.Session;
 
 import org.apache.http.HttpEntity;
@@ -81,7 +78,9 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         holder.message.setText(feedItem.getMessage());
 
         if(feedItem.getNetworkName().equals(Constants.FACEBOOK)) {
-            facebookAdapter(feedItem, holder);
+            FacebookRequest request = new FacebookRequest(mContext);
+            request.isLiked(feedItem.getPostId(), feedItem, holder.favoriteButton, FeedItemAdapter.this);
+            //facebookAdapter(feedItem, holder);
         }
         else if(feedItem.getNetworkName().equals(Constants.INSTAGRAM)) {
             instagramAdapter(feedItem, holder);
@@ -91,83 +90,70 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     }
 
     private void instagramAdapter(FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.getFavorited() == true) {
-            holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
-            heartButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart),
-                    mContext.getString(R.string.post_unliked));
-        }
-        else if(feedItem.getFavorited() == false) {
-            holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
-            heartButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart),
-                    mContext.getString(R.string.post_liked));
-        }
-    }
-
-    private void facebookAdapter(final FeedItem feedItem, final ViewHolder holder) {
         if (feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
-            likeButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon),
-                    HttpMethod.DELETE, mContext.getString(R.string.post_unliked));
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+            heartButton(feedItem, holder.favoriteButton, true);
         }
         else if(!feedItem.getFavorited()) {
             holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
-            likeButton(feedItem, holder.favoriteButton,
-                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon),
-                    HttpMethod.POST, mContext.getString(R.string.post_liked));
+                    mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
+            heartButton(feedItem, holder.favoriteButton, false);
         }
     }
 
-    private void likeButton(final FeedItem feedItem, final ImageButton favButton, final Drawable img,
-                            final HttpMethod method, final String toast) {
+    public void facebookAdapter(final FeedItem feedItem, final ImageButton button) {
+        if (feedItem.getFavorited()) {
+            button.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_facebook_like_icon));
+            likeButton(feedItem, button, true);
+        }
+        else if(!feedItem.getFavorited()) {
+            button.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_facebook_unliked_icon));
+            likeButton(feedItem, button, false);
+        }
+    }
+
+    private void likeButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Request(Session.getActiveSession(),
-                        feedItem.getPostId() + "/likes", null, method, new Request.Callback() {
-                    @Override
-                    public void onCompleted(Response response) {
-                        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-
-                        favButton.setImageDrawable(img);
-                        feedItem.setFavorited(!feedItem.getFavorited());
-                        updateView(feedItem);
+                Session session = Session.getActiveSession();
+                FacebookRequest request = new FacebookRequest(mContext);
+                if(session.getPermissions().contains("publish_actions")) {
+                    if(!liked) {
+                        request.likeRequest(feedItem, FeedItemAdapter.this);
                     }
-                }).executeAsync();
+                    else if(liked) {
+                        request.unlikeRequest(feedItem, FeedItemAdapter.this);
+                    }
+                }
+                else {
+                    Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
+                            ((BlocParty) mContext), "publish_actions");
+                    session.requestNewPublishPermissions(newPermissionsRequest);
+                }
             }
         });
     }
 
-    private void heartButton(final FeedItem feedItem, final ImageButton favButton,
-                             final Drawable img, final String toast) {
+    private void heartButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread()  {
-                    @Override
-                    public void run() {
-                        super.run();
-                        String postId = feedItem.getPostId();
-                        InstagramRequest request = new InstagramRequest(mContext);
-                        String response = request.getLikeResponse("/media/" + postId + "/likes?access_token=");
-                    }
-                }.start();
-
-                favButton.setImageDrawable(img);
-                Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-                feedItem.setFavorited(!feedItem.getFavorited());
-                updateView(feedItem);
+                InstagramRequest request = new InstagramRequest(mContext);
+                if(!liked) {
+                    request.likePost(feedItem, FeedItemAdapter.this);
+                }
+                else if(liked){
+                    request.unlikePost(feedItem, FeedItemAdapter.this);
+                }
             }
         });
     }
 
-    private void updateView(FeedItem feedItem) {
+    public void updateView(FeedItem feedItem) {
         int position = getPosition(feedItem);
         int start = mListView.getFirstVisiblePosition();
         View view = mListView.getChildAt(position - start);

@@ -26,5 +26,6 @@
     <string name="desc_like_button">Like Button</string>
     <string name="desc_pic_menu">Picture Menu</string>
     <string name="toast_onboard_complete">On-Boarding Complete!</string>
+    <string name="erro_request">Error Processing Request</string>
 
 </resources>
