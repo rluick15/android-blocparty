@@ -19,6 +19,7 @@ import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.ConnectionDetector;
+import com.bloc.blocparty.utils.TouchZoom;
 import com.facebook.Session;
 
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class BlocParty extends Activity {
     private void setupFullScreenMode() {
         mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
         mFullScreenImage = (ImageView) findViewById(R.id.fullview);
+        new TouchZoom(mFullScreenImage);
         mQuitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
         mQuitFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override

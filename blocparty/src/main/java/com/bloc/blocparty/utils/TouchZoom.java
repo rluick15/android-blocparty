@@ -1,19 +1,12 @@
 package com.bloc.blocparty.utils;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.PointF;
-import android.os.Bundle;
 import android.util.FloatMath;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.GridView;
 import android.widget.ImageView;
-
-import com.bloc.blocparty.R;
 
 /**
  * Created by Rich on 1/26/2015.
@@ -32,7 +25,12 @@ public class TouchZoom implements OnTouchListener {
     PointF start = new PointF();
     PointF mid = new PointF();
     float oldDist = 1f;
-    
+
+    public TouchZoom(View v) {
+        View view = v;
+        view.setOnTouchListener(this);
+    }
+
     public boolean onTouch(View v, MotionEvent event) {
         ImageView view = (ImageView) v;
         // make the image scalable as a matrix
@@ -45,23 +43,19 @@ public class TouchZoom implements OnTouchListener {
             case MotionEvent.ACTION_DOWN: //first finger down only
                 savedMatrix.set(matrix);
                 start.set(event.getX(), event.getY());
-                Log.d(TAG, "mode=DRAG" );
                 mode = DRAG;
                 break;
             case MotionEvent.ACTION_UP: //first finger lifted
             case MotionEvent.ACTION_POINTER_UP: //second finger lifted
                 mode = NONE;
-                Log.d(TAG, "mode=NONE" );
                 break;
             case MotionEvent.ACTION_POINTER_DOWN: //second finger down
                 oldDist = spacing(event); // calculates the distance between two points where user touched.
-                Log.d(TAG, "oldDist=" + oldDist);
                 // minimal distance between both the fingers
                 if (oldDist > 5f) {
                     savedMatrix.set(matrix);
                     midPoint(mid, event); // sets the mid-point of the straight line between two points where user touched.
                     mode = ZOOM;
-                    Log.d(TAG, "mode=ZOOM" );
                 }
                 break;
 
@@ -76,7 +70,6 @@ public class TouchZoom implements OnTouchListener {
                 }
                 else if (mode == ZOOM) { //pinch zooming
                     float newDist = spacing(event);
-                    Log.d(TAG, "newDist=" + newDist);
                     if (newDist > 5f) {
                         matrix.set(savedMatrix);
                         scale = newDist/oldDist; //thinking I need to play around with this value to limit it**

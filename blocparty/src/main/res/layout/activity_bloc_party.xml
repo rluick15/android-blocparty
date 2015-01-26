@@ -17,7 +17,8 @@ tools:context="com.bloc.blocparty.ui.activities.BlocParty">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"/>
 
         <ImageView
             android:id="@+id/fullview"
