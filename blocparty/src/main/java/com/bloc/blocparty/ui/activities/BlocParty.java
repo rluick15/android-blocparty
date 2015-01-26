@@ -62,12 +62,6 @@ public class BlocParty extends Activity {
     }
 
     private void setupFullScreenMode() {
-        try { //disable the action bar animation hack
-            getActionBar().getClass()
-                    .getDeclaredMethod("setShowHideAnimationEnabled", boolean.class)
-                    .invoke(getActionBar(), false);
-        }
-        catch (Exception ignored) {}
         mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
         mFullScreenImage = (ImageView) findViewById(R.id.fullview);
         mQuitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
@@ -82,6 +76,10 @@ public class BlocParty extends Activity {
         });
     }
 
+    /*
+     * If the full screen layout is opened go back to regular layout on back button instead
+     * of exiting the app
+     */
     @Override
     public void onBackPressed() {
         if(mFullScreenLayout.getVisibility() == View.VISIBLE){
