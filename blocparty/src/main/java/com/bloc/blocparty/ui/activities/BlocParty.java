@@ -39,6 +39,8 @@ public class BlocParty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
 
+
+
         setupFullScreenMode();
 
         ConnectionDetector detector = new ConnectionDetector(this);
