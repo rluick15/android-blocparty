@@ -19,6 +19,8 @@ import com.bloc.blocparty.ui.activities.OnBoardActivity;
 import com.bloc.blocparty.utils.Constants;
 import com.twitter.sdk.android.Twitter;
 
+import twitter4j.conf.ConfigurationBuilder;
+
 /**
  * This fragment allows the user to link one or more of their accounts during on boarding
  */
@@ -111,7 +113,12 @@ public class OnBoardFragment extends Fragment {
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
+                //((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
+                ConfigurationBuilder cb = new ConfigurationBuilder();
+                cb.setDebugEnabled(true)
+                        .setOAuthConsumerKey(Constants.TWITTER_KEY)
+                        .setOAuthConsumerSecret(Constants.TWITTER_SECRET);
+
             }
         });
     }

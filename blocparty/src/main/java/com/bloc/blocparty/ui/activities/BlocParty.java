@@ -11,6 +11,7 @@ import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.facebook.Session;
 
@@ -37,8 +38,11 @@ public class BlocParty extends Activity {
         FacebookRequest fbRequest = new FacebookRequest(this);
         fbRequest.getFeedData();
 
-        InstagramRequest iRequest = new InstagramRequest(BlocParty.this);
+        InstagramRequest iRequest = new InstagramRequest(this);
         iRequest.feedRequest();
+
+        TwitterRequest tRequest = new TwitterRequest(this);
+        tRequest.feedRequest();
     }
 
     public void createFeedItem(FeedItem feedItem) {
