@@ -1,7 +1,6 @@
 package com.bloc.blocparty.twitter;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
@@ -71,9 +70,21 @@ public class TwitterRequest {
                     ((BlocParty) mContext).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            int i = 0;
+                            List<Status> photoTweets = new ArrayList<>();
+
+                            //get the last 10 photo tweets
                             for (Status status : finalStatuses) {
                                 for(MediaEntity entity : status.getMediaEntities()) {
-                                    entity.getMediaURL();
+                                    if((entity.getType().equals("photo")) && i < 10) {
+                                        photoTweets.add(status);
+                                        i++;
+                                    }
+                                }
+                            }
+
+                            for(Status status : photoTweets) {
+                                for(MediaEntity entity : status.getMediaEntities()) {
                                 }
                             }
                         }
