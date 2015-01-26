@@ -137,7 +137,7 @@ public class InstagramRequest {
                     @Override
                     public void run() {
                         if(responseCode[0] == 200) {
-                            feedItem.setFavorited(!feedItem.getFavorited());
+                            feedItem.setFavorited(true);
                             Toast.makeText(mContext, mContext.getString(R.string.post_liked),
                                     Toast.LENGTH_SHORT).show();
                             feedItemAdapter.updateView(feedItem);
@@ -175,7 +175,7 @@ public class InstagramRequest {
                     @Override
                     public void run() {
                         if(responseCode[0] == 200) {
-                            feedItem.setFavorited(!feedItem.getFavorited());
+                            feedItem.setFavorited(false);
                             Toast.makeText(mContext, mContext.getString(R.string.post_unliked),
                                     Toast.LENGTH_SHORT).show();
                             feedItemAdapter.updateView(feedItem);

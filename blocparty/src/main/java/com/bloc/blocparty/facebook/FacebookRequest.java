@@ -114,7 +114,7 @@ public class FacebookRequest {
             @Override
             public void onCompleted(Response response) {
                 Toast.makeText(mContext, mContext.getString(R.string.post_liked), Toast.LENGTH_SHORT).show();
-                feedItem.setFavorited(!feedItem.getFavorited());
+                feedItem.setFavorited(true);
                 feedItemAdapter.updateView(feedItem);
             }
         }).executeAsync();
@@ -125,7 +125,7 @@ public class FacebookRequest {
             @Override
             public void onCompleted(Response response) {
                 Toast.makeText(mContext, mContext.getString(R.string.post_unliked), Toast.LENGTH_SHORT).show();
-                feedItem.setFavorited(!feedItem.getFavorited());
+                feedItem.setFavorited(false);
                 feedItemAdapter.updateView(feedItem);
             }
         }).executeAsync();

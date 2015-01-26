@@ -2,8 +2,10 @@ package com.bloc.blocparty.twitter;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
+import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
@@ -128,7 +130,9 @@ public class TwitterRequest {
                 ((BlocParty) mContext).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        feedItem.setFavorited(!feedItem.getFavorited());
+                        feedItem.setFavorited(true);
+                        Toast.makeText(mContext, mContext.getString(R.string.post_liked),
+                                Toast.LENGTH_SHORT).show();
                         feedItemAdapter.updateView(feedItem);
                     }
                 });
@@ -159,7 +163,9 @@ public class TwitterRequest {
                 ((BlocParty) mContext).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        feedItem.setFavorited(!feedItem.getFavorited());
+                        feedItem.setFavorited(false);
+                        Toast.makeText(mContext, mContext.getString(R.string.post_unliked),
+                                Toast.LENGTH_SHORT).show();
                         feedItemAdapter.updateView(feedItem);
                     }
                 });
