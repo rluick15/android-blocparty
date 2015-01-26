@@ -15,6 +15,14 @@ public class Constants {
     // Twitter App Credentials
     public static final String TWITTER_KEY = "yEMYeffyfaOwxIPKgObqnO40j";
     public static final String TWITTER_SECRET = "DSs0NNqkO5ZnPbL1b7AgDxQoMYLJMybawbjVrDwXsnCcbbg3Lt";
+    public static final String PREFERENCE_NAME = "twitter_oauth";
+    public static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
+    public static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
+    public static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLogedIn";
+    public static final String TWITTER_CALLBACK_URL = "oauth://t4jsample";
+    public static final String URL_TWITTER_AUTH = "auth_url";
+    public static final String URL_TWITTER_OAUTH_VERIFIER = "oauth_verifier";
+    public static final String URL_TWITTER_OAUTH_TOKEN = "oauth_token";
 
     //Social Network API Constants
     public static final String FACEBOOK_REQUEST_URL = "/me/home?limit=10&filter=app_2305272732";

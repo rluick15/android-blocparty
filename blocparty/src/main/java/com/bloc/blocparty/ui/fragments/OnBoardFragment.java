@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import com.bloc.blocparty.R;
 import com.bloc.blocparty.instagram.InstagramApp;
 import com.bloc.blocparty.ui.activities.OnBoardActivity;
 import com.bloc.blocparty.utils.Constants;
+import com.twitter.sdk.android.Twitter;
+
+import twitter4j.conf.ConfigurationBuilder;
 
 /**
  * This fragment allows the user to link one or more of their accounts during on boarding
@@ -102,10 +106,19 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void twitterOnBoard() {
+        if(Twitter.getSessionManager().getActiveSession().getAuthToken() != null) {
+            Log.e("ERROR", Twitter.getSessionManager().getActiveSession().getAuthToken().token);
+            nextFragment();
+        }
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
+                //((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
+                ConfigurationBuilder cb = new ConfigurationBuilder();
+                cb.setDebugEnabled(true)
+                        .setOAuthConsumerKey(Constants.TWITTER_KEY)
+                        .setOAuthConsumerSecret(Constants.TWITTER_SECRET);
+
             }
         });
     }

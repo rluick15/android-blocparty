@@ -20,6 +20,7 @@ import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.Session;
@@ -80,25 +81,40 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if(feedItem.getNetworkName().equals(Constants.FACEBOOK)) {
             FacebookRequest request = new FacebookRequest(mContext);
             request.isLiked(feedItem.getPostId(), feedItem, holder.favoriteButton, FeedItemAdapter.this);
-            //facebookAdapter(feedItem, holder);
         }
         else if(feedItem.getNetworkName().equals(Constants.INSTAGRAM)) {
-            instagramAdapter(feedItem, holder);
+            instagramAdapter(feedItem, holder.favoriteButton);
+        }
+        else if(feedItem.getNetworkName().equals(Constants.TWITTER)) {
+            twitterAdapter(feedItem, holder.favoriteButton);
         }
 
         return convertView;
     }
 
-    private void instagramAdapter(FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.getFavorited()) {
-            holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
-            heartButton(feedItem, holder.favoriteButton, true);
+    private void twitterAdapter(FeedItem feedItem, ImageButton favoriteButton) {
+        if(feedItem.getFavorited()) {
+            favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_twitter_favorite));
+            favoriteButton(feedItem, favoriteButton, true);
         }
         else if(!feedItem.getFavorited()) {
-            holder.favoriteButton.setImageDrawable(
+            favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_twitter_unfavorite));
+            favoriteButton(feedItem, favoriteButton, false);
+        }
+    }
+
+    private void instagramAdapter(FeedItem feedItem, ImageButton favoriteButton) {
+        if (feedItem.getFavorited()) {
+            favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+            heartButton(feedItem, favoriteButton, true);
+        }
+        else if(!feedItem.getFavorited()) {
+            favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
-            heartButton(feedItem, holder.favoriteButton, false);
+            heartButton(feedItem, favoriteButton, false);
         }
     }
 
@@ -148,6 +164,21 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                 }
                 else if(liked){
                     request.unlikePost(feedItem, FeedItemAdapter.this);
+                }
+            }
+        });
+    }
+
+    private void favoriteButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TwitterRequest request = new TwitterRequest(mContext);
+                if(!liked) {
+                    request.favoriteTweet(feedItem.getPostId(), feedItem, FeedItemAdapter.this);
+                }
+                else if(liked){
+                    request.unfavoriteTweet(feedItem.getPostId(), feedItem, FeedItemAdapter.this);
                 }
             }
         });

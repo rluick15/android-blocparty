@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
+import com.bloc.blocparty.utils.ConnectionDetector;
 import com.facebook.Session;
 
 import java.util.ArrayList;
@@ -28,6 +31,11 @@ public class BlocParty extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
 
+        ConnectionDetector detector = new ConnectionDetector(this);
+        if(!detector.isConnectingToInternet()) {
+            Toast.makeText(this, getString(R.string.toast_no_internet), Toast.LENGTH_LONG).show();
+        }
+
         mFeedList = (ListView) findViewById(R.id.feedList);
         mFeedItems = new ArrayList<>();
 
@@ -37,8 +45,11 @@ public class BlocParty extends Activity {
         FacebookRequest fbRequest = new FacebookRequest(this);
         fbRequest.getFeedData();
 
-        InstagramRequest iRequest = new InstagramRequest(BlocParty.this);
+        InstagramRequest iRequest = new InstagramRequest(this);
         iRequest.feedRequest();
+
+        TwitterRequest tRequest = new TwitterRequest(this);
+        tRequest.feedRequest();
     }
 
     public void createFeedItem(FeedItem feedItem) {

@@ -27,5 +27,6 @@
     <string name="desc_pic_menu">Picture Menu</string>
     <string name="toast_onboard_complete">On-Boarding Complete!</string>
     <string name="erro_request">Error Processing Request</string>
+    <string name="toast_no_internet">No Internet Connection</string>
 
 </resources>

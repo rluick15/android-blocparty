@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="socialauth-android-3.2">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/blocparty/libs/socialauth-android-3.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
