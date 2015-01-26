@@ -18,6 +18,7 @@ tools:context="com.bloc.blocparty.ui.activities.BlocParty">
     <ImageView android:id="@+id/fullview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:background="@android:color/black"/>
 
 </RelativeLayout>

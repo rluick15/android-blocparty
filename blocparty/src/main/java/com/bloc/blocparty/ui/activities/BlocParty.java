@@ -2,9 +2,12 @@ package com.bloc.blocparty.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,11 +28,14 @@ public class BlocParty extends Activity {
     private ArrayList<FeedItem> mFeedItems;
     private ListView mFeedList;
     private FeedItemAdapter mAdapter;
+    private ImageView mFullScreenImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
+
+        mFullScreenImage = (ImageView) findViewById(R.id.fullview);
 
         ConnectionDetector detector = new ConnectionDetector(this);
         if(!detector.isConnectingToInternet()) {
@@ -55,6 +61,11 @@ public class BlocParty extends Activity {
     public void createFeedItem(FeedItem feedItem) {
         mFeedItems.add(feedItem);
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void fullScreenImage(Bitmap bitmap) {
+        mFullScreenImage.setVisibility(View.VISIBLE);
+        mFullScreenImage.setImageBitmap(bitmap);
     }
 
     @Override
