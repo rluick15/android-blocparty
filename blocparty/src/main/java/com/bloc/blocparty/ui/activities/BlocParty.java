@@ -82,6 +82,19 @@ public class BlocParty extends Activity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(mFullScreenLayout.getVisibility() == View.VISIBLE){
+            getActionBar().show();
+            mFullScreenLayout.setVisibility(View.GONE);
+            mFeedList.setVisibility(View.VISIBLE);
+            mFullScreenImage.setImageBitmap(null);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
     public void createFeedItem(FeedItem feedItem) {
         mFeedItems.add(feedItem);
         mAdapter.notifyDataSetChanged();
