@@ -62,12 +62,19 @@ public class BlocParty extends Activity {
     }
 
     private void setupFullScreenMode() {
+        try { //disable the action bar animation hack
+            getActionBar().getClass()
+                    .getDeclaredMethod("setShowHideAnimationEnabled", boolean.class)
+                    .invoke(getActionBar(), false);
+        }
+        catch (Exception ignored) {}
         mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
         mFullScreenImage = (ImageView) findViewById(R.id.fullview);
         mQuitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
         mQuitFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActionBar().show();
                 mFullScreenLayout.setVisibility(View.GONE);
                 mFeedList.setVisibility(View.VISIBLE);
                 mFullScreenImage.setImageBitmap(null);
@@ -83,6 +90,7 @@ public class BlocParty extends Activity {
     public void fullScreenImage(Bitmap bitmap) {
         mFullScreenLayout.setVisibility(View.VISIBLE);
         mFeedList.setVisibility(View.GONE);
+        getActionBar().hide();
         mFullScreenImage.setImageBitmap(bitmap);
     }
 
