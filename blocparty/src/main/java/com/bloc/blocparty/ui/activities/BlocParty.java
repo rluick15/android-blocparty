@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
@@ -29,13 +30,15 @@ public class BlocParty extends Activity {
     private ListView mFeedList;
     private FeedItemAdapter mAdapter;
     private ImageView mFullScreenImage;
+    private ImageView mQuitFullScreen;
+    private RelativeLayout mFullScreenLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
 
-        mFullScreenImage = (ImageView) findViewById(R.id.fullview);
+        setupFullScreenMode();
 
         ConnectionDetector detector = new ConnectionDetector(this);
         if(!detector.isConnectingToInternet()) {
@@ -58,13 +61,26 @@ public class BlocParty extends Activity {
         tRequest.feedRequest();
     }
 
+    private void setupFullScreenMode() {
+        mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
+        mFullScreenImage = (ImageView) findViewById(R.id.fullview);
+        mQuitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
+        mQuitFullScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFullScreenLayout.setVisibility(View.GONE);
+                mFullScreenImage.setImageBitmap(null);
+            }
+        });
+    }
+
     public void createFeedItem(FeedItem feedItem) {
         mFeedItems.add(feedItem);
         mAdapter.notifyDataSetChanged();
     }
 
     public void fullScreenImage(Bitmap bitmap) {
-        mFullScreenImage.setVisibility(View.VISIBLE);
+        mFullScreenLayout.setVisibility(View.VISIBLE);
         mFullScreenImage.setImageBitmap(bitmap);
     }
 
