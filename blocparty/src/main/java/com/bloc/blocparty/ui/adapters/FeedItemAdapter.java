@@ -80,25 +80,38 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if(feedItem.getNetworkName().equals(Constants.FACEBOOK)) {
             FacebookRequest request = new FacebookRequest(mContext);
             request.isLiked(feedItem.getPostId(), feedItem, holder.favoriteButton, FeedItemAdapter.this);
-            //facebookAdapter(feedItem, holder);
         }
         else if(feedItem.getNetworkName().equals(Constants.INSTAGRAM)) {
-            instagramAdapter(feedItem, holder);
+            instagramAdapter(feedItem, holder.favoriteButton);
+        }
+        else if(feedItem.getNetworkName().equals(Constants.TWITTER)) {
+            twitterAdapter(feedItem, holder.favoriteButton);
         }
 
         return convertView;
     }
 
-    private void instagramAdapter(FeedItem feedItem, ViewHolder holder) {
-        if (feedItem.getFavorited()) {
-            holder.favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
-            heartButton(feedItem, holder.favoriteButton, true);
+    private void twitterAdapter(FeedItem feedItem, ImageButton favoriteButton) {
+        if(feedItem.getFavorited()) {
+            favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_twitter_favorite));
         }
         else if(!feedItem.getFavorited()) {
-            holder.favoriteButton.setImageDrawable(
+            favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_twitter_unfavorite));
+        }
+    }
+
+    private void instagramAdapter(FeedItem feedItem, ImageButton favoriteButton) {
+        if (feedItem.getFavorited()) {
+            favoriteButton.setImageDrawable(
+                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+            heartButton(feedItem, favoriteButton, true);
+        }
+        else if(!feedItem.getFavorited()) {
+            favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_instagram_unheart));
-            heartButton(feedItem, holder.favoriteButton, false);
+            heartButton(feedItem, favoriteButton, false);
         }
     }
 
