@@ -1,7 +1,6 @@
 package com.bloc.blocparty.twitter;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
@@ -31,15 +30,28 @@ public class TwitterRequest {
     private Context mContext;
     private String mAuthToken;
     private String mAuthSecret;
+    private twitter4j.Twitter mTwitter;
 
     public TwitterRequest(Context context) {
         this.mContext = context;
         mAuthToken = Twitter.getSessionManager().getActiveSession().getAuthToken().token;
         mAuthSecret = Twitter.getSessionManager().getActiveSession().getAuthToken().secret;
+        setTwitter();
     }
 
-    public String getAccessToken() {
-        return mAuthToken;
+    private void setTwitter() {
+        ConfigurationBuilder builder = new ConfigurationBuilder();
+        builder.setOAuthConsumerKey(Constants.TWITTER_KEY)
+                .setOAuthConsumerSecret(Constants.TWITTER_SECRET)
+                .setOAuthAccessToken(mAuthToken)
+                .setOAuthAccessTokenSecret(mAuthSecret);
+        Configuration configuration =  builder.build();
+        TwitterFactory factory = new TwitterFactory(configuration);
+        mTwitter = factory.getInstance();
+    }
+
+    private twitter4j.Twitter getTwitter() {
+        return mTwitter;
     }
 
     public void feedRequest() {
@@ -49,15 +61,7 @@ public class TwitterRequest {
                 public void run() {
                     super.run();
 
-                    ConfigurationBuilder builder = new ConfigurationBuilder();
-                    builder.setOAuthConsumerKey(Constants.TWITTER_KEY)
-                        .setOAuthConsumerSecret(Constants.TWITTER_SECRET)
-                        .setOAuthAccessToken(mAuthToken)
-                        .setOAuthAccessTokenSecret(mAuthSecret);
-                    Configuration configuration = builder.build();
-
-                    TwitterFactory factory = new TwitterFactory(configuration);
-                    twitter4j.Twitter twitter = factory.getInstance();
+                    twitter4j.Twitter twitter = getTwitter();
                     List<Status> statuses = new ArrayList<>();
                     try {
                         statuses = twitter.getHomeTimeline(new Paging(1, 100));
@@ -112,16 +116,7 @@ public class TwitterRequest {
             public void run() {
                 super.run();
                 try {
-                    ConfigurationBuilder builder = new ConfigurationBuilder();
-                    builder.setOAuthConsumerKey(Constants.TWITTER_KEY)
-                            .setOAuthConsumerSecret(Constants.TWITTER_SECRET)
-                            .setOAuthAccessToken(mAuthToken)
-                            .setOAuthAccessTokenSecret(mAuthSecret);
-                    Configuration configuration = builder.build();
-
-                    TwitterFactory factory = new TwitterFactory(configuration);
-                    twitter4j.Twitter twitter = factory.getInstance();
-                    Log.e("POSTID", postId);
+                    twitter4j.Twitter twitter = getTwitter();
                     twitter.createFavorite(Long.parseLong(postId));
                 } catch (TwitterException e) {
                     e.printStackTrace();
@@ -146,15 +141,7 @@ public class TwitterRequest {
             public void run() {
                 super.run();
                 try {
-                    ConfigurationBuilder builder = new ConfigurationBuilder();
-                    builder.setOAuthConsumerKey(Constants.TWITTER_KEY)
-                            .setOAuthConsumerSecret(Constants.TWITTER_SECRET)
-                            .setOAuthAccessToken(mAuthToken)
-                            .setOAuthAccessTokenSecret(mAuthSecret);
-                    Configuration configuration = builder.build();
-
-                    TwitterFactory factory = new TwitterFactory(configuration);
-                    twitter4j.Twitter twitter = factory.getInstance();
+                    twitter4j.Twitter twitter = getTwitter();
                     twitter.destroyFavorite(Long.parseLong(postId));
                 } catch (TwitterException e) {
                     e.printStackTrace();
