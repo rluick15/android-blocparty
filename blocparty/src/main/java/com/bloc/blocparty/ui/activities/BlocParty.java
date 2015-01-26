@@ -69,6 +69,7 @@ public class BlocParty extends Activity {
             @Override
             public void onClick(View v) {
                 mFullScreenLayout.setVisibility(View.GONE);
+                mFeedList.setVisibility(View.VISIBLE);
                 mFullScreenImage.setImageBitmap(null);
             }
         });
@@ -81,6 +82,7 @@ public class BlocParty extends Activity {
 
     public void fullScreenImage(Bitmap bitmap) {
         mFullScreenLayout.setVisibility(View.VISIBLE);
+        mFeedList.setVisibility(View.GONE);
         mFullScreenImage.setImageBitmap(bitmap);
     }
 
