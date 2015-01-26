@@ -73,9 +73,9 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         }
 
         new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage,
-                holder.progressBarMain, holder.progressBarProf).execute();
+                holder.progressBarMain, holder.progressBarProf, 0).execute();
         new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture,
-                holder.progressBarMain, holder.progressBarProf).execute();
+                holder.progressBarMain, holder.progressBarProf, 1).execute();
         holder.name.setText(feedItem.getName());
         holder.message.setText(feedItem.getMessage());
 
@@ -221,14 +221,16 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         private String url;
         private ImageView picture;
         private Context context;
+        private int imageId;
 
         public ImageLoadTask(Context context, String url, ImageView picField,
-                             ProgressBar progressBarMain, ProgressBar progressBarProf) {
+                             ProgressBar progressBarMain, ProgressBar progressBarProf, int imgId) {
             this.context = context;
             this.url = url;
             this.picture = picField;
             this.mainPb = progressBarMain;
             this.profPb = progressBarProf;
+            this.imageId = imgId;
         }
 
         @Override
@@ -265,7 +267,11 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             mainPb.setVisibility(View.INVISIBLE);
             profPb.setVisibility(View.INVISIBLE);
 
-            setBitmap(bitmap);
+            //save the image bitmap if it is the feed Image
+            if(imageId == 0) {
+                setBitmap(bitmap);
+            }
+
             picture.setImageBitmap(bitmap);
         }
 
