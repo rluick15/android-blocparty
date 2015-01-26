@@ -1,9 +1,11 @@
 package com.bloc.blocparty.twitter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.ui.activities.BlocParty;
+import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.twitter.sdk.android.Twitter;
 
@@ -100,5 +102,68 @@ public class TwitterRequest {
                 }
             }.start();
         }
+    }
+
+    public void favoriteTweet(final String postId, final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    ConfigurationBuilder builder = new ConfigurationBuilder();
+                    builder.setOAuthConsumerKey(Constants.TWITTER_KEY)
+                            .setOAuthConsumerSecret(Constants.TWITTER_SECRET)
+                            .setOAuthAccessToken(mAuthToken)
+                            .setOAuthAccessTokenSecret(mAuthSecret);
+                    Configuration configuration = builder.build();
+
+                    TwitterFactory factory = new TwitterFactory(configuration);
+                    twitter4j.Twitter twitter = factory.getInstance();
+                    Log.e("POSTID", postId);
+                    twitter.createFavorite(Long.parseLong(postId));
+                } catch (TwitterException e) {
+                    e.printStackTrace();
+                }
+
+                ((BlocParty) mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        feedItem.setFavorited(!feedItem.getFavorited());
+                        feedItemAdapter.updateView(feedItem);
+                    }
+                });
+            }
+        }.start();
+    }
+
+    public void unfavoriteTweet(final String postId, final FeedItem feedItem, final FeedItemAdapter feedItemAdapter) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    ConfigurationBuilder builder = new ConfigurationBuilder();
+                    builder.setOAuthConsumerKey(Constants.TWITTER_KEY)
+                            .setOAuthConsumerSecret(Constants.TWITTER_SECRET)
+                            .setOAuthAccessToken(mAuthToken)
+                            .setOAuthAccessTokenSecret(mAuthSecret);
+                    Configuration configuration = builder.build();
+
+                    TwitterFactory factory = new TwitterFactory(configuration);
+                    twitter4j.Twitter twitter = factory.getInstance();
+                    twitter.destroyFavorite(Long.parseLong(postId));
+                } catch (TwitterException e) {
+                    e.printStackTrace();
+                }
+
+                ((BlocParty) mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        feedItem.setFavorited(!feedItem.getFavorited());
+                        feedItemAdapter.updateView(feedItem);
+                    }
+                });
+            }
+        }.start();
     }
 }

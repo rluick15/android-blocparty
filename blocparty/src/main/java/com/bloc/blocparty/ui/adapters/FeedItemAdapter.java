@@ -20,6 +20,7 @@ import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.Session;
@@ -95,10 +96,12 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         if(feedItem.getFavorited()) {
             favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_twitter_favorite));
+            favoriteButton(feedItem, favoriteButton, true);
         }
         else if(!feedItem.getFavorited()) {
             favoriteButton.setImageDrawable(
                     mContext.getResources().getDrawable(R.drawable.ic_twitter_unfavorite));
+            favoriteButton(feedItem, favoriteButton, false);
         }
     }
 
@@ -161,6 +164,21 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                 }
                 else if(liked){
                     request.unlikePost(feedItem, FeedItemAdapter.this);
+                }
+            }
+        });
+    }
+
+    private void favoriteButton(final FeedItem feedItem, final ImageButton favButton, final Boolean liked) {
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TwitterRequest request = new TwitterRequest(mContext);
+                if(!liked) {
+                    request.favoriteTweet(feedItem.getPostId(), feedItem, FeedItemAdapter.this);
+                }
+                else if(liked){
+                    request.unfavoriteTweet(feedItem.getPostId(), feedItem, FeedItemAdapter.this);
                 }
             }
         });
