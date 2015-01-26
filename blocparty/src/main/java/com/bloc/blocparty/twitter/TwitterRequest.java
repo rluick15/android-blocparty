@@ -2,15 +2,11 @@ package com.bloc.blocparty.twitter;
 
 import android.content.Context;
 
+import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
 import com.twitter.sdk.android.Twitter;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,47 +80,25 @@ public class TwitterRequest {
                             }
 
                             for(Status status : photoTweets) {
-                                for(MediaEntity entity : status.getMediaEntities()) {
+                                String postId = String.valueOf(status.getId());
+                                String profUrl = status.getUser().getProfileImageURL();
+                                String name = status.getUser().getName();
+                                String message = status.getText();
+                                Boolean liked = status.isFavorited();
+
+                                String imageUrl = null;
+                                for (MediaEntity entity : status.getMediaEntities()) {
+                                    imageUrl = entity.getMediaURL();
                                 }
+
+                                FeedItem feedItem = new FeedItem(postId, imageUrl, profUrl,
+                                        name, message, liked, Constants.TWITTER);
+                                ((BlocParty) mContext).createFeedItem(feedItem);
                             }
                         }
                     });
                 }
             }.start();
         }
-    }
-
-    public String getResponse() {
-        InputStream inputStream = null;
-        try {
-            String urlString = "https://api.twitter.com/1.1/statuses/home_timeline.json";
-            URL url = new URL(urlString);
-            inputStream = url.openConnection().getInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return streamToString(inputStream);
-    }
-
-    /**
-     * Method that returns String from the InputStream given by p_is
-     * @param stream The given InputStream
-     * @return The String from the InputStream
-     */
-    public static String streamToString(InputStream stream) {
-        StringBuffer outString = null;
-        try {
-            BufferedReader reader;
-            outString = new StringBuffer();
-            reader = new BufferedReader(new InputStreamReader(stream));
-            String mReader = reader.readLine();
-            while (mReader != null) {
-                outString.append(mReader);
-                mReader = reader.readLine();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return outString.toString();
     }
 }

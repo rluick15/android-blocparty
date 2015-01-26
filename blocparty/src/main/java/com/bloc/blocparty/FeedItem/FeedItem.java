@@ -29,7 +29,7 @@ public class FeedItem {
             this.imageUrl = "https://graph.facebook.com/" + pictureId + "/picture";
             this.profilePictureUrl = "http://graph.facebook.com/" + userId + "/picture";
         }
-        else if(networkName.equals(Constants.INSTAGRAM)) {
+        else {
             this.imageUrl = pictureId;
             this.profilePictureUrl = userId;
         }
