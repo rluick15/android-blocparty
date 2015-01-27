@@ -232,9 +232,11 @@ public class TwitterRequest {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.PNG, 0, bos);
             byte[] bitmapdata = bos.toByteArray();
+            bos.close();
 
             FileOutputStream fos = new FileOutputStream(f);
             fos.write(bitmapdata);
+            fos.close();
         } catch (IOException ignored) {}
 
         return f;
