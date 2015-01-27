@@ -129,7 +129,7 @@ public class BlocParty extends Activity {
         if (requestCode == Constants.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get(Constants.DATA);
-            UploadPhotoDialogFragment fragment = new UploadPhotoDialogFragment(imageBitmap);
+            UploadPhotoDialogFragment fragment = new UploadPhotoDialogFragment(this, imageBitmap);
             fragment.show(getFragmentManager(), "dialog");
         }
     }

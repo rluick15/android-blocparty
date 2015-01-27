@@ -54,6 +54,15 @@ public class TwitterRequest {
         return mTwitter;
     }
 
+    public Boolean isLoggedIn() {
+        if(mAuthToken == null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public void feedRequest() {
         if(mAuthToken != null) {
             new Thread() {

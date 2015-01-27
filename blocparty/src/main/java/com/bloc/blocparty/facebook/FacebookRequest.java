@@ -36,12 +36,21 @@ public class FacebookRequest {
         mSession = Session.getActiveSession();
     }
 
+    public Boolean isLoggedIn() {
+        if(Session.getActiveSession() == null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     /**
      * This method sends a data request to the facebook api server and retrieves current users id
      */
     private void getCurrentFacebookUser() {
         final Session session = Session.getActiveSession();
-        if (session != null && session.isOpened()) {
+        if (isLoggedIn() && session.isOpened()) {
             Request request = Request.newMeRequest(session, new Request.GraphUserCallback() {
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
@@ -71,7 +80,7 @@ public class FacebookRequest {
         params.putString(Constants.LIMIT, Constants.LIMIT_QUERY);
         params.putString(Constants.FILTER, Constants.FILTER_QUERY);
 
-        if(Session.getActiveSession().isOpened()) {
+        if(isLoggedIn()) {
             new Request(Session.getActiveSession(),
                     Constants.FACEBOOK_REQUEST_URL,
                     params,
@@ -132,7 +141,7 @@ public class FacebookRequest {
     }
 
     public void isLiked(String postId, final FeedItem feedItem, final ImageButton button, final FeedItemAdapter feedItemAdapter) {
-        if(Session.getActiveSession().isOpened()) {
+        if(isLoggedIn()) {
             new Request(Session.getActiveSession(), "/" + postId, null, HttpMethod.GET,
                     new Request.Callback() {
                         @Override
