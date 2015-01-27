@@ -183,7 +183,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             public void onClick(View v) {
                 Session session = Session.getActiveSession();
                 FacebookRequest request = new FacebookRequest(mContext);
-                if(session.getPermissions().contains("publish_actions")) {
+                if(session.getPermissions().contains(Constants.FACEBOOK_PUBLISH_ACTIONS)) {
                     if(!liked) {
                         request.likeRequest(feedItem, FeedItemAdapter.this);
                     }
@@ -193,7 +193,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                 }
                 else {
                     Session.NewPermissionsRequest newPermissionsRequest = new Session.NewPermissionsRequest(
-                            ((BlocParty) mContext), "publish_actions");
+                            ((BlocParty) mContext), Constants.FACEBOOK_PUBLISH_ACTIONS);
                     session.requestNewPublishPermissions(newPermissionsRequest);
                 }
             }

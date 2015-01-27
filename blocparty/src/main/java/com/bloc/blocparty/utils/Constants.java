@@ -24,6 +24,12 @@ public class Constants {
     public static final String URL_TWITTER_OAUTH_VERIFIER = "oauth_verifier";
     public static final String URL_TWITTER_OAUTH_TOKEN = "oauth_token";
 
+    //Facebook Permissions
+    public static final String FACEBOOK_PUBLISH_ACTIONS = "publish_actions";
+    public static final String FACEBOOK_USER_PHOTOS = "user_photos";
+    public static final String FACEBOOK_READ_STREAM = "read_stream";
+    public static final String FACEBOOK_USER_STATUS = "user_status";
+
     //Social Network API Constants
     public static final String FACEBOOK_REQUEST_URL = "/me/home?limit=10&filter=app_2305272732";
     public static final String FILTER_QUERY = "app_2305272732";
@@ -54,6 +60,7 @@ public class Constants {
     //Misc
     public static final int NETWORK_ID = 0;
     public static final String SAVE_FILE = "saveFile";
+    public static final int REQUEST_IMAGE_CAPTURE = 1;
 
 
 }

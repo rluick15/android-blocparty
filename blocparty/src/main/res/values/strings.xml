@@ -26,11 +26,23 @@
     <string name="desc_like_button">Like Button</string>
     <string name="desc_pic_menu">Picture Menu</string>
     <string name="toast_onboard_complete">On-Boarding Complete!</string>
-    <string name="erro_request">Error Processing Request</string>
+    <string name="error_request">Error Processing Request</string>
     <string name="toast_no_internet">No Internet Connection</string>
     <string name="popup_menu_save">Save Image to Gallery</string>
     <string name="popup_menu_add_to_collection">Add to Collection</string>
     <string name="bloc_party_image">A BlocParty Image</string>
     <string name="toast_saved_image">Image Saved to Gallery!</string>
+    <string name="action_camera">Camera</string>
+    <string name="action_filter">Filter</string>
+    <string name="toast_no_camera">No Camera Available</string>
+    <string name="title_upload_photo">Upload Photo</string>
+    <string name="text_field_message">Message</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_facebook">Facebook</string>
+    <string name="button_twitter">Twitter</string>
+    <string name="toast_no_facebook_session">No Active Facebook Session</string>
+    <string name="toast_no_twitter_session">No Active Twitter Session</string>
+    <string name="toast_image_uploaded">Image Uploaded!</string>
 
 </resources>

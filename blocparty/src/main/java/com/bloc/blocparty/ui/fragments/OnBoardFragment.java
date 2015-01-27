@@ -19,8 +19,6 @@ import com.bloc.blocparty.ui.activities.OnBoardActivity;
 import com.bloc.blocparty.utils.Constants;
 import com.twitter.sdk.android.Twitter;
 
-import twitter4j.conf.ConfigurationBuilder;
-
 /**
  * This fragment allows the user to link one or more of their accounts during on boarding
  */
@@ -54,7 +52,7 @@ public class OnBoardFragment extends Fragment {
         TextView message = (TextView) rootView.findViewById(R.id.networkMessage);
         ImageView icon = (ImageView) rootView.findViewById(R.id.imageIcon);
 
-
+        Log.e("WTF", String.valueOf(mNetworkId));
         if(mNetworkId == 0) {
             mSignInButton.setTextColor(getResources().getColor(R.color.facebook_blue));
             title.setText(getString(R.string.onboard_title_facebook));
@@ -106,19 +104,13 @@ public class OnBoardFragment extends Fragment {
     }
 
     private void twitterOnBoard() {
-        if(Twitter.getSessionManager().getActiveSession().getAuthToken() != null) {
-            Log.e("ERROR", Twitter.getSessionManager().getActiveSession().getAuthToken().token);
+        if(Twitter.getSessionManager().getActiveSession() != null) {
             nextFragment();
         }
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
-                ConfigurationBuilder cb = new ConfigurationBuilder();
-                cb.setDebugEnabled(true)
-                        .setOAuthConsumerKey(Constants.TWITTER_KEY)
-                        .setOAuthConsumerSecret(Constants.TWITTER_SECRET);
-
+                ((OnBoardActivity) mContext).clickLoginButton(Constants.TWITTER);
             }
         });
     }

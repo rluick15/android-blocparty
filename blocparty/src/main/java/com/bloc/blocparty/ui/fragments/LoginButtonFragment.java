@@ -60,7 +60,8 @@ public class LoginButtonFragment extends Fragment {
 
         authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
-        authButton.setReadPermissions(Arrays.asList("user_photos", "read_stream", "user_status"));
+        authButton.setReadPermissions(Arrays.asList(Constants.FACEBOOK_USER_PHOTOS,
+                Constants.FACEBOOK_READ_STREAM, Constants.FACEBOOK_USER_STATUS));
 
         tLoginButton = (TwitterLoginButton) view.findViewById(R.id.twitter_login_button);
         tLoginButton.setCallback(new Callback<TwitterSession>() {

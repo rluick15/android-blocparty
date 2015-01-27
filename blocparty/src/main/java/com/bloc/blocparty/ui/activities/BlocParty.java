@@ -2,8 +2,10 @@ package com.bloc.blocparty.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +22,9 @@ import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
+import com.bloc.blocparty.ui.fragments.UploadPhotoDialogFragment;
 import com.bloc.blocparty.utils.ConnectionDetector;
+import com.bloc.blocparty.utils.Constants;
 import com.bloc.blocparty.utils.gestureImageView.GestureImageView;
 import com.facebook.Session;
 
@@ -119,7 +123,15 @@ public class BlocParty extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+
+        if (requestCode == Constants.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get(Constants.DATA);
+            UploadPhotoDialogFragment fragment = new UploadPhotoDialogFragment(this, imageBitmap);
+            fragment.show(getFragmentManager(), "dialog");
+        }
     }
 
     @Override
@@ -134,10 +146,21 @@ public class BlocParty extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        int id = item.getItemId();
+        if (id == R.id.action_camera) {
+            if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
+                Toast.makeText(this, getString(R.string.toast_no_camera), Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(cameraIntent, Constants.REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        }
+        else if(id == R.id.action_filter) {
+
+        }
         return super.onOptionsItemSelected(item);
     }
 }

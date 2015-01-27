@@ -1,6 +1,7 @@
 package com.bloc.blocparty.facebook;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -36,12 +37,21 @@ public class FacebookRequest {
         mSession = Session.getActiveSession();
     }
 
+    public Boolean isLoggedIn() {
+        if(Session.getActiveSession().isOpened()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     /**
      * This method sends a data request to the facebook api server and retrieves current users id
      */
     private void getCurrentFacebookUser() {
         final Session session = Session.getActiveSession();
-        if (session != null && session.isOpened()) {
+        if (isLoggedIn()) {
             Request request = Request.newMeRequest(session, new Request.GraphUserCallback() {
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
@@ -66,12 +76,12 @@ public class FacebookRequest {
      * It then creates a feed object and puts it into an array to be fed into the adapter
      */
     public void getFeedData() {
-        Bundle params = new Bundle();
-        params.putString(Constants.ACCESS_TOKEN, Session.getActiveSession().getAccessToken());
-        params.putString(Constants.LIMIT, Constants.LIMIT_QUERY);
-        params.putString(Constants.FILTER, Constants.FILTER_QUERY);
+        if(isLoggedIn()) {
+            Bundle params = new Bundle();
+            params.putString(Constants.ACCESS_TOKEN, Session.getActiveSession().getAccessToken());
+            params.putString(Constants.LIMIT, Constants.LIMIT_QUERY);
+            params.putString(Constants.FILTER, Constants.FILTER_QUERY);
 
-        if(Session.getActiveSession().isOpened()) {
             new Request(Session.getActiveSession(),
                     Constants.FACEBOOK_REQUEST_URL,
                     params,
@@ -132,7 +142,7 @@ public class FacebookRequest {
     }
 
     public void isLiked(String postId, final FeedItem feedItem, final ImageButton button, final FeedItemAdapter feedItemAdapter) {
-        if(Session.getActiveSession().isOpened()) {
+        if(isLoggedIn()) {
             new Request(Session.getActiveSession(), "/" + postId, null, HttpMethod.GET,
                     new Request.Callback() {
                         @Override
@@ -159,5 +169,26 @@ public class FacebookRequest {
                     }).executeAsync();
 
         }
+    }
+
+    public void uploadPhoto(Bitmap image, String message) {
+        Request request = Request.newUploadPhotoRequest(mSession, image,
+            new Request.Callback() {
+                @Override
+                public void onCompleted(Response response) {
+                    if(response.getError() != null) {
+                        Toast.makeText(mContext, mContext.getString(R.string.error_request),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(mContext, mContext.getString(R.string.toast_image_uploaded),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+        });
+
+        Bundle params = request.getParameters();
+        params.putString(Constants.MESSAGE, message);
+        request.executeAsync();
     }
 }

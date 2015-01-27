@@ -143,7 +143,7 @@ public class InstagramRequest {
                             feedItemAdapter.updateView(feedItem);
                         }
                         else {
-                            Toast.makeText(mContext, mContext.getString(R.string.erro_request),
+                            Toast.makeText(mContext, mContext.getString(R.string.error_request),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -181,7 +181,7 @@ public class InstagramRequest {
                             feedItemAdapter.updateView(feedItem);
                         }
                         else {
-                            Toast.makeText(mContext, mContext.getString(R.string.erro_request),
+                            Toast.makeText(mContext, mContext.getString(R.string.error_request),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
