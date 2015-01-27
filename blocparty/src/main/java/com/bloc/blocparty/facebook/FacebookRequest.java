@@ -37,7 +37,7 @@ public class FacebookRequest {
     }
 
     public Boolean isLoggedIn() {
-        if(Session.getActiveSession() == null) {
+        if(!Session.getActiveSession().isOpened()) {
             return false;
         }
         else {
@@ -50,7 +50,7 @@ public class FacebookRequest {
      */
     private void getCurrentFacebookUser() {
         final Session session = Session.getActiveSession();
-        if (isLoggedIn() && session.isOpened()) {
+        if (isLoggedIn()) {
             Request request = Request.newMeRequest(session, new Request.GraphUserCallback() {
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
@@ -75,12 +75,12 @@ public class FacebookRequest {
      * It then creates a feed object and puts it into an array to be fed into the adapter
      */
     public void getFeedData() {
-        Bundle params = new Bundle();
-        params.putString(Constants.ACCESS_TOKEN, Session.getActiveSession().getAccessToken());
-        params.putString(Constants.LIMIT, Constants.LIMIT_QUERY);
-        params.putString(Constants.FILTER, Constants.FILTER_QUERY);
-
         if(isLoggedIn()) {
+            Bundle params = new Bundle();
+            params.putString(Constants.ACCESS_TOKEN, Session.getActiveSession().getAccessToken());
+            params.putString(Constants.LIMIT, Constants.LIMIT_QUERY);
+            params.putString(Constants.FILTER, Constants.FILTER_QUERY);
+
             new Request(Session.getActiveSession(),
                     Constants.FACEBOOK_REQUEST_URL,
                     params,

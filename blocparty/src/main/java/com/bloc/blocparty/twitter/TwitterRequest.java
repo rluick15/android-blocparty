@@ -34,9 +34,11 @@ public class TwitterRequest {
 
     public TwitterRequest(Context context) {
         this.mContext = context;
-        mAuthToken = Twitter.getSessionManager().getActiveSession().getAuthToken().token;
-        mAuthSecret = Twitter.getSessionManager().getActiveSession().getAuthToken().secret;
-        setTwitter();
+        if(Twitter.getSessionManager().getActiveSession() != null) {
+            mAuthToken = Twitter.getSessionManager().getActiveSession().getAuthToken().token;
+            mAuthSecret = Twitter.getSessionManager().getActiveSession().getAuthToken().secret;
+            setTwitter();
+        }
     }
 
     private void setTwitter() {
