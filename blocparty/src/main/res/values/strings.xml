@@ -44,5 +44,7 @@
     <string name="toast_no_facebook_session">No Active Facebook Session</string>
     <string name="toast_no_twitter_session">No Active Twitter Session</string>
     <string name="toast_image_uploaded">Image Uploaded!</string>
+    <string name="title_dialog_collection">Choose Collection</string>
+    <string name="title_activity_collection_list_item_adapter">CollectionListItemAdapter</string>
 
 </resources>

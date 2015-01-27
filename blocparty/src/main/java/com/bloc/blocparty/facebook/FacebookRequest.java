@@ -38,12 +38,7 @@ public class FacebookRequest {
     }
 
     public Boolean isLoggedIn() {
-        if(Session.getActiveSession().isOpened()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return Session.getActiveSession().isOpened();
     }
 
     /**
