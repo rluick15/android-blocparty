@@ -33,7 +33,6 @@ public class BlocParty extends Activity {
     private ListView mFeedList;
     private FeedItemAdapter mAdapter;
     private GestureImageView mFullScreenImage;
-    private ImageView mQuitFullScreen;
     private RelativeLayout mFullScreenLayout;
 
     @Override
@@ -66,8 +65,8 @@ public class BlocParty extends Activity {
 
     private void setupFullScreenMode() {
         mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
-        mQuitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
-        mQuitFullScreen.setOnClickListener(new View.OnClickListener() {
+        ImageView quitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
+        quitFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActionBar().show();
@@ -135,10 +134,10 @@ public class BlocParty extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        int id = item.getItemId();
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 }

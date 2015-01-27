@@ -82,9 +82,9 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        new ImageLoadTask(mContext, feedItem.getImageUrl(), holder.feedImage,
+        new ImageLoadTask(feedItem.getImageUrl(), holder.feedImage,
                 holder.progressBarMain, holder.progressBarProf).execute();
-        new ImageLoadTask(mContext, feedItem.getProfilePictureUrl(), holder.profPicture,
+        new ImageLoadTask(feedItem.getProfilePictureUrl(), holder.profPicture,
                 holder.progressBarMain, holder.progressBarProf).execute();
         holder.name.setText(feedItem.getName());
         holder.message.setText(feedItem.getMessage());
@@ -246,7 +246,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(Constants.SAVE_FILE, fileNum);
-        editor.commit();
+        editor.apply();
 
         Toast.makeText(mContext, mContext.getString(R.string.toast_saved_image), Toast.LENGTH_SHORT).show();
     }
@@ -275,11 +275,9 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         private ProgressBar profPb;
         private String url;
         private ImageView picture;
-        private Context context;
 
-        public ImageLoadTask(Context context, String url, ImageView picField,
+        public ImageLoadTask(String url, ImageView picField,
                              ProgressBar progressBarMain, ProgressBar progressBarProf) {
-            this.context = context;
             this.url = url;
             this.picture = picField;
             this.mainPb = progressBarMain;
