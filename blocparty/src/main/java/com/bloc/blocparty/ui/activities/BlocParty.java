@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.ConnectionDetector;
+import com.bloc.blocparty.utils.Constants;
 import com.bloc.blocparty.utils.gestureImageView.GestureImageView;
 import com.facebook.Session;
 
@@ -139,6 +141,12 @@ public class BlocParty extends Activity {
         if (id == R.id.action_camera) {
             if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
                 Toast.makeText(this, getString(R.string.toast_no_camera), Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(cameraIntent, Constants.REQUEST_IMAGE_CAPTURE);
+                }
             }
         }
         else if(id == R.id.action_filter) {
