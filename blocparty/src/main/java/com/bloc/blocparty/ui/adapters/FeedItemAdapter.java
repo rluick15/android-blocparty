@@ -3,6 +3,7 @@ package com.bloc.blocparty.ui.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +41,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     private Context mContext;
     private ArrayList<FeedItem> mFeedItems;
     private ListView mListView;
+    private Bitmap mBitmap;
 
     public FeedItemAdapter(Context context, List<FeedItem> objects) {
         super(context, R.layout.feed_item_adapter, objects);
@@ -50,7 +52,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         mListView = (ListView) parent;
 
         FeedItem feedItem = mFeedItems.get(position);
@@ -88,6 +90,14 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         else if(feedItem.getNetworkName().equals(Constants.TWITTER)) {
             twitterAdapter(feedItem, holder.favoriteButton);
         }
+
+        holder.feedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap imageBitmap = ((BitmapDrawable) holder.feedImage.getDrawable()).getBitmap();
+                ((BlocParty) mContext).fullScreenImage(imageBitmap);
+            }
+        });
 
         return convertView;
     }
@@ -191,6 +201,10 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         mListView.getAdapter().getView(position, view, mListView);
     }
 
+    public void setBitmap(Bitmap bitmap) {
+        mBitmap = bitmap;
+    }
+
     private static class ViewHolder {
         ImageView feedImage;
         ImageView profPicture;
@@ -252,7 +266,6 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
             mainPb.setVisibility(View.INVISIBLE);
             profPb.setVisibility(View.INVISIBLE);
-
             picture.setImageBitmap(bitmap);
         }
 
