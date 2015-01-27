@@ -154,7 +154,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     private void instagramAdapter(FeedItem feedItem, ImageButton favoriteButton) {
         if (feedItem.getFavorited()) {
             favoriteButton.setImageDrawable(
-                    mContext.getResources().getDrawable(R.drawable.ic_intagram_heart));
+                    mContext.getResources().getDrawable(R.drawable.ic_instagram_heart));
             heartButton(feedItem, favoriteButton, true);
         }
         else if(!feedItem.getFavorited()) {
