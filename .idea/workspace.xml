@@ -19,16 +19,12 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="exc" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.bloc.blocparty" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a12a700d-0af5-4ee3-8c98-862806ae0672" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/UploadPhotoDialogFragment.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/UploadPhotoDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_on_board.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_on_board.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/values/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android-blocparty.iws" />
@@ -65,65 +61,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UploadPhotoDialogFragment.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UploadPhotoDialogFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/UploadPhotoDialogFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5708738" vertical-offset="216" max-vertical-offset="731">
-              <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="986">
+              <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#560#561#0" expanded="true" />
-                <element signature="e#595#596#0" expanded="true" />
-                <element signature="e#840#878#0" expanded="true" />
+                <element signature="e#623#624#0" expanded="true" />
+                <element signature="e#658#659#0" expanded="true" />
+                <element signature="e#903#941#0" expanded="true" />
+                <element signature="e#1252#1395#0" expanded="true" />
+                <element signature="e#1384#1385#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_upload_photo_dialog.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="fragment_upload_photo_dialog.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5185184" vertical-offset="0" max-vertical-offset="1972">
-              <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.3135246" vertical-offset="0" max-vertical-offset="2006">
+              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding>
                 <element signature="e#230#255#0" expanded="true" />
-                <element signature="e#700#720#0" expanded="true" />
-                <element signature="e#998#1033#0" expanded="true" />
-                <element signature="e#1354#1379#0" expanded="true" />
-                <element signature="e#1859#1883#0" expanded="true" />
-                <element signature="e#2365#2393#0" expanded="true" />
-                <element signature="e#2726#2746#0" expanded="true" />
-                <element signature="e#2781#2816#0" expanded="true" />
-                <element signature="e#3093#3126#0" expanded="true" />
-                <element signature="e#3161#3196#0" expanded="true" />
-                <element signature="e#3232#3267#0" expanded="true" />
-                <element signature="e#3519#3542#0" expanded="true" />
-                <element signature="e#3865#3888#0" expanded="true" />
+                <element signature="e#693#726#0" expanded="true" />
+                <element signature="e#761#796#0" expanded="true" />
+                <element signature="e#832#867#0" expanded="true" />
+                <element signature="e#1137#1170#0" expanded="true" />
+                <element signature="e#1205#1240#0" expanded="true" />
+                <element signature="e#1276#1311#0" expanded="true" />
+                <element signature="e#1584#1609#0" expanded="true" />
+                <element signature="e#2089#2113#0" expanded="true" />
+                <element signature="e#2595#2623#0" expanded="true" />
+                <element signature="e#2956#2976#0" expanded="true" />
+                <element signature="e#3011#3046#0" expanded="true" />
+                <element signature="e#3323#3356#0" expanded="true" />
+                <element signature="e#3391#3426#0" expanded="true" />
+                <element signature="e#3462#3497#0" expanded="true" />
+                <element signature="e#3749#3772#0" expanded="true" />
+                <element signature="e#4095#4118#0" expanded="true" />
               </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/utils/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1122">
-              <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -1371,9 +1353,9 @@
         <option value="$PROJECT_DIR$/blocparty/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_on_board.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/UploadPhotoDialogFragment.java" />
+        <option value="$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml" />
       </list>
     </option>
   </component>
@@ -1486,66 +1468,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android-blocparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android-blocparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blocparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android-blocparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android-blocparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blocparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2316,21 +2238,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56198347" vertical-offset="1411" max-vertical-offset="1904">
-          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
-          <folding>
-            <element signature="e#3575#3601#0" expanded="false" />
-            <element signature="e#4001#4024#0" expanded="false" />
-            <element signature="e#4065#4085#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/adapters/FeedItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.83170253" vertical-offset="1513" max-vertical-offset="4607">
@@ -2428,42 +2335,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml">
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/UploadPhotoDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5185184" vertical-offset="0" max-vertical-offset="1972">
-          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="986">
+          <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
           <folding>
-            <element signature="e#230#255#0" expanded="true" />
-            <element signature="e#700#720#0" expanded="true" />
-            <element signature="e#998#1033#0" expanded="true" />
-            <element signature="e#1354#1379#0" expanded="true" />
-            <element signature="e#1859#1883#0" expanded="true" />
-            <element signature="e#2365#2393#0" expanded="true" />
-            <element signature="e#2726#2746#0" expanded="true" />
-            <element signature="e#2781#2816#0" expanded="true" />
-            <element signature="e#3093#3126#0" expanded="true" />
-            <element signature="e#3161#3196#0" expanded="true" />
-            <element signature="e#3232#3267#0" expanded="true" />
-            <element signature="e#3519#3542#0" expanded="true" />
-            <element signature="e#3865#3888#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#903#941#0" expanded="true" />
+            <element signature="e#1252#1395#0" expanded="true" />
+            <element signature="e#1384#1385#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/feed_item_adapter.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.2745903" vertical-offset="85" max-vertical-offset="1904">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/UploadPhotoDialogFragment.java">
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/fragment_upload_photo_dialog.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5708738" vertical-offset="216" max-vertical-offset="731">
-          <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.3135246" vertical-offset="0" max-vertical-offset="2006">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#595#596#0" expanded="true" />
-            <element signature="e#840#878#0" expanded="true" />
+            <element signature="e#230#255#0" expanded="true" />
+            <element signature="e#693#726#0" expanded="true" />
+            <element signature="e#761#796#0" expanded="true" />
+            <element signature="e#832#867#0" expanded="true" />
+            <element signature="e#1137#1170#0" expanded="true" />
+            <element signature="e#1205#1240#0" expanded="true" />
+            <element signature="e#1276#1311#0" expanded="true" />
+            <element signature="e#1584#1609#0" expanded="true" />
+            <element signature="e#2089#2113#0" expanded="true" />
+            <element signature="e#2595#2623#0" expanded="true" />
+            <element signature="e#2956#2976#0" expanded="true" />
+            <element signature="e#3011#3046#0" expanded="true" />
+            <element signature="e#3323#3356#0" expanded="true" />
+            <element signature="e#3391#3426#0" expanded="true" />
+            <element signature="e#3462#3497#0" expanded="true" />
+            <element signature="e#3749#3772#0" expanded="true" />
+            <element signature="e#4095#4118#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

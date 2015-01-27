@@ -10,11 +10,12 @@
         android:id="@+id/imageView"
         android:background="@android:color/black"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/mini_margin"
-        />
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -22,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        style="@style/UploadPhotoDialogPadding">
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
 
         <View
             android:layout_width="0dp"
