@@ -22,6 +22,7 @@ import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
+import com.bloc.blocparty.ui.fragments.FilterDialogFragment;
 import com.bloc.blocparty.ui.fragments.UploadPhotoDialogFragment;
 import com.bloc.blocparty.utils.ConnectionDetector;
 import com.bloc.blocparty.utils.Constants;
@@ -159,7 +160,8 @@ public class BlocParty extends Activity {
             }
         }
         else if(id == R.id.action_filter) {
-
+            FilterDialogFragment fragment = new FilterDialogFragment();
+            fragment.show(getFragmentManager(), "dialog");
         }
         return super.onOptionsItemSelected(item);
     }

@@ -2,7 +2,6 @@ package com.bloc.blocparty.ui.fragments;
 
 
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -22,7 +21,7 @@ import com.bloc.blocparty.utils.ConnectionDetector;
 import com.bloc.blocparty.utils.Constants;
 
 /**
- * A simple {@link Fragment} subclass.
+ * This fragment handles uploading pictures to facebook or twitter
  */
 public class UploadPhotoDialogFragment extends DialogFragment {
 
