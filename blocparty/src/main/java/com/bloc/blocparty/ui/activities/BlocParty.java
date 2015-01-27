@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
@@ -19,7 +21,7 @@ import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.ConnectionDetector;
-import com.bloc.blocparty.utils.TouchZoom;
+import com.bloc.blocparty.utils.gestureImageView.GestureImageView;
 import com.facebook.Session;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class BlocParty extends Activity {
     private ArrayList<FeedItem> mFeedItems;
     private ListView mFeedList;
     private FeedItemAdapter mAdapter;
-    private ImageView mFullScreenImage;
+    private GestureImageView mFullScreenImage;
     private ImageView mQuitFullScreen;
     private RelativeLayout mFullScreenLayout;
 
@@ -38,8 +40,6 @@ public class BlocParty extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bloc_party);
-
-
 
         setupFullScreenMode();
 
@@ -66,8 +66,6 @@ public class BlocParty extends Activity {
 
     private void setupFullScreenMode() {
         mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
-        mFullScreenImage = (ImageView) findViewById(R.id.fullview);
-        new TouchZoom(mFullScreenImage);
         mQuitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
         mQuitFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +73,7 @@ public class BlocParty extends Activity {
                 getActionBar().show();
                 mFullScreenLayout.setVisibility(View.GONE);
                 mFeedList.setVisibility(View.VISIBLE);
-                mFullScreenImage.setImageBitmap(null);
+                mFullScreenLayout.removeView(mFullScreenImage);
             }
         });
     }
@@ -90,7 +88,7 @@ public class BlocParty extends Activity {
             getActionBar().show();
             mFullScreenLayout.setVisibility(View.GONE);
             mFeedList.setVisibility(View.VISIBLE);
-            mFullScreenImage.setImageBitmap(null);
+            mFullScreenLayout.removeView(mFullScreenImage);
         }
         else {
             super.onBackPressed();
@@ -106,7 +104,17 @@ public class BlocParty extends Activity {
         mFullScreenLayout.setVisibility(View.VISIBLE);
         mFeedList.setVisibility(View.GONE);
         getActionBar().hide();
+
+        //create a new GestureImageView and add it to the full screen layout
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+        mFullScreenImage = new GestureImageView(this);
         mFullScreenImage.setImageBitmap(bitmap);
+        mFullScreenImage.setLayoutParams(params);
+
+        ViewGroup layout = (ViewGroup) findViewById(R.id.fullScreenLayout);
+        layout.addView(mFullScreenImage);
     }
 
     @Override
