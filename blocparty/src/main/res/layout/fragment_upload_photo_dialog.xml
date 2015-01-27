@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_padding"
-    android:background="@android:color/white"
+    android:background="@drawable/thin_border"
     tools:context="com.bloc.blocparty.ui.fragments.UploadPhotoDialogFragment">
 
     <ImageView

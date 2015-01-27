@@ -30,7 +30,7 @@ public class UploadPhotoDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_upload_photo_dialog, container, false);
         getDialog().setTitle(getString(R.string.title_upload_photo));
-        getDialog().getWindow().setBackgroundDrawableResource(R.color.white);
+        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.thin_border);
 
         ImageView photo = (ImageView) view.findViewById(R.id.imageView);
         photo.setImageBitmap(mImage);
