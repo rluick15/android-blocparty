@@ -22,6 +22,7 @@ import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
+import com.bloc.blocparty.ui.fragments.UploadPhotoDialogFragment;
 import com.bloc.blocparty.utils.ConnectionDetector;
 import com.bloc.blocparty.utils.Constants;
 import com.bloc.blocparty.utils.gestureImageView.GestureImageView;
@@ -122,7 +123,15 @@ public class BlocParty extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+
+        if (requestCode == Constants.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get(Constants.DATA);
+            UploadPhotoDialogFragment fragment = new UploadPhotoDialogFragment(imageBitmap);
+            fragment.show(getFragmentManager(), "dialog");
+        }
     }
 
     @Override
