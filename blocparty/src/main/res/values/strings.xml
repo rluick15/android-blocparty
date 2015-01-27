@@ -35,5 +35,11 @@
     <string name="action_camera">Camera</string>
     <string name="action_filter">Filter</string>
     <string name="toast_no_camera">No Camera Available</string>
+    <string name="title_upload_photo">Upload Photo</string>
+    <string name="text_field_message">Message</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_facebook">Facebook</string>
+    <string name="button_twitter">Twitter</string>
 
 </resources>

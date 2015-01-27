@@ -1,10 +1,110 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_padding"
+    android:background="@android:color/white"
     tools:context="com.bloc.blocparty.ui.fragments.UploadPhotoDialogFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:background="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/mini_margin"
+        />
 
-</FrameLayout>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        style="@style/UploadPhotoDialogPadding">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:visibility="invisible"/>
+
+        <RadioButton
+            android:id="@+id/facebookButton"
+            android:text="@string/button_facebook"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:visibility="invisible"/>
+
+        <RadioButton
+            android:id="@+id/twitterButton"
+            android:text="@string/button_twitter"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:visibility="invisible"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/messageTitle"
+        android:text="@string/text_field_message"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/mini_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/messageText"
+        android:layout_below="@+id/messageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+    <LinearLayout
+        android:layout_below="@+id/messageText"
+        style="@style/FlatButtonLayout">
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/button_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <View style="@style/ButtonMiddleBorder" />
+
+        <Button
+            android:id="@+id/submitButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/button_submit"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

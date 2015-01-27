@@ -24,10 +24,12 @@ public class UploadPhotoDialogFragment extends DialogFragment {
         this.mImage = image;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_upload_photo_dialog, container, false);
+        getDialog().setTitle(getString(R.string.title_upload_photo));
+        getDialog().getWindow().setBackgroundDrawableResource(R.color.white);
+        
         return view;
     }
 

@@ -5,4 +5,22 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="UploadPhotoDialogPadding">
+        <item name="android:paddingLeft">@dimen/activity_padding</item>
+        <item name="android:paddingRight">@dimen/activity_padding</item>
+    </style>
+
+    <style name="FlatButtonLayout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/thin_border</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ButtonMiddleBorder">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">2dp</item>
+        <item name="android:background">@android:color/black</item>
+    </style>
+
 </resources>

@@ -48,9 +48,7 @@
 
     <LinearLayout
         android:id="@+id/buttons"
-        android:orientation="horizontal"
-        android:background="@drawable/thin_border"
-        android:layout_width="match_parent"
+        style="@style/FlatButtonLayout"
         android:layout_height="0dp"
         android:layout_weight="0.35">
 
@@ -64,9 +62,7 @@
             android:layout_height="match_parent" />
 
         <View
-            android:layout_height="match_parent"
-            android:layout_width="2dp"
-            android:background="@android:color/black"/>
+            style="@style/ButtonMiddleBorder"/>
 
         <Button
             android:id="@+id/selectButton"
