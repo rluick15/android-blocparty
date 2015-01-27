@@ -2,6 +2,7 @@ package com.bloc.blocparty.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
@@ -136,7 +137,9 @@ public class BlocParty extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_camera) {
-            
+            if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
+                Toast.makeText(this, getString(R.string.toast_no_camera), Toast.LENGTH_SHORT).show();
+            }
         }
         else if(id == R.id.action_filter) {
 

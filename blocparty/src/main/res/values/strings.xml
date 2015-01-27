@@ -34,5 +34,6 @@
     <string name="toast_saved_image">Image Saved to Gallery!</string>
     <string name="action_camera">Camera</string>
     <string name="action_filter">Filter</string>
+    <string name="toast_no_camera">No Camera Available</string>
 
 </resources>
