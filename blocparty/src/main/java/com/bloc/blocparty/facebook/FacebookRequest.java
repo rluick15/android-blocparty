@@ -1,6 +1,7 @@
 package com.bloc.blocparty.facebook;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -37,11 +38,11 @@ public class FacebookRequest {
     }
 
     public Boolean isLoggedIn() {
-        if(!Session.getActiveSession().isOpened()) {
-            return false;
+        if(Session.getActiveSession().isOpened()) {
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
 
@@ -168,5 +169,24 @@ public class FacebookRequest {
                     }).executeAsync();
 
         }
+    }
+
+    public void uploadPhoto(Bitmap image, String message) {
+        Request request = Request.newUploadPhotoRequest(mSession, image,
+            new Request.Callback() {
+                @Override
+                public void onCompleted(Response response) {
+                    if(response.getError() != null) {
+                        Toast.makeText(mContext, mContext.getString(R.string.error_request), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(mContext, mContext.getString(R.string.toast_image_uploaded), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        });
+
+        Bundle params = request.getParameters();
+        params.putString(Constants.MESSAGE, message);
+        request.executeAsync();
     }
 }

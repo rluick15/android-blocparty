@@ -96,6 +96,8 @@ public class UploadPhotoDialogFragment extends DialogFragment {
 
             if(request.isLoggedIn()) {
                 String message = mMessage.getText().toString();
+                request.uploadPhoto(mImage, message);
+                dismiss();
             }
             else {
                 Toast.makeText(mContext, mContext.getString(R.string.toast_no_facebook_session), Toast.LENGTH_LONG).show();
