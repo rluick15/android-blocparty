@@ -102,6 +102,7 @@
 
         <Button
             android:id="@+id/submitButton"
+            android:enabled="false"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/button_submit"
             android:layout_weight="1"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 
 import com.bloc.blocparty.R;
 
@@ -28,7 +29,7 @@ public class UploadPhotoDialogFragment extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_upload_photo_dialog, container, false);
+        final View view = inflater.inflate(R.layout.fragment_upload_photo_dialog, container, false);
         getDialog().setTitle(getString(R.string.title_upload_photo));
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.thin_border);
 
@@ -43,7 +44,22 @@ public class UploadPhotoDialogFragment extends DialogFragment {
             }
         });
 
+        final Button submitButton = (Button) view.findViewById(R.id.submitButton);
 
+        RadioGroup networkSelector = (RadioGroup) view.findViewById(R.id.radioGroup);
+        networkSelector.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.facebookButton:
+                        submitButton.setEnabled(true);
+                        break;
+                    case R.id.twitterButton:
+                        submitButton.setEnabled(true);
+                        break;
+                }
+            }
+        });
         
         return view;
     }
