@@ -53,5 +53,7 @@ public class Constants {
 
     //Misc
     public static final int NETWORK_ID = 0;
+    public static final String SAVE_FILE = "saveFile";
+
 
 }

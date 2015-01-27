@@ -1,20 +1,27 @@
 package com.bloc.blocparty.ui.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.FeedItem.FeedItem;
@@ -41,7 +48,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     private Context mContext;
     private ArrayList<FeedItem> mFeedItems;
     private ListView mListView;
-    private Bitmap mBitmap;
+    private PopupMenu mPopupMenu;
+    private Bitmap mSaveBitmap;
 
     public FeedItemAdapter(Context context, List<FeedItem> objects) {
         super(context, R.layout.feed_item_adapter, objects);
@@ -67,6 +75,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             holder.favoriteButton = (ImageButton) convertView.findViewById(R.id.likeButton);
             holder.progressBarMain = (ProgressBar) convertView.findViewById(R.id.progressBarMain);
             holder.progressBarProf = (ProgressBar) convertView.findViewById(R.id.progressBarProf);
+            holder.threeDots = (ImageButton) convertView.findViewById(R.id.menuButton);
             convertView.setTag(holder);
         }
         else {
@@ -96,6 +105,33 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             public void onClick(View v) {
                 Bitmap imageBitmap = ((BitmapDrawable) holder.feedImage.getDrawable()).getBitmap();
                 ((BlocParty) mContext).fullScreenImage(imageBitmap);
+            }
+        });
+
+        holder.threeDots.setFocusable(false);
+        mPopupMenu = new PopupMenu(mContext, holder.threeDots);
+        mPopupMenu.getMenu().add(Menu.NONE, 0, Menu.NONE, mContext.getString(R.string.popup_menu_save));
+        mPopupMenu.getMenu().add(Menu.NONE, 1, Menu.NONE, mContext.getString(R.string.popup_menu_add_to_collection));
+
+        holder.threeDots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSaveBitmap = ((BitmapDrawable) holder.feedImage.getDrawable()).getBitmap();
+                mPopupMenu.show();
+            }
+        });
+
+        mPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case 0:
+                        addImageToGallery();
+                        break;
+                    case 1:
+                        break;
+                }
+                return false;
             }
         });
 
@@ -194,15 +230,32 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         });
     }
 
+    /*
+     * This method saves an image from the feed to the gallery. The image name is generated
+     * based on a counter stored in shared prefs
+     */
+    private void addImageToGallery() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        int fileNum = prefs.getInt(Constants.SAVE_FILE, 0);
+
+        MediaStore.Images.Media.insertImage(mContext.getContentResolver(),
+                mSaveBitmap, mContext.getString(R.string.app_name) + String.valueOf(fileNum),
+                        mContext.getString(R.string.bloc_party_image));
+
+        fileNum++;
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(Constants.SAVE_FILE, fileNum);
+        editor.commit();
+
+        Toast.makeText(mContext, mContext.getString(R.string.toast_saved_image), Toast.LENGTH_SHORT).show();
+    }
+
     public void updateView(FeedItem feedItem) {
         int position = getPosition(feedItem);
         int start = mListView.getFirstVisiblePosition();
         View view = mListView.getChildAt(position - start);
         mListView.getAdapter().getView(position, view, mListView);
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        mBitmap = bitmap;
     }
 
     private static class ViewHolder {
