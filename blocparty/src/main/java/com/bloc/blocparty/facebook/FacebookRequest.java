@@ -177,10 +177,12 @@ public class FacebookRequest {
                 @Override
                 public void onCompleted(Response response) {
                     if(response.getError() != null) {
-                        Toast.makeText(mContext, mContext.getString(R.string.error_request), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, mContext.getString(R.string.error_request),
+                                Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(mContext, mContext.getString(R.string.toast_image_uploaded), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, mContext.getString(R.string.toast_image_uploaded),
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
         });

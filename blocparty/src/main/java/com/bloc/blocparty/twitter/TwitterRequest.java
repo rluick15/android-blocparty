@@ -1,6 +1,9 @@
 package com.bloc.blocparty.twitter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.bloc.blocparty.FeedItem.FeedItem;
@@ -10,12 +13,17 @@ import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.twitter.sdk.android.Twitter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import twitter4j.MediaEntity;
 import twitter4j.Paging;
 import twitter4j.Status;
+import twitter4j.StatusUpdate;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.Configuration;
@@ -26,7 +34,6 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class TwitterRequest {
 
-    private String mAccessToken;
     private Context mContext;
     private String mAuthToken;
     private String mAuthSecret;
@@ -57,12 +64,7 @@ public class TwitterRequest {
     }
 
     public Boolean isLoggedIn() {
-        if(mAuthToken == null) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return mAuthToken != null;
     }
 
     public void feedRequest() {
@@ -169,5 +171,72 @@ public class TwitterRequest {
                 });
             }
         }.start();
+    }
+
+    public void uploadImage(final Bitmap image, final String message) {
+        final Boolean[] error = new Boolean[1];
+        error[0] = false;
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+
+                twitter4j.Twitter twitter = getTwitter();
+
+                File imageFile = bitmapToFile(image);
+
+                try {
+                    StatusUpdate imageStatus = new StatusUpdate(message);
+                    imageStatus.setMedia(imageFile);
+                    twitter.updateStatus(imageStatus);
+                } catch (TwitterException e) {
+                    error[0] = true;
+                }
+
+                ((BlocParty) mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(error[0]) {
+                            Toast.makeText(mContext, mContext.getString(R.string.error_request),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(mContext, mContext.getString(R.string.toast_image_uploaded),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+
+
+        }.start();
+    }
+
+    private File bitmapToFile(Bitmap image) {
+        File f = null;
+        try {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+            int fileNum = prefs.getInt(Constants.SAVE_FILE, 0);
+
+            f = new File(mContext.getCacheDir(),
+                    mContext.getString(R.string.app_name) + String.valueOf(fileNum));
+            f.createNewFile();
+
+            fileNum++;
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt(Constants.SAVE_FILE, fileNum);
+            editor.apply();
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.PNG, 0, bos);
+            byte[] bitmapdata = bos.toByteArray();
+
+            FileOutputStream fos = new FileOutputStream(f);
+            fos.write(bitmapdata);
+        } catch (IOException ignored) {}
+
+        return f;
     }
 }

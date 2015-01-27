@@ -108,6 +108,8 @@ public class UploadPhotoDialogFragment extends DialogFragment {
 
             if(request.isLoggedIn()) {
                 String message = mMessage.getText().toString();
+                request.uploadImage(mImage, message);
+                dismiss();
             }
             else {
                 Toast.makeText(mContext, mContext.getString(R.string.toast_no_twitter_session), Toast.LENGTH_LONG).show();
