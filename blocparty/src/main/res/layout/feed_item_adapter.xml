@@ -92,6 +92,7 @@
 
         <ImageButton
             android:id="@+id/menuButton"
+            android:src="@drawable/ic_three_dots"
             android:background="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="match_parent"
