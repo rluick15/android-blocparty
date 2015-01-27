@@ -32,5 +32,7 @@
     <string name="popup_menu_add_to_collection">Add to Collection</string>
     <string name="bloc_party_image">A BlocParty Image</string>
     <string name="toast_saved_image">Image Saved to Gallery!</string>
+    <string name="action_camera">Camera</string>
+    <string name="action_filter">Filter</string>
 
 </resources>
