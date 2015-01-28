@@ -47,5 +47,6 @@
     <string name="title_dialog_collection">Choose Collection</string>
     <string name="title_activity_collection_list_item_adapter">CollectionListItemAdapter</string>
     <string name="title_choose_collection">Choose Collection</string>
+    <string name="empty_collection">Add a Collection to Begin!</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ListView;
 
 import com.bloc.blocparty.R;
 
@@ -17,6 +18,7 @@ import com.bloc.blocparty.R;
 public class FilterDialogFragment extends DialogFragment {
 
     private Context mContext;
+    private ListView mCollectionList;
 
     public FilterDialogFragment() {} // Required empty public constructor
 
@@ -27,8 +29,10 @@ public class FilterDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filter_dialog, container, false);
-        getDialog().setTitle(mContext.getString(R.string.title_dialog_collection));
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        mCollectionList = (ListView) view.findViewById(R.id.collectionList);
+        mCollectionList.setEmptyView(view.findViewById(android.R.id.empty));
 
         return view;
     }
