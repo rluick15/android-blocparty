@@ -48,5 +48,9 @@
     <string name="title_activity_collection_list_item_adapter">CollectionListItemAdapter</string>
     <string name="title_choose_collection">Choose Collection</string>
     <string name="empty_collection">Add a Collection to Begin!</string>
+    <string name="button_create_collection">Create Collection</string>
+    <string name="title_collection">Collection Title</string>
+    <string name="dialog_create_collection">Create Collection</string>
+    <string name="toast_no_title">No Title Set</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.bloc.blocparty.ui.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class CollectionListItemAdapter extends ArrayAdapter<Collection> {
         Collection collection = mCollections.get(position);
 
         if(convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.feed_item_adapter, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.collection_list_item_adapter, null);
 
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.collectionNameField);
@@ -50,6 +51,7 @@ public class CollectionListItemAdapter extends ArrayAdapter<Collection> {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        Log.e("ERROR", collection.getName());
         holder.title.setText(collection.getName());
         holder.userCount.setText(String.valueOf(collection.getUserCount()) + " users");
 

@@ -45,7 +45,7 @@ public class FilterDialogFragment extends DialogFragment {
         SharedPreferences sharedPrefs = mContext.getSharedPreferences(Constants.PREFS, 0);
         String json = sharedPrefs.getString(Constants.COLLECTION_ARRAY, null);
         Type type = new TypeToken<ArrayList<Collection>>(){}.getType();
-        ArrayList<Collection> collections = new Gson().fromJson(json, type);
+        final ArrayList<Collection> collections = new Gson().fromJson(json, type);
 
         mCollectionList = (ListView) view.findViewById(R.id.collectionList);
         mCollectionList.setEmptyView(view.findViewById(android.R.id.empty));
@@ -59,7 +59,9 @@ public class FilterDialogFragment extends DialogFragment {
         addCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                CreateCollectionDialogFragment dialogFragment
+                        = new CreateCollectionDialogFragment(FilterDialogFragment.this, mContext, collections);
+                dialogFragment.show(getFragmentManager(), "dialog");
             }
         });
 
