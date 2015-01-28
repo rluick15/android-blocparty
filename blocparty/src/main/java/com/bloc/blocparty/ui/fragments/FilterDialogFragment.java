@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.objects.Collection;
+import com.bloc.blocparty.ui.adapters.CollectionListItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -48,6 +49,11 @@ public class FilterDialogFragment extends DialogFragment {
 
         mCollectionList = (ListView) view.findViewById(R.id.collectionList);
         mCollectionList.setEmptyView(view.findViewById(android.R.id.empty));
+
+        if(collections != null) {
+            CollectionListItemAdapter adapter = new CollectionListItemAdapter(mContext, collections);
+            mCollectionList.setAdapter(adapter);
+        }
 
         ImageButton addCollection = (ImageButton) view.findViewById(R.id.addCollection);
         addCollection.setOnClickListener(new View.OnClickListener() {

@@ -8,7 +8,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,10 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
-import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.utils.Constants;
@@ -307,7 +306,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.e("ERRIR", String.valueOf(myBitmap));
+
             return myBitmap;
         }
 
