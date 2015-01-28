@@ -29,6 +29,7 @@ import com.bloc.blocparty.instagram.InstagramRequest;
 import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.activities.BlocParty;
+import com.bloc.blocparty.ui.fragments.AddToCollectionFragment;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.Session;
 
@@ -62,7 +63,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         final ViewHolder holder;
         mListView = (ListView) parent;
 
-        FeedItem feedItem = mFeedItems.get(position);
+        final FeedItem feedItem = mFeedItems.get(position);
 
         if(convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.feed_item_adapter, null);
@@ -128,6 +129,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                         addImageToGallery();
                         break;
                     case 1:
+                        AddToCollectionFragment fragment = new AddToCollectionFragment(mContext, feedItem);
+                        fragment.show(((BlocParty) mContext).getFragmentManager(), "dialog");
                         break;
                 }
                 return false;

@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/dialogTitle"
-            android:text="@string/title_choose_collection"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/holo_blue"
             android:background="@color/white"
@@ -44,6 +44,8 @@
 
     <ListView
         android:id="@+id/collectionList"
+        android:choiceMode="singleChoice"
+        android:listSelector="@android:color/darker_gray"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="200dp" />
@@ -54,8 +56,8 @@
         android:layout_height="1dp"/>
 
     <Button
-        android:id="@+id/button"
-        android:text="@string/button_select_category"
+        android:id="@+id/selectCollectionButton"
+        android:text=""
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

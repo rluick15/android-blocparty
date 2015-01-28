@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.objects.Collection;
@@ -47,6 +49,9 @@ public class FilterDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_filter_dialog, container, false);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        TextView dialogTitle = (TextView) view.findViewById(R.id.dialogTitle);
+        dialogTitle.setText(getString(R.string.title_choose_collection));
+
         //get Collection Array
         SharedPreferences sharedPrefs = mContext.getSharedPreferences(Constants.PREFS, 0);
         String json = sharedPrefs.getString(Constants.COLLECTION_ARRAY, null);
@@ -70,6 +75,9 @@ public class FilterDialogFragment extends DialogFragment {
                 dialogFragment.show(getFragmentManager(), "dialog");
             }
         });
+
+        Button selectCollectionButton = (Button) view.findViewById(R.id.selectCollectionButton);
+        selectCollectionButton.setText(getString(R.string.button_select_collection));
 
         return view;
     }
