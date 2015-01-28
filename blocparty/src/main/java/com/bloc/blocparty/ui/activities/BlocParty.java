@@ -160,7 +160,7 @@ public class BlocParty extends Activity {
             }
         }
         else if(id == R.id.action_filter) {
-            FilterDialogFragment fragment = new FilterDialogFragment();
+            FilterDialogFragment fragment = new FilterDialogFragment(this);
             fragment.show(getFragmentManager(), "dialog");
         }
         return super.onOptionsItemSelected(item);
