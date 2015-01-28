@@ -52,5 +52,6 @@
     <string name="title_collection">Collection Title</string>
     <string name="dialog_create_collection">Create Collection</string>
     <string name="toast_no_title">No Title Set</string>
+    <string name="button_select_category">Select Category</string>
 
 </resources>

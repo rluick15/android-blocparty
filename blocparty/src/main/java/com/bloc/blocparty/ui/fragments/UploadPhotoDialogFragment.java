@@ -38,6 +38,12 @@ public class UploadPhotoDialogFragment extends DialogFragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_upload_photo_dialog, container, false);
         getDialog().setTitle(getString(R.string.title_upload_photo));
