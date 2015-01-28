@@ -1,4 +1,4 @@
-package com.bloc.blocparty.FeedItem;
+package com.bloc.blocparty.objects;
 
 import com.bloc.blocparty.utils.Constants;
 
