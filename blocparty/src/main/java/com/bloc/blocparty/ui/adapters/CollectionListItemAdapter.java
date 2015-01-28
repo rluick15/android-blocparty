@@ -69,7 +69,6 @@ public class CollectionListItemAdapter extends ArrayAdapter<Collection> {
             holder.image4.setImageBitmap(images[3]);
         }
 
-
         return convertView;
     }
 

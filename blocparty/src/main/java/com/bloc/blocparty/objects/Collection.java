@@ -30,6 +30,7 @@ public class Collection {
         this.mName = name;
         mImages = new Bitmap[4];
         mUserNames = new ArrayList<>();
+        mFeedPosts = new ArrayList<>();
     }
 
     public String getName() {
