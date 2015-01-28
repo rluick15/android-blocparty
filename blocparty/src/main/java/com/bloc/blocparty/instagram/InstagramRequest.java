@@ -3,7 +3,7 @@ package com.bloc.blocparty.instagram;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.bloc.blocparty.FeedItem.FeedItem;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
