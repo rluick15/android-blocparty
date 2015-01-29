@@ -55,16 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 
-    <TextView
-        android:id="@android:id/empty"
-        android:text="@string/empty_collection"
-        android:gravity="center"
-        android:textColor="@color/holo_blue"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="200dp"/>
-
     <Button
         android:id="@+id/selectCollectionButton"
         android:text=""
