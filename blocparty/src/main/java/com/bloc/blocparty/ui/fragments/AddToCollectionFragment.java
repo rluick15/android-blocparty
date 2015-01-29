@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,9 @@ public class AddToCollectionFragment extends DialogFragment {
         TextView dialogTitle = (TextView) view.findViewById(R.id.dialogTitle);
         dialogTitle.setText(mContext.getString(R.string.title_dialog_add_to_collection));
 
+        ImageButton addButton = (ImageButton) view.findViewById(R.id.addCollection);
+        addButton.setVisibility(View.GONE);
+
         //get Collection Array
         SharedPreferences sharedPrefs = mContext.getSharedPreferences(Constants.PREFS, 0);
         String json = sharedPrefs.getString(Constants.COLLECTION_ARRAY, null);
@@ -92,7 +96,6 @@ public class AddToCollectionFragment extends DialogFragment {
                     dismiss();
                 }
                 else {
-
                     mCollection.addPost(mFeedItem);
 
                     collections.set(mPosition, mCollection);

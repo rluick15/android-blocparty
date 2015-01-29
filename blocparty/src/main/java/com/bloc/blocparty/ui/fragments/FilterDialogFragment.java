@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.objects.Collection;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.ui.adapters.CollectionListItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.google.gson.Gson;
@@ -31,6 +33,8 @@ public class FilterDialogFragment extends DialogFragment {
 
     private Context mContext;
     private ListView mCollectionList;
+    private Collection mCollection;
+    private Button mSelectCollectionButton;
 
     public FilterDialogFragment() {} // Required empty public constructor
 
@@ -76,8 +80,25 @@ public class FilterDialogFragment extends DialogFragment {
             }
         });
 
-        Button selectCollectionButton = (Button) view.findViewById(R.id.selectCollectionButton);
-        selectCollectionButton.setText(getString(R.string.button_select_collection));
+        mSelectCollectionButton = (Button) view.findViewById(R.id.selectCollectionButton);
+        mSelectCollectionButton.setText(getString(R.string.button_select_collection));
+        mSelectCollectionButton.setEnabled(false);
+
+        mCollectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mCollection = (Collection) parent.getItemAtPosition(position);
+                mSelectCollectionButton.setEnabled(true);
+            }
+        });
+
+        mSelectCollectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = mCollection.getName();
+                ArrayList<FeedItem> feedItems = mCollection.getFeedPosts();
+            }
+        });
 
         return view;
     }

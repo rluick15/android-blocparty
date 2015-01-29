@@ -34,6 +34,14 @@ public class Collection {
         return mFeedPosts;
     }
 
+    public Boolean containsPostId(String postId) {
+        return mPostIds.contains(postId);
+    }
+
+    public String[] getImages() {
+        return mImages;
+    }
+
     public void addPost(FeedItem post) {
         mFeedPosts.add(post);
 
@@ -49,14 +57,6 @@ public class Collection {
                 }
             }
         }
-    }
-
-    public Boolean containsPostId(String postId) {
-        return mPostIds.contains(postId);
-    }
-
-    public String[] getImages() {
-        return mImages;
     }
 
 
