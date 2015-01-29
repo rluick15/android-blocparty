@@ -2,7 +2,8 @@ package com.bloc.blocparty.ui.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bloc.blocparty.BlocPartyApplication;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.objects.Collection;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,24 +60,22 @@ public class CollectionListItemAdapter extends ArrayAdapter<Collection> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Log.e("ERROR", collection.getName());
         holder.title.setText(collection.getName());
         holder.userCount.setText(String.valueOf(collection.getUserCount()) + " users");
-
-        Bitmap[] images = collection.getImages();
+        String[] images = collection.getImages();
         if(images[0] != null) {
-            holder.image1.setImageBitmap(images[0]);
+            new ImageLoadTask(images[0], holder.image1).execute();
         }
         if(images[1] != null) {
-            holder.image2.setImageBitmap(images[1]);
+            new ImageLoadTask(images[1], holder.image2).execute();
         }
 
         if(images[2] != null) {
-            holder.image3.setImageBitmap(images[2]);
+            new ImageLoadTask(images[2], holder.image3).execute();
         }
 
         if(images[3] != null) {
-            holder.image4.setImageBitmap(images[3]);
+            new ImageLoadTask(images[3], holder.image4).execute();
         }
 
         return convertView;
@@ -81,5 +88,40 @@ public class CollectionListItemAdapter extends ArrayAdapter<Collection> {
         ImageView image2;
         ImageView image3;
         ImageView image4;
+    }
+
+    public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
+
+        private String url;
+        private ImageView image;
+
+        public ImageLoadTask(String url, ImageView imageView) {
+            this.url = url;
+            this.image = imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            Bitmap myBitmap = null;
+            try {
+                URL imageUrl = new URL(url);
+                HttpGet httpRequest = new HttpGet(imageUrl.toString());
+                DefaultHttpClient httpclient = BlocPartyApplication.getHttpInstance();
+                HttpResponse response = httpclient.execute(httpRequest);
+                HttpEntity entity = response.getEntity();
+                BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+                myBitmap = BitmapFactory.decodeStream(bufHttpEntity.getContent());
+                httpRequest.abort();
+            } catch (Exception e) {
+            }
+            return myBitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+
+            image.setImageBitmap(bitmap);
+        }
     }
 }

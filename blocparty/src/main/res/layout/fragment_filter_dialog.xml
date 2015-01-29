@@ -55,13 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 
-    <Button
-        android:id="@+id/selectCollectionButton"
-        android:text=""
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <TextView
         android:id="@android:id/empty"
         android:text="@string/empty_collection"
@@ -71,6 +64,13 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="200dp"/>
+
+    <Button
+        android:id="@+id/selectCollectionButton"
+        android:text=""
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
 
