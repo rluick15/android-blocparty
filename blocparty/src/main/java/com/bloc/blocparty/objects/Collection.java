@@ -12,13 +12,14 @@ public class Collection {
     private ArrayList<FeedItem> mFeedPosts;
     private String[] mImages;
     private ArrayList<String> mUserNames;
-    private String mJsonImages;
+    private ArrayList<String> mPostIds;
 
     public Collection(String name) {
         this.mName = name;
         mImages = new String[4];
         mUserNames = new ArrayList<>();
         mFeedPosts = new ArrayList<>();
+        mPostIds = new ArrayList<>();
     }
 
     public String getName() {
@@ -36,14 +37,22 @@ public class Collection {
     public void addPost(FeedItem post) {
         mFeedPosts.add(post);
 
-        if(!mUserNames.contains(post.getName())) {
-            mUserNames.add(post.getName());
-            mUserCount++;
+        if(!mPostIds.contains(post.getPostId())) {
+            mPostIds.add(post.getPostId());
 
-            if(mUserCount <= 4) {
-                mImages[mUserCount - 1] = post.getProfilePictureUrl();
+            if (!mUserNames.contains(post.getName())) {
+                mUserNames.add(post.getName());
+                mUserCount++;
+
+                if (mUserCount <= 4) {
+                    mImages[mUserCount - 1] = post.getProfilePictureUrl();
+                }
             }
         }
+    }
+
+    public Boolean containsPostId(String postId) {
+        return mPostIds.contains(postId);
     }
 
     public String[] getImages() {

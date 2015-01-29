@@ -86,19 +86,27 @@ public class AddToCollectionFragment extends DialogFragment {
         selectCollectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCollection.addPost(mFeedItem);
+                if(mCollection.containsPostId(mFeedItem.getPostId())) {
+                    Toast.makeText(mContext, mContext.getString(R.string.toast_contains_post),
+                            Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
+                else {
 
-                collections.set(mPosition, mCollection);
+                    mCollection.addPost(mFeedItem);
 
-                String jsonCat = new Gson().toJson(collections);
-                SharedPreferences.Editor prefsEditor =
-                        mContext.getSharedPreferences(Constants.PREFS, 0).edit();
-                prefsEditor.putString(Constants.COLLECTION_ARRAY, jsonCat);
-                prefsEditor.commit();
+                    collections.set(mPosition, mCollection);
 
-                Toast.makeText(mContext, mContext.getString(R.string.toast_added_to_collection),
-                        Toast.LENGTH_SHORT).show();
-                dismiss();
+                    String jsonCat = new Gson().toJson(collections);
+                    SharedPreferences.Editor prefsEditor =
+                            mContext.getSharedPreferences(Constants.PREFS, 0).edit();
+                    prefsEditor.putString(Constants.COLLECTION_ARRAY, jsonCat);
+                    prefsEditor.commit();
+
+                    Toast.makeText(mContext, mContext.getString(R.string.toast_added_to_collection),
+                            Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
             }
         });
 
