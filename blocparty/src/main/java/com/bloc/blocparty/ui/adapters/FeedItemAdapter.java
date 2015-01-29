@@ -50,6 +50,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     private ListView mListView;
     private PopupMenu mPopupMenu;
     private Bitmap mSaveBitmap;
+    private FeedItem mFeedItem;
 
     public FeedItemAdapter(Context context, List<FeedItem> objects) {
         super(context, R.layout.feed_item_adapter, objects);
@@ -117,6 +118,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             @Override
             public void onClick(View v) {
                 mSaveBitmap = ((BitmapDrawable) holder.feedImage.getDrawable()).getBitmap();
+                mFeedItem = feedItem;
                 mPopupMenu.show();
             }
         });
@@ -129,7 +131,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                         addImageToGallery();
                         break;
                     case 1:
-                        AddToCollectionFragment fragment = new AddToCollectionFragment(mContext, feedItem);
+                        AddToCollectionFragment fragment = new AddToCollectionFragment(mContext, mFeedItem);
                         fragment.show(((BlocParty) mContext).getFragmentManager(), "dialog");
                         break;
                 }

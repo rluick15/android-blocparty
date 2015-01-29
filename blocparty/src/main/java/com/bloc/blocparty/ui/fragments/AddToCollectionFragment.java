@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.objects.Collection;
@@ -34,6 +35,8 @@ public class AddToCollectionFragment extends DialogFragment {
     private Context mContext;
     private FeedItem mFeedItem;
     private ListView mCollectionList;
+    private Collection mCollection;
+    private int mPosition;
 
     public AddToCollectionFragment() {} // Required empty public constructor
 
@@ -73,12 +76,31 @@ public class AddToCollectionFragment extends DialogFragment {
         mCollectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setSelected(true);
+                mPosition = position;
+                mCollection = (Collection) parent.getItemAtPosition(mPosition);
             }
         });
 
         Button selectCollectionButton = (Button) view.findViewById(R.id.selectCollectionButton);
         selectCollectionButton.setText(mContext.getString(R.string.title_dialog_add_to_collection));
+        selectCollectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCollection.addPost(mFeedItem);
+
+                collections.set(mPosition, mCollection);
+
+                String jsonCat = new Gson().toJson(collections);
+                SharedPreferences.Editor prefsEditor =
+                        mContext.getSharedPreferences(Constants.PREFS, 0).edit();
+                prefsEditor.putString(Constants.COLLECTION_ARRAY, jsonCat);
+                prefsEditor.commit();
+
+                Toast.makeText(mContext, mContext.getString(R.string.toast_added_to_collection),
+                        Toast.LENGTH_SHORT).show();
+                dismiss();
+            }
+        });
 
         return view;
     }

@@ -69,7 +69,7 @@ public class CreateCollectionDialogFragment extends DialogFragment {
                 }
                 else {
                     if(mCollections == null) {
-                        mCollections = new ArrayList<Collection>();
+                        mCollections = new ArrayList<>();
                     }
 
                     Collection collection = new Collection(mTitleField.getText().toString());

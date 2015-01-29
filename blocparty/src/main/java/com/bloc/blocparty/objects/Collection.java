@@ -3,6 +3,7 @@ package com.bloc.blocparty.objects;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.bloc.blocparty.BlocPartyApplication;
 
@@ -50,6 +51,7 @@ public class Collection {
 
         if(!mUserNames.contains(post.getName())) {
             mUserNames.add(post.getName());
+            Log.e("NAMES", String.valueOf(mUserNames));
             mUserCount++;
         }
 

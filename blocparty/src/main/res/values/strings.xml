@@ -54,5 +54,6 @@
     <string name="toast_no_title">No Title Set</string>
     <string name="button_select_collection">Select Collection</string>
     <string name="title_dialog_add_to_collection">Add to Collection</string>
+    <string name="toast_added_to_collection">Post added to Collection!</string>
 
 </resources>
