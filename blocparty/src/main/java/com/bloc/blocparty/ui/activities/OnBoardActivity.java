@@ -32,7 +32,7 @@ public class OnBoardActivity extends FragmentActivity implements OnBoardFragment
         requestWindowFeature(Window.FEATURE_NO_TITLE); //hide the action bar
         setContentView(R.layout.activity_on_board);
 
-        //checkIfAlreadyOnBoarded();
+        checkIfAlreadyOnBoarded();
         loadOnBoardFrag(Constants.NETWORK_ID);
 
         if (savedInstanceState == null) {
