@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="300dp"
+    android:maxHeight="300dp"
+    tools:context="com.bloc.blocparty.ui.fragments.FilterDialogFragment">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp">
+
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/holo_blue"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:layout_marginTop="@dimen/mini_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+        <ImageButton
+            android:id="@+id/addCollection"
+            android:src="@drawable/ic_content_add"
+            android:background="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"/>
+    </LinearLayout>
+
+    <View
+        android:background="@color/holo_blue"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+
+    <ListView
+        android:id="@+id/collectionList"
+        android:choiceMode="singleChoice"
+        android:listSelector="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="200dp" />
+
+    <View
+        android:background="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <Button
+        android:id="@+id/selectCollectionButton"
+        android:text=""
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+

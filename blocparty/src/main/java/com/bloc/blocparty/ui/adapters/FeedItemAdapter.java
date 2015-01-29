@@ -8,7 +8,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,12 +23,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
-import com.bloc.blocparty.FeedItem.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.activities.BlocParty;
+import com.bloc.blocparty.ui.fragments.AddToCollectionFragment;
 import com.bloc.blocparty.utils.Constants;
 import com.facebook.Session;
 
@@ -50,6 +50,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
     private ListView mListView;
     private PopupMenu mPopupMenu;
     private Bitmap mSaveBitmap;
+    private FeedItem mFeedItem;
 
     public FeedItemAdapter(Context context, List<FeedItem> objects) {
         super(context, R.layout.feed_item_adapter, objects);
@@ -63,7 +64,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
         final ViewHolder holder;
         mListView = (ListView) parent;
 
-        FeedItem feedItem = mFeedItems.get(position);
+        final FeedItem feedItem = mFeedItems.get(position);
 
         if(convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.feed_item_adapter, null);
@@ -117,6 +118,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             @Override
             public void onClick(View v) {
                 mSaveBitmap = ((BitmapDrawable) holder.feedImage.getDrawable()).getBitmap();
+                mFeedItem = feedItem;
                 mPopupMenu.show();
             }
         });
@@ -129,6 +131,8 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
                         addImageToGallery();
                         break;
                     case 1:
+                        AddToCollectionFragment fragment = new AddToCollectionFragment(mContext, mFeedItem);
+                        fragment.show(((BlocParty) mContext).getFragmentManager(), "dialog");
                         break;
                 }
                 return false;
@@ -307,7 +311,7 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Log.e("ERRIR", String.valueOf(myBitmap));
+
             return myBitmap;
         }
 

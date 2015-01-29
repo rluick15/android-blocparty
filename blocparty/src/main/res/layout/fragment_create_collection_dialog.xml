@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bloc.blocparty.ui.fragments.CreateCollectionDialogFragment">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:text="@string/title_collection"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/mini_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+    <EditText
+        android:id="@+id/collectionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+    <LinearLayout
+        android:layout_below="@+id/collectionTitle"
+        style="@style/FlatButtonLayout">
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/button_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <View style="@style/ButtonMiddleBorder" />
+
+        <Button
+            android:id="@+id/createButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/button_create_collection"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

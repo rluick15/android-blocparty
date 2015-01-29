@@ -15,14 +15,6 @@ public class Constants {
     // Twitter App Credentials
     public static final String TWITTER_KEY = "yEMYeffyfaOwxIPKgObqnO40j";
     public static final String TWITTER_SECRET = "DSs0NNqkO5ZnPbL1b7AgDxQoMYLJMybawbjVrDwXsnCcbbg3Lt";
-    public static final String PREFERENCE_NAME = "twitter_oauth";
-    public static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
-    public static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
-    public static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLogedIn";
-    public static final String TWITTER_CALLBACK_URL = "oauth://t4jsample";
-    public static final String URL_TWITTER_AUTH = "auth_url";
-    public static final String URL_TWITTER_OAUTH_VERIFIER = "oauth_verifier";
-    public static final String URL_TWITTER_OAUTH_TOKEN = "oauth_token";
 
     //Facebook Permissions
     public static final String FACEBOOK_PUBLISH_ACTIONS = "publish_actions";
@@ -56,6 +48,10 @@ public class Constants {
     public static final String FACEBOOK = "Facebook";
     public static final String TWITTER = "Twitter";
     public static final String INSTAGRAM = "Instagram";
+
+    //Shared Preference Constants
+    public static final String PREFS = "prefs";
+    public static final String COLLECTION_ARRAY = "collectionArray";
 
     //Misc
     public static final int NETWORK_ID = 0;

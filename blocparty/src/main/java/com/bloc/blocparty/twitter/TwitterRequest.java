@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import com.bloc.blocparty.FeedItem.FeedItem;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;

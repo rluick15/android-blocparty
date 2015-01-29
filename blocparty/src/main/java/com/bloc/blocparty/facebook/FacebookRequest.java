@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.bloc.blocparty.FeedItem.FeedItem;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
@@ -38,12 +38,7 @@ public class FacebookRequest {
     }
 
     public Boolean isLoggedIn() {
-        if(Session.getActiveSession().isOpened()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return Session.getActiveSession().isOpened();
     }
 
     /**
