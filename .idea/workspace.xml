@@ -24,9 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a12a700d-0af5-4ee3-8c98-862806ae0672" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FilterDialogFragment.java" afterPath="$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FilterDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blocparty/src/main/res/layout/activity_bloc_party.xml" afterPath="$PROJECT_DIR$/blocparty/src/main/res/layout/activity_bloc_party.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android-blocparty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,11 +49,14 @@
       <file leaf-file-name="BlocParty.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47184467" vertical-offset="2664" max-vertical-offset="3842">
-              <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
+            <state vertical-scroll-proportion="-0.25825244" vertical-offset="2972" max-vertical-offset="4709">
+              <caret line="167" column="37" selection-start-line="167" selection-start-column="37" selection-end-line="167" selection-end-column="37" />
               <folding>
-                <element signature="e#2392#2429#0" expanded="true" />
-                <element signature="e#7781#7816#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2463#2500#0" expanded="true" />
+                <element signature="e#5084#5418#0" expanded="true" />
+                <element signature="e#5407#5408#0" expanded="true" />
+                <element signature="e#8088#8123#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2331,26 +2331,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/activity_bloc_party.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="41.74074" vertical-offset="1637" max-vertical-offset="2125">
-          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding>
-            <element signature="e#1101#1134#0" expanded="true" />
-            <element signature="e#1636#1656#0" expanded="true" />
-            <element signature="e#1965#1985#0" expanded="true" />
-            <element signature="e#2027#2047#0" expanded="true" />
-            <element signature="e#3034#3054#0" expanded="true" />
-            <element signature="e#3096#3116#0" expanded="true" />
-            <element signature="e#4195#4215#0" expanded="true" />
-            <element signature="e#4254#4289#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/fragments/FilterDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="845" max-vertical-offset="1479">
@@ -2395,13 +2375,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/blocparty/src/main/res/layout/activity_bloc_party.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="41.74074" vertical-offset="1637" max-vertical-offset="2125">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding>
+            <element signature="e#1101#1134#0" expanded="true" />
+            <element signature="e#1636#1656#0" expanded="true" />
+            <element signature="e#1965#1985#0" expanded="true" />
+            <element signature="e#2027#2047#0" expanded="true" />
+            <element signature="e#3034#3054#0" expanded="true" />
+            <element signature="e#3096#3116#0" expanded="true" />
+            <element signature="e#4195#4215#0" expanded="true" />
+            <element signature="e#4254#4289#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/blocparty/src/main/java/com/bloc/blocparty/ui/activities/BlocParty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47184467" vertical-offset="2664" max-vertical-offset="3842">
-          <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
+        <state vertical-scroll-proportion="-0.25825244" vertical-offset="2972" max-vertical-offset="4709">
+          <caret line="167" column="37" selection-start-line="167" selection-start-column="37" selection-end-line="167" selection-end-column="37" />
           <folding>
-            <element signature="e#2392#2429#0" expanded="true" />
-            <element signature="e#7781#7816#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2463#2500#0" expanded="true" />
+            <element signature="e#5084#5418#0" expanded="true" />
+            <element signature="e#5407#5408#0" expanded="true" />
+            <element signature="e#8088#8123#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -17,13 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bloc.blocparty.BlocPartyApplication;
-import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.facebook.FacebookRequest;
 import com.bloc.blocparty.instagram.InstagramRequest;
+import com.bloc.blocparty.objects.FeedItem;
 import com.bloc.blocparty.twitter.TwitterRequest;
 import com.bloc.blocparty.ui.adapters.FeedItemAdapter;
 import com.bloc.blocparty.ui.fragments.FilterDialogFragment;
@@ -56,6 +57,7 @@ public class BlocParty extends Activity {
     private ImageView image2;
     private ImageView image3;
     private ImageView image4;
+    private TextView mCollectionTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,7 @@ public class BlocParty extends Activity {
 
     private void setupHeaderViews() {
         mFilterHeader = (LinearLayout) findViewById(R.id.filterHeader);
+        mCollectionTitle = (TextView) findViewById(R.id.collectionName);
         image1 = (ImageView) findViewById(R.id.image1);
         image2 = (ImageView) findViewById(R.id.image2);
         image3 = (ImageView) findViewById(R.id.image3);
@@ -179,6 +182,8 @@ public class BlocParty extends Activity {
     public void filterAdapter(String name, ArrayList<FeedItem> feedItems, String[] images) {
         mFilterHeader.setVisibility(View.VISIBLE);
 
+        mCollectionTitle.setText(name);
+
         if(images[0] != null) {
             new ImageLoadTask(images[0], image1).execute();
         }
@@ -193,6 +198,9 @@ public class BlocParty extends Activity {
         if(images[3] != null) {
             new ImageLoadTask(images[3], image4).execute();
         }
+
+        FeedItemAdapter adapter = new FeedItemAdapter(BlocParty.this, feedItems);
+        mFeedList.setAdapter(adapter);
     }
 
     @Override
