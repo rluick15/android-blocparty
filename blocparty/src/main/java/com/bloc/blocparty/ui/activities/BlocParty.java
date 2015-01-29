@@ -75,8 +75,7 @@ public class BlocParty extends Activity {
         mFeedList = (ListView) findViewById(R.id.feedList);
         mFeedItems = new ArrayList<>();
 
-        mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
-        mFeedList.setAdapter(mAdapter);
+        setAdapter();
 
         FacebookRequest fbRequest = new FacebookRequest(this);
         fbRequest.getFeedData();
@@ -119,6 +118,11 @@ public class BlocParty extends Activity {
         }
     }
 
+    private void setAdapter() {
+        mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
+        mFeedList.setAdapter(mAdapter);
+    }
+
     private void setupHeaderViews() {
         mFilterHeader = (LinearLayout) findViewById(R.id.filterHeader);
         mCollectionTitle = (TextView) findViewById(R.id.collectionName);
@@ -130,7 +134,12 @@ public class BlocParty extends Activity {
         mExitFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mFilterHeader.setVisibility(View.GONE);
+                image1.setImageBitmap(null);
+                image2.setImageBitmap(null);
+                image3.setImageBitmap(null);
+                image4.setImageBitmap(null);
+                setAdapter();
             }
         });
     }
