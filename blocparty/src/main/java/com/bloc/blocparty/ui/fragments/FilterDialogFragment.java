@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.bloc.blocparty.R;
 import com.bloc.blocparty.objects.Collection;
 import com.bloc.blocparty.objects.FeedItem;
+import com.bloc.blocparty.ui.activities.BlocParty;
 import com.bloc.blocparty.ui.adapters.CollectionListItemAdapter;
 import com.bloc.blocparty.utils.Constants;
 import com.google.gson.Gson;
@@ -97,6 +98,10 @@ public class FilterDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 String name = mCollection.getName();
                 ArrayList<FeedItem> feedItems = mCollection.getFeedPosts();
+                String[] images = mCollection.getImages();
+
+                ((BlocParty) mContext).filterAdapter(name, feedItems, images);
+                dismiss();
             }
         });
 
