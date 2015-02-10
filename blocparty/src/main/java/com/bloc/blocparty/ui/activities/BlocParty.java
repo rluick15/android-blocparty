@@ -118,11 +118,18 @@ public class BlocParty extends Activity {
         }
     }
 
+    /*
+     * This method sets the custom adapter for the photo feed
+     */
     private void setAdapter() {
         mAdapter = new FeedItemAdapter(BlocParty.this, mFeedItems);
         mFeedList.setAdapter(mAdapter);
     }
 
+    /*
+     * This method sets the header views for when a filter is set. It sets the name of the filter
+     * as well as the exit button and the collage of images of users contained in the filter group
+     */
     private void setupHeaderViews() {
         mFilterHeader = (LinearLayout) findViewById(R.id.filterHeader);
         mCollectionTitle = (TextView) findViewById(R.id.collectionName);
@@ -144,6 +151,22 @@ public class BlocParty extends Activity {
         });
     }
 
+    /*
+     * This method is called each time a new feed item needs to be created in a twitter, facebook,
+     * or instagram request. It adds it to the ArrayList being displated in the adapter and then
+     * updates the adapter
+     *
+     * @param feedItem the feedItem object to be added to the adapter
+     */
+    public void createFeedItem(FeedItem feedItem) {
+        mFeedItems.add(feedItem);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    /*
+     * This method sets the full screen image layout for when the user clicks on an image to
+     * display it in full screen.
+     */
     private void setupFullScreenMode() {
         mFullScreenLayout = (RelativeLayout) findViewById(R.id.fullScreenLayout);
         ImageView quitFullScreen = (ImageView) findViewById(R.id.quitFullScreen);
@@ -158,11 +181,12 @@ public class BlocParty extends Activity {
         });
     }
 
-    public void createFeedItem(FeedItem feedItem) {
-        mFeedItems.add(feedItem);
-        mAdapter.notifyDataSetChanged();
-    }
-
+    /*
+     * This method is called when a user clicks on an image to make it full screen. It populates the
+     * previously created full screen views with the correct image
+     *
+     * @param bitmap the image being put into full screen mode
+     */
     public void fullScreenImage(Bitmap bitmap) {
         mFullScreenLayout.setVisibility(View.VISIBLE);
         mFeedList.setVisibility(View.GONE);
@@ -214,16 +238,12 @@ public class BlocParty extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.bloc_party, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_camera) {
             if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
@@ -243,6 +263,14 @@ public class BlocParty extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    /*
+     * This AsyncTask takes an image url and downloads the image into Bitmap form using an HTTPGet
+     * request. It then sets the image to the appropriate ImageView
+     *
+     * @param url the web url of the image
+     * @param imageView the imageView the bitmap will be set to
+     */
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
         private String url;
@@ -265,8 +293,7 @@ public class BlocParty extends Activity {
                 BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
                 myBitmap = BitmapFactory.decodeStream(bufHttpEntity.getContent());
                 httpRequest.abort();
-            } catch (Exception e) {
-            }
+            } catch (Exception ignored) {}
             return myBitmap;
         }
 

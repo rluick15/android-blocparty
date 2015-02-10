@@ -21,10 +21,6 @@ import com.facebook.model.GraphUser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-/**
- * Created by Rich on 1/22/2015.
- */
 public class FacebookRequest {
 
     private String mCurrentUserId;
